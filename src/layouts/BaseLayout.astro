@@ -1,0 +1,107 @@
+---
+import "../styles/global.css";
+import { t, getRoute, getAlternateUrl } from "../i18n";
+import type { Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description: string;
+}
+
+const { lang, title, description } = Astro.props;
+const alternateLang: Lang = lang === "en" ? "es" : "en";
+const alternateUrl = getAlternateUrl(Astro.url, alternateLang);
+const canonicalUrl = Astro.url.href;
+const siteOrigin = Astro.site?.origin ?? "https://mauriciosuarez.dev";
+const siteName = "mauriciosuarez.dev";
+const ogImageUrl = `${siteOrigin}/og-image.png`;
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} | mauriciosuarez.dev</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={`${siteOrigin}${getAlternateUrl(Astro.url, "en")}`} />
+    <link rel="alternate" hreflang="es" href={`${siteOrigin}${getAlternateUrl(Astro.url, "es")}`} />
+    <link rel="alternate" hreflang="x-default" href={`${siteOrigin}${getAlternateUrl(Astro.url, "en")}`} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale" content={lang === "en" ? "en_US" : "es_ES"} />
+    <meta property="og:locale:alternate" content={lang === "en" ? "es_ES" : "en_US"} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:image" content={ogImageUrl} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="min-h-screen bg-(--color-bg-primary) text-(--color-text-primary) antialiased">
+    <header class="sticky top-0 z-50 border-b border-(--color-border-primary) bg-(--color-bg-primary)/80 backdrop-blur-md">
+      <nav class="mx-auto flex w-full max-w-4xl items-center justify-between px-4 py-4">
+        <a
+          href={getRoute(lang, "home")}
+          class="text-sm font-semibold tracking-tight text-(--color-text-primary) transition-colors hover:text-(--color-accent)"
+        >
+          mauriciosuarez<span class="text-(--color-accent)">.dev</span>
+        </a>
+        <div class="flex items-center gap-5 text-sm">
+          <a href={getRoute(lang, "services")} class="text-(--color-text-secondary) transition-colors hover:text-(--color-text-primary)">
+            {t(lang, "nav.services")}
+          </a>
+          <a href={getRoute(lang, "work")} class="text-(--color-text-secondary) transition-colors hover:text-(--color-text-primary)">
+            {t(lang, "nav.work")}
+          </a>
+          <a href={getRoute(lang, "writing")} class="text-(--color-text-secondary) transition-colors hover:text-(--color-text-primary)">
+            {t(lang, "nav.writing")}
+          </a>
+          <a href={getRoute(lang, "about")} class="text-(--color-text-secondary) transition-colors hover:text-(--color-text-primary)">
+            {t(lang, "nav.about")}
+          </a>
+          <a href={getRoute(lang, "contact")} class="text-(--color-text-secondary) transition-colors hover:text-(--color-text-primary)">
+            {t(lang, "nav.contact")}
+          </a>
+          <span class="mx-1 h-4 w-px bg-(--color-border-secondary)" aria-hidden="true"></span>
+          <a
+            href={alternateUrl}
+            class="rounded-md border border-(--color-border-secondary) px-2.5 py-1 text-xs font-medium text-(--color-text-tertiary) transition-colors hover:border-(--color-accent-dim) hover:text-(--color-text-secondary)"
+            aria-label={`Switch to ${alternateLang === "en" ? "English" : "Español"}`}
+          >
+            {alternateLang.toUpperCase()}
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="border-t border-(--color-border-primary)">
+      <div class="mx-auto flex w-full max-w-4xl items-center justify-between px-4 py-8 text-xs text-(--color-text-tertiary)">
+        <span>&copy; {year} Mauricio Suárez. {t(lang, "footer.rights")}</span>
+        <a href={getRoute(lang, "home")} class="transition-colors hover:text-(--color-text-secondary)">
+          mauriciosuarez.dev
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>

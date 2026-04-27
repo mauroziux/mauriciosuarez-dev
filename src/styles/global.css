@@ -1,0 +1,292 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────
+   Premium Dark Visual System
+   ────────────────────────────────────────────── */
+
+@theme {
+  /* Core palette */
+  --color-bg-primary: #0a0a0f;
+  --color-bg-secondary: #111118;
+  --color-bg-tertiary: #18181f;
+  --color-bg-card: #13131a;
+  --color-bg-card-hover: #1a1a24;
+
+  /* Accent — cool blue */
+  --color-accent: #6d9dc5;
+  --color-accent-light: #8bb8db;
+  --color-accent-dim: #4a7a9b;
+
+  /* Text */
+  --color-text-primary: #e8e8ed;
+  --color-text-secondary: #a0a0b0;
+  --color-text-tertiary: #6b6b80;
+
+  /* Borders */
+  --color-border-primary: #1f1f2e;
+  --color-border-secondary: #2a2a3a;
+  --color-border-accent: rgba(109, 157, 197, 0.15);
+
+  /* Glass */
+  --color-glass-bg: rgba(17, 17, 24, 0.6);
+  --color-glass-border: rgba(255, 255, 255, 0.06);
+
+  /* Typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Transitions */
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Base reset ──────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background-color: rgba(109, 157, 197, 0.25);
+  color: var(--color-text-primary);
+}
+
+/* ── Dot grid background ─────────────────────── */
+
+.bg-dot-grid {
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+/* ── Glass card ──────────────────────────────── */
+
+.glass-card {
+  background: var(--color-glass-bg);
+  border: 1px solid var(--color-glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* ── Accent link style ───────────────────────── */
+
+.link-accent {
+  color: var(--color-accent-light);
+  transition: color var(--transition-base);
+}
+.link-accent:hover {
+  color: var(--color-accent);
+}
+
+/* ── Fade-in animation (CSS only) ────────────── */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.5s ease-out both;
+}
+
+.animate-fade-up-delay-1 {
+  animation: fade-up 0.5s ease-out 0.1s both;
+}
+
+.animate-fade-up-delay-2 {
+  animation: fade-up 0.5s ease-out 0.2s both;
+}
+
+.animate-fade-up-delay-3 {
+  animation: fade-up 0.5s ease-out 0.3s both;
+}
+
+/* ── Section spacing utility ─────────────────── */
+
+.section-padding {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+/* ── Gradient text utility ───────────────────── */
+
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--color-text-primary) 0%,
+    var(--color-accent-light) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Premium button styles ───────────────────── */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-bg-primary);
+  background: var(--color-accent);
+  border-radius: 6px;
+  transition: background var(--transition-base),
+    transform var(--transition-base);
+}
+.btn-primary:hover {
+  background: var(--color-accent-light);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-text-primary);
+  background: transparent;
+  border: 1px solid var(--color-border-secondary);
+  border-radius: 6px;
+  transition: border-color var(--transition-base),
+    background var(--transition-base);
+}
+.btn-secondary:hover {
+  border-color: var(--color-accent-dim);
+  background: rgba(109, 157, 197, 0.06);
+}
+
+/* ── Project card hover ──────────────────────── */
+
+.project-card {
+  transition: border-color var(--transition-base),
+    transform var(--transition-base),
+    background var(--transition-base);
+}
+.project-card:hover {
+  border-color: var(--color-border-accent);
+  transform: translateY(-2px);
+  background: var(--color-bg-card-hover);
+}
+
+/* ── Tag pill ────────────────────────────────── */
+
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background: rgba(109, 157, 197, 0.08);
+  border: 1px solid rgba(109, 157, 197, 0.12);
+  border-radius: 4px;
+}
+
+/* ── Service card hover ──────────────────────── */
+
+.service-card {
+  transition: border-color var(--transition-base),
+    transform var(--transition-base),
+    background var(--transition-base);
+}
+.service-card:hover {
+  border-color: var(--color-border-accent);
+  transform: translateY(-2px);
+  background: var(--color-bg-card-hover);
+}
+
+/* ── Horizontal rule ─────────────────────────── */
+
+hr.section-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-border-secondary) 50%,
+    transparent 100%
+  );
+}
+
+/* ── Prose (minimal for article content) ─────── */
+
+.prose-invert {
+  color: var(--color-text-secondary);
+  line-height: 1.75;
+}
+.prose-invert h2,
+.prose-invert h3,
+.prose-invert h4 {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+}
+.prose-invert h2 { font-size: 1.375rem; }
+.prose-invert h3 { font-size: 1.125rem; }
+.prose-invert p { margin-bottom: 1.25em; }
+.prose-invert ul,
+.prose-invert ol {
+  margin-bottom: 1.25em;
+  padding-left: 1.5em;
+}
+.prose-invert li { margin-bottom: 0.375em; }
+.prose-invert a {
+  color: var(--color-accent-light);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-invert a:hover {
+  color: var(--color-accent);
+}
+.prose-invert code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.15em 0.4em;
+  background: var(--color-bg-tertiary);
+  border-radius: 4px;
+}
+.prose-invert pre {
+  margin-bottom: 1.5em;
+  padding: 1em 1.25em;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-primary);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+.prose-invert pre code {
+  padding: 0;
+  background: transparent;
+}

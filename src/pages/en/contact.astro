@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { t } from "../../i18n";
+const lang = "en" as const;
+---
+
+<BaseLayout lang={lang} title={t(lang, "contact.title")} description={t(lang, "meta.description.contact")}>
+  <div class="section-padding">
+    <div class="mx-auto max-w-4xl px-4">
+      <h1 class="text-3xl font-bold tracking-tight text-(--color-text-primary) sm:text-4xl">{t(lang, "contact.title")}</h1>
+      <p class="mt-4 text-(--color-text-secondary)">{t(lang, "contact.description")}</p>
+      <ul class="mt-8 space-y-4">
+        <li class="glass-card flex items-center gap-4 rounded-lg px-5 py-4">
+          <span class="text-sm font-medium text-(--color-text-tertiary)">{t(lang, "contact.email")}</span>
+          <a class="link-accent text-sm" href="mailto:hello@mauriciosuarez.dev">hello@mauriciosuarez.dev</a>
+        </li>
+        <li class="glass-card flex items-center gap-4 rounded-lg px-5 py-4">
+          <span class="text-sm font-medium text-(--color-text-tertiary)">{t(lang, "contact.github")}</span>
+          <a class="link-accent text-sm" href="https://github.com/mauriciosuarez" target="_blank" rel="noopener noreferrer">github.com/mauriciosuarez</a>
+        </li>
+        <li class="glass-card flex items-center gap-4 rounded-lg px-5 py-4">
+          <span class="text-sm font-medium text-(--color-text-tertiary)">{t(lang, "contact.linkedin")}</span>
+          <a class="link-accent text-sm" href="https://linkedin.com/in/mauriciosuarez" target="_blank" rel="noopener noreferrer">linkedin.com/in/mauriciosuarez</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</BaseLayout>

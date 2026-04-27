@@ -1,0 +1,77 @@
+---
+interface Props {
+  lang: "en" | "es";
+}
+
+import { t, getRoute } from "../i18n";
+import SectionHeading from "./SectionHeading.astro";
+
+const { lang } = Astro.props;
+const portraitAlt = t(lang, "home.about.portrait.alt");
+---
+
+<section class="section-padding bg-dot-grid">
+  <div class="mx-auto max-w-5xl px-4">
+    <div class="glass-card rounded-lg p-8 sm:p-10">
+      <div class="flex flex-col items-center gap-8 md:flex-row md:items-start md:gap-10">
+        <!-- Portrait -->
+        <div class="flex-shrink-0">
+          <div class="portrait-ring">
+            <img
+              src="/portrait.webp"
+              alt={portraitAlt}
+              width="192"
+              height="192"
+              loading="lazy"
+              decoding="async"
+              class="portrait-img"
+            />
+          </div>
+        </div>
+
+        <!-- Text content -->
+        <div class="min-w-0 flex-1 text-center md:text-left">
+          <SectionHeading text={t(lang, "home.about.heading")} />
+          {t(lang, "home.about.teaser").split("\n\n").map((paragraph: string) => (
+            <p class="mt-4 leading-relaxed text-(--color-text-secondary)">
+              {paragraph}
+            </p>
+          ))}
+          <p class="mt-3 font-mono text-xs tracking-wide text-(--color-text-tertiary)">
+            {t(lang, "home.about.stacks")}
+          </p>
+          <div class="mt-6">
+            <a href={getRoute(lang, "about")} class="link-accent text-sm font-medium">
+              {t(lang, "home.about.cta")}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .portrait-ring {
+    position: relative;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 9999px;
+    padding: 3px;
+    background: linear-gradient(
+      135deg,
+      var(--color-accent-dim) 0%,
+      var(--color-accent) 50%,
+      var(--color-accent-light) 100%
+    );
+  }
+
+  .portrait-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px;
+    object-fit: cover;
+    background-color: var(--color-bg-tertiary);
+  }
+</style>

@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { t, getRoute } from "../../../i18n";
+
+export async function getStaticPaths() {
+  const projects = (await getCollection("projects")).filter((entry) => entry.data.lang === "es");
+  return projects.map((project) => ({
+    params: { slug: project.data.routeSlug },
+    props: { project },
+  }));
+}
+
+const lang = "es" as const;
+const { project } = Astro.props as { project: CollectionEntry<"projects"> };
+const { Content } = await render(project);
+---
+
+<BaseLayout lang={lang} title={project.data.title} description={project.data.description}>
+  <div class="section-padding">
+    <div class="mx-auto max-w-4xl px-4">
+      <a class="link-accent text-sm font-medium" href={getRoute(lang, "work")}>{t(lang, "work.backToList")}</a>
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <h1 class="text-3xl font-bold tracking-tight text-(--color-text-primary) sm:text-4xl">{project.data.title}</h1>
+        {project.data.anonymized && (
+          <span class="tag">{t(lang, "work.anonymized")}</span>
+        )}
+      </div>
+      <p class="mt-3 text-(--color-text-secondary)">{project.data.description}</p>
+      {project.data.tags.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          {project.data.tags.map((tag: string) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )}
+      {(project.data.repoUrl || project.data.liveUrl) && (
+        <div class="mt-4 flex gap-4">
+          {project.data.repoUrl && (
+            <a href={project.data.repoUrl} class="link-accent text-sm" target="_blank" rel="noopener noreferrer">
+              {t(lang, "work.repo")} →
+            </a>
+          )}
+          {project.data.liveUrl && (
+            <a href={project.data.liveUrl} class="link-accent text-sm" target="_blank" rel="noopener noreferrer">
+              {t(lang, "work.live")} →
+            </a>
+          )}
+        </div>
+      )}
+      <article class="prose prose-invert mt-8 max-w-none">
+        <Content />
+      </article>
+    </div>
+  </div>
+</BaseLayout>

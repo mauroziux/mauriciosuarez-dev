@@ -1,0 +1,49 @@
+---
+interface Props {
+  lang: "en" | "es";
+}
+
+import { t } from "../i18n";
+
+const { lang } = Astro.props;
+
+const cards = [
+  { titleKey: "home.problem.card1.title", bodyKey: "home.problem.card1.body" },
+  { titleKey: "home.problem.card2.title", bodyKey: "home.problem.card2.body" },
+  { titleKey: "home.problem.card3.title", bodyKey: "home.problem.card3.body" },
+  { titleKey: "home.problem.card4.title", bodyKey: "home.problem.card4.body" },
+  { titleKey: "home.problem.card5.title", bodyKey: "home.problem.card5.body" },
+] as const;
+
+const delayClasses = [
+  "animate-fade-up",
+  "animate-fade-up-delay-1",
+  "animate-fade-up-delay-2",
+  "animate-fade-up",
+  "animate-fade-up-delay-1",
+];
+---
+
+<section class="section-padding bg-(--color-bg-secondary)">
+  <div class="mx-auto max-w-4xl px-4">
+    <h2 class="animate-fade-up text-2xl font-bold tracking-tight text-(--color-text-primary) sm:text-3xl lg:text-4xl">
+      {t(lang, "home.problem.heading")}
+    </h2>
+    <p class="animate-fade-up-delay-1 mt-6 max-w-2xl text-lg leading-relaxed text-(--color-text-secondary)">
+      {t(lang, "home.problem.body")}
+    </p>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {cards.map((card, i) => (
+        <div class:list={["glass-card rounded-lg p-6", delayClasses[i]]}>
+          <h3 class="text-sm font-semibold text-(--color-text-primary)">
+            {t(lang, card.titleKey)}
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-(--color-text-tertiary)">
+            {t(lang, card.bodyKey)}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

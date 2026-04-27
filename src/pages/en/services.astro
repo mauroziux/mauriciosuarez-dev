@@ -1,0 +1,112 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { t, getRoute } from "../../i18n";
+
+const lang = "en" as const;
+
+const services = [
+  {
+    titleKey: "services.audit.title",
+    descKey: "services.audit.description",
+    bullets: [
+      "services.audit.bullet1",
+      "services.audit.bullet2",
+      "services.audit.bullet3",
+      "services.audit.bullet4",
+      "services.audit.bullet5",
+    ],
+    outcomeKey: "services.audit.outcome",
+  },
+  {
+    titleKey: "services.agents.title",
+    descKey: "services.agents.description",
+    bullets: [
+      "services.agents.bullet1",
+      "services.agents.bullet2",
+      "services.agents.bullet3",
+      "services.agents.bullet4",
+      "services.agents.bullet5",
+    ],
+    outcomeKey: "services.agents.outcome",
+  },
+  {
+    titleKey: "services.legacy.title",
+    descKey: "services.legacy.description",
+    bullets: [
+      "services.legacy.bullet1",
+      "services.legacy.bullet2",
+      "services.legacy.bullet3",
+      "services.legacy.bullet4",
+      "services.legacy.bullet5",
+    ],
+    outcomeKey: "services.legacy.outcome",
+  },
+  {
+    titleKey: "services.devex.title",
+    descKey: "services.devex.description",
+    bullets: [
+      "services.devex.bullet1",
+      "services.devex.bullet2",
+      "services.devex.bullet3",
+      "services.devex.bullet4",
+      "services.devex.bullet5",
+    ],
+    outcomeKey: "services.devex.outcome",
+  },
+] as const;
+---
+
+<BaseLayout lang={lang} title={t(lang, "services.title")} description={t(lang, "meta.description.services")}>
+  <div class="section-padding">
+    <div class="mx-auto max-w-4xl px-4">
+      <h1 class="animate-fade-up text-3xl font-bold tracking-tight text-(--color-text-primary) sm:text-4xl">
+        {t(lang, "services.title")}
+      </h1>
+      <p class="animate-fade-up-delay-1 mt-4 max-w-2xl text-lg leading-relaxed text-(--color-text-secondary)">
+        {t(lang, "services.subtitle")}
+      </p>
+
+      <div class="mt-14 space-y-10">
+        {services.map((service, i) => (
+          <div class:list={["glass-card rounded-lg p-8", i === 0 ? "animate-fade-up-delay-2" : "animate-fade-up"]}>
+            <h2 class="text-xl font-semibold text-(--color-text-primary) sm:text-2xl">
+              {t(lang, service.titleKey)}
+            </h2>
+            <p class="mt-3 leading-relaxed text-(--color-text-secondary)">
+              {t(lang, service.descKey)}
+            </p>
+            <ul class="mt-5 space-y-2.5">
+              {service.bullets.map((bulletKey) => (
+                <li class="flex items-start gap-3 text-sm text-(--color-text-secondary)">
+                  <svg class="mt-0.5 shrink-0 text-(--color-accent)" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                  <span>{t(lang, bulletKey)}</span>
+                </li>
+              ))}
+            </ul>
+            <div class="mt-5 rounded-md border border-(--color-border-accent) bg-(--color-accent)/5 px-4 py-3">
+              <p class="text-sm font-medium text-(--color-accent-light)">
+                {t(lang, service.outcomeKey)}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Bottom CTA -->
+      <div class="mt-16 text-center">
+        <h2 class="text-2xl font-semibold tracking-tight text-(--color-text-primary) sm:text-3xl">
+          {t(lang, "services.cta.heading")}
+        </h2>
+        <p class="mx-auto mt-3 max-w-md text-(--color-text-secondary)">
+          {t(lang, "services.cta.body")}
+        </p>
+        <div class="mt-6">
+          <a href={getRoute(lang, "contact")} class="btn-primary">
+            {t(lang, "services.cta.button")}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

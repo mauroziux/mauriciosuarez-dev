@@ -1,0 +1,65 @@
+---
+interface Props {
+  lang: "en" | "es";
+}
+
+import { t, getRoute } from "../i18n";
+import { getCollection } from "astro:content";
+import SectionHeading from "./SectionHeading.astro";
+
+const { lang } = Astro.props;
+
+const workRouteBase = getRoute(lang, "work");
+
+const projects = (await getCollection("projects"))
+  .filter((entry) => entry.data.lang === lang && entry.data.featured !== false)
+  .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf())
+  .slice(0, 4);
+---
+
+<section class="section-padding">
+  <div class="mx-auto max-w-4xl px-4">
+    <SectionHeading text={t(lang, "home.featured.heading")} />
+    <p class="animate-fade-up mt-3 max-w-lg text-(--color-text-secondary)">
+      {t(lang, "home.featured.subtitle")}
+    </p>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-2">
+      {
+        projects.map((project, i) => {
+          const delayClass = i === 0 ? "animate-fade-up"
+            : i === 1 ? "animate-fade-up-delay-1"
+            : i === 2 ? "animate-fade-up-delay-2"
+            : "animate-fade-up";
+          return (
+            <a href={`${workRouteBase}${project.data.routeSlug}/`} class:list={["glass-card project-card rounded-lg p-5", delayClass]}>
+              {project.data.anonymized && (
+                <span class="tag mb-3 inline-block">{t(lang, "work.anonymized")}</span>
+              )}
+              <h3 class="font-semibold text-(--color-text-primary)">{project.data.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-(--color-text-secondary)">
+                {project.data.description}
+              </p>
+              {project.data.tags.length > 0 && (
+                <div class="mt-4 flex flex-wrap gap-1.5">
+                  {project.data.tags.map((tag: string) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+              <span class="mt-4 inline-block text-sm font-medium text-(--color-accent) transition-colors hover:text-(--color-accent-light)">
+                {t(lang, "work.readMore")}
+              </span>
+            </a>
+          );
+        })
+      }
+    </div>
+
+    <div class="animate-fade-up-delay-3 mt-8">
+      <a href={getRoute(lang, "work")} class="link-accent text-sm font-medium">
+        {t(lang, "home.featured.viewAll")}
+      </a>
+    </div>
+  </div>
+</section>

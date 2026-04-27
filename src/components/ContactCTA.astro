@@ -1,0 +1,29 @@
+---
+interface Props {
+  lang: "en" | "es";
+}
+
+import { t, getRoute } from "../i18n";
+
+const { lang } = Astro.props;
+---
+
+<section class="section-padding">
+  <div class="mx-auto max-w-4xl px-4 text-center">
+    <h2 class="animate-fade-up text-3xl font-bold tracking-tight text-(--color-text-primary) sm:text-4xl">
+      {t(lang, "home.contact.heading")}
+    </h2>
+    <p class="animate-fade-up-delay-1 mx-auto mt-4 max-w-lg text-(--color-text-secondary)">
+      {t(lang, "home.contact.teaser")}
+    </p>
+    <div class="animate-fade-up-delay-2 mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+      <a href={getRoute(lang, "contact")} class="btn-primary">
+        {t(lang, "home.contact.cta.primary")}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+      <a href={getRoute(lang, "contact")} class="link-accent text-sm font-medium">
+        {t(lang, "home.contact.cta.secondary")}
+      </a>
+    </div>
+  </div>
+</section>

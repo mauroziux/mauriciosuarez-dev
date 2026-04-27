@@ -1,0 +1,58 @@
+---
+interface Props {
+  lang: "en" | "es";
+}
+
+import { t, getRoute } from "../i18n";
+import SectionHeading from "./SectionHeading.astro";
+
+const { lang } = Astro.props;
+
+const tiers = [
+  {
+    titleKey: "home.engagements.audit.title",
+    durationKey: "home.engagements.audit.duration",
+    bodyKey: "home.engagements.audit.body",
+  },
+  {
+    titleKey: "home.engagements.prototype.title",
+    durationKey: "home.engagements.prototype.duration",
+    bodyKey: "home.engagements.prototype.body",
+  },
+  {
+    titleKey: "home.engagements.production.title",
+    durationKey: "home.engagements.production.duration",
+    bodyKey: "home.engagements.production.body",
+  },
+] as const;
+---
+
+<section class="section-padding bg-(--color-bg-secondary)">
+  <div class="mx-auto max-w-4xl px-4">
+    <SectionHeading text={t(lang, "home.engagements.heading")} />
+    <p class="animate-fade-up mt-3 max-w-lg text-(--color-text-secondary)">
+      {t(lang, "home.engagements.subtitle")}
+    </p>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-3">
+      {tiers.map((tier, i) => (
+        <div class:list={["glass-card rounded-lg p-6 flex flex-col", i === 0 ? "animate-fade-up" : i === 1 ? "animate-fade-up-delay-1" : "animate-fade-up-delay-2"]}>
+          <div>
+            <span class="tag">{t(lang, tier.durationKey)}</span>
+            <h3 class="mt-3 text-base font-semibold text-(--color-text-primary)">
+              {t(lang, tier.titleKey)}
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-(--color-text-secondary)">
+              {t(lang, tier.bodyKey)}
+            </p>
+          </div>
+          <div class="mt-6">
+            <a href={getRoute(lang, "contact")} class="link-accent text-sm font-medium">
+              {t(lang, "home.engagements.cta")}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

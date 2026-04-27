@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero from "../../components/Hero.astro";
+import ProblemStatement from "../../components/ProblemStatement.astro";
+import WhoFor from "../../components/WhoFor.astro";
+import ServicesPreview from "../../components/ServicesPreview.astro";
+import FeaturedProjects from "../../components/FeaturedProjects.astro";
+import Engagements from "../../components/Engagements.astro";
+import AboutTeaser from "../../components/AboutTeaser.astro";
+import ContactCTA from "../../components/ContactCTA.astro";
+import { t } from "../../i18n";
+
+const lang = "en" as const;
+---
+
+<BaseLayout lang={lang} title="AI Engineering for Software Teams" description={t(lang, "meta.description.home")}>
+  <!-- 1. Hero -->
+  <Hero lang={lang} />
+  <hr class="section-divider" />
+  <!-- 2. Problem: Where Teams Get Stuck -->
+  <ProblemStatement lang={lang} />
+  <hr class="section-divider" />
+  <!-- 3. Who This Is For -->
+  <WhoFor lang={lang} />
+  <hr class="section-divider" />
+  <!-- 4. How I Help -->
+  <ServicesPreview lang={lang} />
+  <hr class="section-divider" />
+  <!-- 5. Featured Work -->
+  <FeaturedProjects lang={lang} />
+  <hr class="section-divider" />
+  <!-- 6. Ways to Work Together -->
+  <Engagements lang={lang} />
+  <hr class="section-divider" />
+  <!-- 7. About Mauricio -->
+  <AboutTeaser lang={lang} />
+  <hr class="section-divider" />
+  <!-- 8. Final CTA -->
+  <ContactCTA lang={lang} />
+</BaseLayout>

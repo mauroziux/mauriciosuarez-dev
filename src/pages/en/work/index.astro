@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { t, getRoute } from "../../../i18n";
+
+const lang = "en" as const;
+const projects = (await getCollection("projects")).filter((entry) => entry.data.lang === lang).sort(
+  (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
+);
+---
+
+<BaseLayout lang={lang} title={t(lang, "work.title")} description={t(lang, "meta.description.work")}>
+  <div class="section-padding">
+    <div class="mx-auto max-w-4xl px-4">
+      <h1 class="animate-fade-up text-3xl font-bold tracking-tight text-(--color-text-primary) sm:text-4xl">{t(lang, "work.title")}</h1>
+      <p class="animate-fade-up-delay-1 mt-3 text-(--color-text-secondary)">{t(lang, "work.subtitle")}</p>
+
+      <div class="mt-10 grid gap-5 sm:grid-cols-2">
+        {
+          projects.map((project) => (
+            <a
+              href={`${getRoute(lang, "work")}${project.data.routeSlug}/`}
+              class="glass-card project-card block rounded-lg p-6"
+            >
+              {project.data.anonymized && (
+                <span class="tag mb-3 inline-block">{t(lang, "work.anonymized")}</span>
+              )}
+              <h2 class="text-lg font-semibold text-(--color-text-primary)">{project.data.title}</h2>
+              <p class="mt-2 text-sm leading-relaxed text-(--color-text-secondary)">{project.data.description}</p>
+              {project.data.tags.length > 0 && (
+                <div class="mt-4 flex flex-wrap gap-1.5">
+                  {project.data.tags.map((tag: string) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+              <span class="mt-4 inline-block text-sm font-medium text-(--color-accent) transition-colors hover:text-(--color-accent-light)">
+                {t(lang, "work.readMore")}
+              </span>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="mt-8">
+        <p class="text-sm text-(--color-text-tertiary)">
+          {t(lang, "home.featured.confidentiality")}
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
