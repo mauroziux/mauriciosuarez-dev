@@ -27,11 +27,11 @@ const icons = [
 <section class="section-padding">
   <div class="mx-auto max-w-4xl px-4">
     <SectionHeading text={t(lang, "home.whofor.heading")} />
-    <p class="animate-fade-up mt-3 max-w-2xl text-lg leading-relaxed text-(--color-text-secondary)">
+    <p class="animate-fade-up mt-4 max-w-2xl text-lg leading-relaxed text-(--color-text-secondary)">
       {t(lang, "home.whofor.body")}
     </p>
 
-    <div class="mt-10 grid gap-5 sm:grid-cols-3">
+    <div class="mt-10 grid gap-6 sm:grid-cols-3">
       {cards.map((card, i) => (
         <div class:list={["glass-card rounded-lg p-6", i === 0 ? "animate-fade-up" : i === 1 ? "animate-fade-up-delay-1" : "animate-fade-up-delay-2"]}>
           <div class="mb-3 inline-flex h-9 w-9 items-center justify-center rounded-md bg-(--color-accent)/10 text-(--color-accent)">

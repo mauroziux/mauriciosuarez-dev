@@ -20,11 +20,11 @@ const projects = (await getCollection("projects"))
 <section class="section-padding">
   <div class="mx-auto max-w-4xl px-4">
     <SectionHeading text={t(lang, "home.featured.heading")} />
-    <p class="animate-fade-up mt-3 max-w-lg text-(--color-text-secondary)">
+    <p class="animate-fade-up mt-4 max-w-lg leading-relaxed text-(--color-text-secondary)">
       {t(lang, "home.featured.subtitle")}
     </p>
 
-    <div class="mt-10 grid gap-5 sm:grid-cols-2">
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
       {
         projects.map((project, i) => {
           const delayClass = i === 0 ? "animate-fade-up"
@@ -32,7 +32,7 @@ const projects = (await getCollection("projects"))
             : i === 2 ? "animate-fade-up-delay-2"
             : "animate-fade-up";
           return (
-            <a href={`${workRouteBase}${project.data.routeSlug}/`} class:list={["glass-card project-card rounded-lg p-5", delayClass]}>
+            <a href={`${workRouteBase}${project.data.routeSlug}/`} class:list={["glass-card project-card rounded-lg p-6", delayClass]}>
               {project.data.anonymized && (
                 <span class="tag mb-3 inline-block">{t(lang, "work.anonymized")}</span>
               )}

@@ -8,13 +8,13 @@ import { t, getRoute } from "../i18n";
 const { lang } = Astro.props;
 ---
 
-<section class="section-padding relative bg-dot-grid">
-  <div class="mx-auto max-w-4xl px-4">
+<section class="hero-glow relative bg-dot-grid pt-24 pb-20 md:pt-36 md:pb-28">
+  <div class="relative z-10 mx-auto max-w-4xl px-4">
     <div class="max-w-2xl">
       <p class="animate-fade-up text-sm font-medium tracking-widest text-(--color-accent) uppercase">
         {t(lang, "home.hero.eyebrow")}
       </p>
-      <h1 class="animate-fade-up-delay-1 mt-4 text-4xl font-bold leading-tight tracking-tight text-(--color-text-primary) sm:text-5xl lg:text-6xl">
+      <h1 class="animate-fade-up-delay-1 mt-5 text-4xl font-bold leading-tight tracking-tight text-(--color-text-primary) sm:text-5xl lg:text-6xl">
         <span class="text-gradient">{t(lang, "home.hero.title")}</span>
       </h1>
       <p class="animate-fade-up-delay-2 mt-6 text-lg leading-relaxed text-(--color-text-secondary) sm:text-xl">

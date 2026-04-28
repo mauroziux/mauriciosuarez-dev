@@ -5,30 +5,33 @@
    ────────────────────────────────────────────── */
 
 @theme {
-  /* Core palette */
-  --color-bg-primary: #0a0a0f;
-  --color-bg-secondary: #111118;
-  --color-bg-tertiary: #18181f;
-  --color-bg-card: #13131a;
-  --color-bg-card-hover: #1a1a24;
+  /* Core palette — warm neutrals */
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #111111;
+  --color-bg-tertiary: #181818;
+  --color-bg-card: #131313;
+  --color-bg-card-hover: #1c1c1c;
 
-  /* Accent — cool blue */
-  --color-accent: #6d9dc5;
-  --color-accent-light: #8bb8db;
-  --color-accent-dim: #4a7a9b;
+  /* Accent — premium crimson */
+  --color-accent: #C41E3A;
+  --color-accent-light: #E14B64;
+  --color-accent-dim: #9E1830;
+
+  /* Accent — warm gold (secondary) */
+  --color-accent-gold: #c9a052;
 
   /* Text */
-  --color-text-primary: #e8e8ed;
-  --color-text-secondary: #a0a0b0;
-  --color-text-tertiary: #6b6b80;
+  --color-text-primary: #ececec;
+  --color-text-secondary: #a8a8a8;
+  --color-text-tertiary: #707070;
 
   /* Borders */
-  --color-border-primary: #1f1f2e;
-  --color-border-secondary: #2a2a3a;
-  --color-border-accent: rgba(109, 157, 197, 0.15);
+  --color-border-primary: #1f1f1f;
+  --color-border-secondary: #2a2a2a;
+  --color-border-accent: rgba(196, 30, 58, 0.15);
 
   /* Glass */
-  --color-glass-bg: rgba(17, 17, 24, 0.6);
+  --color-glass-bg: rgba(17, 17, 17, 0.6);
   --color-glass-border: rgba(255, 255, 255, 0.06);
 
   /* Typography */
@@ -55,7 +58,7 @@ body {
 }
 
 ::selection {
-  background-color: rgba(109, 157, 197, 0.25);
+  background-color: rgba(196, 30, 58, 0.25);
   color: var(--color-text-primary);
 }
 
@@ -121,14 +124,14 @@ body {
 /* ── Section spacing utility ─────────────────── */
 
 .section-padding {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 5.5rem;
+  padding-bottom: 5.5rem;
 }
 
 @media (min-width: 768px) {
   .section-padding {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
+    padding-top: 7.5rem;
+    padding-bottom: 7.5rem;
   }
 }
 
@@ -145,13 +148,34 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+/* ── Warm hero glow ──────────────────────────── */
+
+.hero-glow {
+  position: relative;
+}
+.hero-glow::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 50%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(196, 30, 58, 0.06) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
 /* ── Premium button styles ───────────────────── */
 
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.625rem 1.5rem;
+  padding: 0.75rem 1.75rem;
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -170,7 +194,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.625rem 1.5rem;
+  padding: 0.75rem 1.75rem;
   font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.01em;
@@ -183,7 +207,7 @@ body {
 }
 .btn-secondary:hover {
   border-color: var(--color-accent-dim);
-  background: rgba(109, 157, 197, 0.06);
+  background: rgba(196, 30, 58, 0.06);
 }
 
 /* ── Project card hover ──────────────────────── */
@@ -209,8 +233,8 @@ body {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--color-accent);
-  background: rgba(109, 157, 197, 0.08);
-  border: 1px solid rgba(109, 157, 197, 0.12);
+  background: rgba(196, 30, 58, 0.08);
+  border: 1px solid rgba(196, 30, 58, 0.12);
   border-radius: 4px;
 }
 
