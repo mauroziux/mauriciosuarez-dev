@@ -1,9 +1,9 @@
 ---
-title: "Developer Productivity & CI/CD Optimization"
-description: "A comprehensive developer productivity engagement — optimizing CI/CD pipelines, setting up observability infrastructure, automating documentation workflows, and establishing team-wide AI-assisted development practices."
+title: "Engineering Operations Overhaul"
+description: "A comprehensive engineering operations engagement — optimizing CI/CD pipelines, setting up observability infrastructure, automating documentation workflows, and establishing AI-assisted development practices for a growing enterprise team."
 lang: "en"
 routeSlug: "developer-productivity-cicd"
-tags: ["ci-cd", "devex", "observability", "automation"]
+tags: ["enterprise", "ci-cd", "devex", "observability", "automation"]
 publishedDate: 2025-01-01
 anonymized: true
 ---

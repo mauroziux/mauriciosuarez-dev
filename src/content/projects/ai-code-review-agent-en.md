@@ -1,9 +1,9 @@
 ---
-title: "AI Code Review Agent"
-description: "An AI agent that integrates directly into the PR review workflow, providing contextual feedback on code quality, security concerns, and architectural consistency — reducing review cycles and catching issues before merge."
+title: "Code Review Workflow Automation"
+description: "A production workflow system for automated code review in enterprise CI/CD pipelines — using AI to handle first-pass review, flag security concerns, and provide consistent feedback, reducing senior engineer review time by 50%."
 lang: "en"
 routeSlug: "ai-code-review-agent"
-tags: ["ai-agents", "code-review", "ci-cd"]
+tags: ["enterprise", "code-review", "ci-cd", "ai-integration"]
 publishedDate: 2025-04-01
 anonymized: true
 ---
@@ -16,12 +16,13 @@ The team had grown rapidly and PR review had become a bottleneck. Senior enginee
 
 ## The Approach
 
-We designed and implemented an AI code review agent that:
+We designed and implemented an automated code review workflow integrated into their CI/CD pipeline:
 
-- Integrates with the existing CI/CD pipeline via GitHub webhooks
-- Provides contextual feedback based on the team's coding standards and architectural patterns
-- Flags security concerns, performance issues, and architectural inconsistencies
-- Leaves the final decision to human reviewers while handling the first pass
+- Integrated with the existing pipeline via GitHub webhooks as a first-pass review layer
+- Applied the team's coding standards and architectural patterns as consistent evaluation criteria
+- Flagged security concerns, performance issues, and architectural inconsistencies automatically
+- Left the final decision to human reviewers while handling the initial assessment
+- Used AI-powered analysis for contextual feedback generation
 
 ## The Outcome
 

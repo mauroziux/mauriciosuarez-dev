@@ -1,9 +1,9 @@
 ---
-title: "Productividad de Desarrollo y Optimización de CI/CD"
-description: "Un engagement comprehensivo de productividad de desarrollo — optimizando pipelines CI/CD, configurando infraestructura de observabilidad, automatizando flujos de documentación y estableciendo prácticas de desarrollo asistidas por IA para todo el equipo."
+title: "Renovación de Operaciones de Ingeniería"
+description: "Un engagement comprehensivo de operaciones de ingeniería — optimizando pipelines CI/CD, configurando infraestructura de observabilidad, automatizando flujos de documentación y estableciendo prácticas de desarrollo asistidas por IA para un equipo empresarial en crecimiento."
 lang: "es"
 routeSlug: "developer-productivity-cicd"
-tags: ["ci-cd", "devex", "observabilidad", "automatización"]
+tags: ["empresarial", "ci-cd", "devex", "observabilidad", "automatización"]
 publishedDate: 2025-01-01
 anonymized: true
 ---

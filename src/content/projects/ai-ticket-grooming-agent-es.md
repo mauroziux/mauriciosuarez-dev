@@ -1,9 +1,9 @@
 ---
-title: "Agente de IA para Grooming de Tickets"
-description: "Un flujo de trabajo asistido por IA que ayuda a hacer grooming de tickets del backlog enriqueciendo descripciones, identificando dependencias, sugiriendo criterios de aceptación y preparando notas técnicas para revisión del equipo de desarrollo."
+title: "Flujo de Gestión de Backlog"
+description: "Un sistema de flujo integrado que ayuda a equipos de ingeniería a gestionar la higiene del backlog — enriqueciendo descripciones de tickets, identificando dependencias, sugiriendo criterios de aceptación y preparando notas técnicas — con análisis con IA integrado en el pipeline de gestión de proyectos existente."
 lang: "es"
 routeSlug: "ai-ticket-grooming-agent"
-tags: ["agentes-ia", "grooming-tickets", "productividad"]
+tags: ["empresarial", "flujo-trabajo", "productividad", "integracion-ia"]
 publishedDate: 2025-03-15
 anonymized: true
 ---
@@ -16,13 +16,14 @@ El grooming del backlog consumía 4–6 horas por sprint entre el equipo senior.
 
 ## El Enfoque
 
-Construimos un agente de grooming con IA que:
+Construimos un flujo de gestión de tickets integrado:
 
 - Analiza tickets entrantes contra las plantillas de proyecto y patrones históricos del equipo
 - Enriquece descripciones con contexto faltante y detalles técnicos
 - Sugiere criterios de aceptación basados en tickets similares pasados
 - Identifica dependencias y posibles bloqueos
 - Señala tickets que necesitan revisión humana antes de entrar al sprint backlog
+- Análisis con IA se ejecuta automáticamente como parte del pipeline de gestión de proyectos existente
 
 ## El Resultado
 

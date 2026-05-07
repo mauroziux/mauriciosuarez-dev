@@ -1,9 +1,9 @@
 ---
-title: "Agente de Revisión de Código con IA"
-description: "Un agente de IA que se integra directamente en el flujo de revisión de PRs, proporcionando feedback contextual sobre calidad de código, seguridad y consistencia arquitectónica — reduciendo ciclos de revisión y detectando problemas antes del merge."
+title: "Automatización de Flujos de Revisión de Código"
+description: "Un sistema de flujo de producción para revisión automática de código en pipelines CI/CD empresariales — usando IA para manejar la primera pasada de revisión, señalar problemas de seguridad y proporcionar feedback consistente, reduciendo el tiempo de revisión de ingenieros senior en 50%."
 lang: "es"
 routeSlug: "ai-code-review-agent"
-tags: ["agentes-ia", "revision-codigo", "ci-cd"]
+tags: ["empresarial", "revision-codigo", "ci-cd", "integracion-ia"]
 publishedDate: 2025-04-01
 anonymized: true
 ---
@@ -16,12 +16,13 @@ El equipo había crecido rápidamente y la revisión de PRs se había convertido
 
 ## El Enfoque
 
-Diseñamos e implementamos un agente de revisión de código con IA que:
+Diseñamos e implementamos un flujo de revisión de código automatizado integrado en su pipeline CI/CD:
 
-- Se integra con el pipeline CI/CD existente via GitHub webhooks
-- Proporciona feedback contextual basado en los estándares de código y patrones arquitectónicos del equipo
-- Señala preocupaciones de seguridad, problemas de rendimiento e inconsistencias arquitectónicas
-- Deja la decisión final a revisores humanos mientras maneja la primera pasada
+- Integración con el pipeline existente via GitHub webhooks como capa de revisión inicial
+- Aplicación de los estándares de código y patrones arquitectónicos del equipo como criterios de evaluación consistentes
+- Detección automática de problemas de seguridad, rendimiento e inconsistencias arquitectónicas
+- Decisión final reservada a revisores humanos mientras se maneja la evaluación inicial
+- Análisis con IA para generación de feedback contextual
 
 ## El Resultado
 

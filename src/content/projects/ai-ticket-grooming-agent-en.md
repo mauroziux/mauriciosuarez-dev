@@ -1,9 +1,9 @@
 ---
-title: "AI Ticket Grooming Agent"
-description: "An AI-assisted workflow that helps groom backlog tickets by enriching descriptions, identifying dependencies, suggesting acceptance criteria, and preparing technical notes for developer review."
+title: "Backlog Management Workflow"
+description: "An integrated workflow system that helps engineering teams manage backlog hygiene — enriching ticket descriptions, identifying dependencies, suggesting acceptance criteria, and preparing technical notes — with AI-powered analysis built into the existing project management pipeline."
 lang: "en"
 routeSlug: "ai-ticket-grooming-agent"
-tags: ["ai-agents", "ticket-grooming", "productivity"]
+tags: ["enterprise", "workflow", "productivity", "ai-integration"]
 publishedDate: 2025-03-15
 anonymized: true
 ---
@@ -16,13 +16,14 @@ Backlog grooming was eating 4–6 hours per sprint across the senior team. Ticke
 
 ## The Approach
 
-We built an AI grooming agent that:
+We built an integrated ticket management workflow:
 
 - Analyzes incoming tickets against the team's project templates and historical patterns
 - Enriches descriptions with missing context and technical details
 - Suggests acceptance criteria based on similar past tickets
 - Identifies dependencies and potential blockers
 - Flags tickets that need human review before they hit the sprint backlog
+- AI-powered analysis runs automatically as part of the existing project management pipeline
 
 ## The Outcome
 

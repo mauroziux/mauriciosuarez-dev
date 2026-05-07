@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import Hero from "../../components/Hero.astro";
+import CinematicHero from "../../components/CinematicHero.astro";
 import ProblemStatement from "../../components/ProblemStatement.astro";
 import WhoFor from "../../components/WhoFor.astro";
 import ServicesPreview from "../../components/ServicesPreview.astro";
@@ -13,9 +13,9 @@ import { t } from "../../i18n";
 const lang = "es" as const;
 ---
 
-<BaseLayout lang={lang} title="Ingeniería de IA para Equipos de Software" description={t(lang, "meta.description.home")}>
+<BaseLayout lang={lang} title="Ingeniería de Software Empresarial" description={t(lang, "meta.description.home")}>
   <!-- 1. Hero -->
-  <Hero lang={lang} />
+  <CinematicHero lang={lang} />
   <hr class="section-divider" />
   <!-- 2. Problema: Dónde los equipos se estancan -->
   <ProblemStatement lang={lang} />
