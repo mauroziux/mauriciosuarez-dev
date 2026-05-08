@@ -49,6 +49,25 @@ const { Content } = await render(project);
           )}
         </div>
       )}
+      {project.data.screenshots && project.data.screenshots.length > 0 && (
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          {project.data.screenshots.map((shot: { src: string; alt: string; caption?: string }) => (
+            <figure class="overflow-hidden rounded-lg border border-(--color-glass-border) bg-(--color-bg-card)">
+              <img
+                src={shot.src}
+                alt={shot.alt}
+                loading="lazy"
+                class="block w-full"
+              />
+              {shot.caption && (
+                <figcaption class="px-4 py-2.5 text-xs text-(--color-text-tertiary)">
+                  {shot.caption}
+                </figcaption>
+              )}
+            </figure>
+          ))}
+        </div>
+      )}
       <article class="prose prose-invert mt-8 max-w-none">
         <Content />
       </article>

@@ -6,6 +6,16 @@ routeSlug: "cerebro"
 tags: ["enterprise", "rag", "ai-integration", "knowledge-management"]
 publishedDate: 2025-05-15
 featured: false
+screenshots:
+  - src: "/projects/cerebro/login-page.png"
+    alt: "Cerebro login page for the enterprise RAG knowledge platform"
+    caption: "Platform access — enterprise authentication"
+  - src: "/projects/cerebro/knowledge-query.png"
+    alt: "Cerebro answering a company-specific question with cited response and source attribution"
+    caption: "Ask a question — get a cited answer from your knowledge base"
+  - src: "/projects/cerebro/integrations-page.png"
+    alt: "Integration settings page showing connected knowledge sources and repositories"
+    caption: "Connected sources — wikis, docs, and repositories"
 ---
 
 Cerebro is an enterprise knowledge platform that uses retrieval-augmented generation (RAG) to make organizational knowledge instantly accessible — answering questions grounded in company documentation, code repositories, and internal systems rather than generic AI outputs.

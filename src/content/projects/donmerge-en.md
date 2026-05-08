@@ -5,6 +5,10 @@ lang: "en"
 routeSlug: "donmerge"
 tags: ["developer-tools", "code-review", "error-resolution", "ai-integration"]
 publishedDate: 2025-05-01
+screenshots:
+  - src: "/projects/donmerge/sentry-integrations.png"
+    alt: "DonMerge Sentry integration showing autonomous error diagnosis and resolution"
+    caption: "Sentry integration — autonomous error diagnosis and suggested fixes"
 ---
 
 DonMerge is a developer productivity tool that combines instant AI-powered code review with autonomous Sentry error resolution — turning production incidents from multi-hour investigations into automated diagnosis and suggested fixes.

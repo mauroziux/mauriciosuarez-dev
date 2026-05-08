@@ -5,6 +5,10 @@ lang: "es"
 routeSlug: "donmerge"
 tags: ["herramientas-developer", "revision-codigo", "resolucion-errores", "integracion-ia"]
 publishedDate: 2025-05-01
+screenshots:
+  - src: "/projects/donmerge/sentry-integrations.png"
+    alt: "Integración de DonMerge con Sentry mostrando diagnóstico y resolución autónoma de errores"
+    caption: "Integración Sentry — diagnóstico autónomo de errores y correcciones sugeridas"
 ---
 
 DonMerge es una herramienta de productividad para desarrolladores que combina revisión de código instantánea potenciada por IA con resolución autónoma de errores de Sentry — convirtiendo incidentes de producción de investigaciones de múltiples horas en diagnóstico automatizado y correcciones sugeridas.

@@ -6,6 +6,19 @@ routeSlug: "mantto"
 tags: ["empresarial", "property-tech", "integracion-ia", "laravel"]
 publishedDate: 2025-06-01
 liveUrl: "https://mantto.app"
+screenshots:
+  - src: "/projects/mantto/dashboard.png"
+    alt: "Dashboard de Mantto mostrando vista general de propiedades con inspecciones activas y hallazgos generados por IA"
+    caption: "Dashboard de operaciones con datos de inspección en tiempo real"
+  - src: "/projects/mantto/inventories.png"
+    alt: "Inventario de propiedad asistido por IA con hallazgos auto-transcritos y marcos de evidencia"
+    caption: "Hallazgos propuestos por IA — transcripción automática con captura de evidencia"
+  - src: "/projects/mantto/maintenance.png"
+    alt: "Flujo de solicitudes de mantenimiento convirtiendo hallazgos de inspección en solicitudes accionables"
+    caption: "Hallazgos → solicitudes de mantenimiento en un clic"
+  - src: "/projects/mantto/inspector-mobile.webp"
+    alt: "Interfaz de inspector móvil usando acceso por magic link — sin instalación de app"
+    caption: "Inspector móvil — basado en navegador, cero instalaciones de app"
 ---
 
 Mantto es una plataforma de operaciones de propiedades que reemplaza flujos de inspección manuales con inventarios asistidos por IA, solicitudes de mantenimiento y reportería trazable — todo a través del navegador móvil, sin necesidad de instalar ninguna app.

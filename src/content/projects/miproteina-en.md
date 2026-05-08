@@ -6,6 +6,13 @@ routeSlug: "miproteina"
 tags: ["e-commerce", "laravel", "platform", "logistics"]
 publishedDate: 2025-04-15
 liveUrl: "https://miproteina.com"
+screenshots:
+  - src: "/projects/miproteina/homepage.png"
+    alt: "Miproteina homepage showing product catalog with nutritional supplements and categories"
+    caption: "Product catalog with nutritional data and real-time inventory"
+  - src: "/projects/miproteina/login.png"
+    alt: "Miproteina customer login page for account access and order management"
+    caption: "Customer accounts with order history and reorder"
 ---
 
 Miproteina is a specialized e-commerce platform for sports nutrition supplements serving the Central American market — built from scratch to handle the region's specific logistics, payment, and regulatory requirements.
