@@ -12,6 +12,15 @@ screenshots:
   - src: "/projects/autosentry/flow-diagram.svg"
     alt: "AutoSentry flow diagram: Sentry error, triage and deduplication, ticket and scope, reproduction, repair agent in sandbox, validation gates, draft merge request with CI and human review"
     caption: "Generic reconstruction from documentation — not an internal screenshot or an executable demo."
+timeline:
+  - title: "The patch that failed"
+    description: "A one-shot repair attempt replaced a large source file with a minimal stub. Draft review caught it and the change was closed without merging."
+  - title: "Deterministic triage"
+    description: "Network and third-party noise filtered out, defects grouped, and a manifest maps each error to repositories and allowed scope."
+  - title: "Repair agent in a sandbox"
+    description: "The agent works on real files inside a container: a RED test reproduces the failure and validation gates decide whether the attempt advances."
+  - title: "Draft MR and human review"
+    description: "The agent prepares the draft merge request; approval, integration and deployment remain human decisions."
 ---
 
 I worked on an internal tool that connects Sentry errors to proposed fixes for human review. The project addresses the work before code review: selecting an actionable defect, avoiding duplicates, finding the relevant code, reproducing the failure and preparing a change an engineer can assess.

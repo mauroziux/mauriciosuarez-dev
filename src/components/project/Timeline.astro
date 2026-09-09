@@ -1,0 +1,46 @@
+---
+import { t } from "../../i18n";
+import type { Lang } from "../../i18n";
+
+interface TimelineItem {
+  date?: string;
+  title: string;
+  description?: string;
+}
+
+interface Props {
+  items: TimelineItem[];
+  lang: Lang;
+}
+
+const { items, lang } = Astro.props;
+---
+
+<section class="mt-16" aria-labelledby="project-timeline">
+  <h2 id="project-timeline" class="text-lg font-semibold tracking-tight text-(--color-text-primary)">
+    {t(lang, "work.story")}
+  </h2>
+  <p class="mt-1 h-px w-16 bg-(--color-accent)" aria-hidden="true"></p>
+  <ol class="relative mt-8 ml-1.5 border-l border-(--color-border-secondary)">
+    {
+      items.map((item, i) => (
+        <li class:list={["relative pb-10 pl-8 last:pb-0 reveal", i < 5 && `reveal-delay-${Math.min(i, 5)}`]}>
+          <span
+            class:list={[
+              "absolute -left-[8px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full border-2 border-(--color-accent) bg-(--color-bg-primary)",
+              i === 0 ? "timeline-dot-active" : "timeline-dot",
+            ]}
+            aria-hidden="true"
+          />
+          {item.date && (
+            <span class="font-mono text-xs tracking-wide text-(--color-accent-light)">{item.date}</span>
+          )}
+          <h3 class="mt-1 font-semibold text-(--color-text-primary)">{item.title}</h3>
+          {item.description && (
+            <p class="mt-1.5 max-w-[60ch] text-sm leading-relaxed text-(--color-text-secondary)">{item.description}</p>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</section>

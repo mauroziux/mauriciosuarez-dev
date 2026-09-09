@@ -1,0 +1,30 @@
+---
+import { t } from "../../i18n";
+import type { Lang } from "../../i18n";
+
+interface Highlight {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  items: Highlight[];
+  lang: Lang;
+}
+
+const { items, lang } = Astro.props;
+---
+
+<section class="mt-12" aria-labelledby="project-highlights">
+  <h2 id="project-highlights" class="sr-only">{t(lang, "work.numbers")}</h2>
+  <dl class="grid gap-4 sm:grid-cols-3">
+    {
+      items.map((h) => (
+        <div class="glass-card flex flex-col-reverse gap-2 rounded-lg p-5">
+          <dt class="text-xs leading-snug text-(--color-text-tertiary)">{h.label}</dt>
+          <dd class="text-gradient font-mono text-2xl font-semibold tracking-tight">{h.value}</dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>

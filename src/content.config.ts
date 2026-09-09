@@ -20,6 +20,17 @@ const projects = defineCollection({
       alt: z.string(),
       caption: z.string().optional(),
     })).default([]),
+    // ── Showcase (prototype) ──
+    cover: z.string().optional(),
+    timeline: z.array(z.object({
+      date: z.string().optional(),
+      title: z.string(),
+      description: z.string().optional(),
+    })).default([]),
+    highlights: z.array(z.object({
+      value: z.string(),
+      label: z.string(),
+    })).default([]),
   }),
 });
 

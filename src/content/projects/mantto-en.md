@@ -21,6 +21,25 @@ screenshots:
   - src: "/projects/mantto/inspector-mobile.webp"
     alt: "Mobile inspector interface accessed through a browser"
     caption: "Browser-based inspection in the field."
+timeline:
+  - date: "Mar 2026"
+    title: "The available history begins"
+    description: "The earliest visible commit already contains a working maintenance management application."
+  - title: "Field evidence integrity"
+    description: "Unique identifiers on storage paths: two photos with the same name no longer overwrite each other. Regression tests included."
+  - title: "From inspection to approved maintenance"
+    description: "Review transitions with transactional locking: evidence is checked against its organization, inventory and media type before completion."
+  - title: "AI gateway with organization context"
+    description: "Provider configuration resolves from the organization and its plan; fallback attempts are bounded and context travels with the business object."
+  - title: "Asynchronous completion"
+    description: "State transition is separated from slow work: reports, PDFs and notifications continue in the background."
+highlights:
+  - value: "29s → <500ms"
+    label: "endpoint response after separating completion from slow work (internal record; not a benchmark)"
+  - value: "~70%"
+    label: "estimated inventory-time savings (informal estimate, not a verified measurement)"
+  - value: "4h → <1h"
+    label: "duration of some inventories per the author's informal estimate"
 ---
 
 Mantto brings property maintenance and inspection workflows into one product. My work connected evidence capture, AI-assisted analysis, finding review and maintenance execution with the requirements of a system serving multiple organisations.

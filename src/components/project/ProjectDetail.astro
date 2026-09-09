@@ -1,0 +1,216 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { t, getRoute } from "../../i18n";
+import type { Lang } from "../../i18n";
+import BrowserFrame from "./BrowserFrame.astro";
+import Timeline from "./Timeline.astro";
+import Highlights from "./Highlights.astro";
+import ScreenshotGallery from "./ScreenshotGallery.astro";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  lang: Lang;
+  Content: any;
+  headings: { depth: number; slug: string; text: string }[];
+}
+
+const { project, lang, Content, headings } = Astro.props;
+const data = project.data;
+const sections = headings.filter((heading) => heading.depth === 2);
+
+const hero = data.screenshots[0];
+const heroIsSvg = hero?.src.endsWith(".svg");
+const galleryShots = data.screenshots.slice(1);
+const heroUrl = data.liveUrl
+  ? new URL(data.liveUrl).hostname.replace("www.", "")
+  : undefined;
+const heroUrlLabel = data.anonymized ? t(lang, "work.diagramShot") : t(lang, "work.internalShot");
+
+const all = (await getCollection("projects"))
+  .filter((entry) => entry.data.lang === lang)
+  .sort(
+    (a, b) =>
+      a.data.featuredOrder - b.data.featuredOrder ||
+      b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf(),
+  );
+const index = all.findIndex((entry) => entry.data.routeSlug === data.routeSlug);
+const prev = index > 0 ? all[index - 1] : undefined;
+const next = index >= 0 && index < all.length - 1 ? all[index + 1] : undefined;
+
+const updated = new Intl.DateTimeFormat(lang === "es" ? "es" : "en", {
+  month: "short",
+  year: "numeric",
+}).format(data.publishedDate);
+---
+
+<div id="reading-progress" aria-hidden="true"></div>
+
+<section class="section-padding pt-10 md:pt-14">
+  <div class="mx-auto max-w-6xl px-4">
+    <a class="link-accent text-sm font-medium" href={getRoute(lang, "work")}>{t(lang, "work.backToList")}</a>
+
+    <header class="animate-fade-up mt-6 max-w-3xl">
+      <div class="flex flex-wrap items-center gap-3">
+        {data.anonymized && <span class="tag">{t(lang, "work.anonymized")}</span>}
+      </div>
+      <h1 class="mt-3 text-3xl font-bold tracking-tight text-(--color-text-primary) sm:text-4xl">
+        {data.title}
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-(--color-text-secondary)">{data.description}</p>
+      <div class="mt-5 flex flex-wrap items-center gap-3">
+        {data.liveUrl && (
+          <a href={data.liveUrl} class="btn-tactile" target="_blank" rel="noopener noreferrer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+            {t(lang, "work.viewProject")}
+          </a>
+        )}
+        {data.repoUrl && (
+          <a href={data.repoUrl} class="btn-secondary" target="_blank" rel="noopener noreferrer">
+            {t(lang, "work.repo")}
+          </a>
+        )}
+        <span class="ml-1 font-mono text-xs text-(--color-text-tertiary)">
+          {t(lang, "work.updated")}: {updated}
+        </span>
+      </div>
+    </header>
+
+    {hero && (
+      <div class="animate-fade-up-delay-1 mt-10">
+        {heroIsSvg ? (
+          <figure class="overflow-hidden rounded-xl border border-(--color-glass-border) bg-(--color-bg-tertiary) p-4 sm:p-8">
+            <a href={hero.src} aria-label={`${t(lang, "work.openImage")}: ${hero.alt}`}>
+              <img src={hero.src} alt={hero.alt} loading="eager" decoding="async" class="mx-auto block max-w-2xl" />
+            </a>
+            {hero.caption && (
+              <figcaption class="mt-4 text-center text-xs text-(--color-text-tertiary)">{hero.caption}</figcaption>
+            )}
+          </figure>
+        ) : (
+          <BrowserFrame src={hero.src} alt={hero.alt} url={heroUrl ?? heroUrlLabel} caption={hero.caption} eager />
+        )}
+      </div>
+    )}
+
+    {data.highlights.length > 0 && (
+      <div class="animate-fade-up-delay-2">
+        <Highlights items={data.highlights} lang={lang} />
+      </div>
+    )}
+
+    <div class="mt-16 grid gap-12 lg:grid-cols-[220px_minmax(0,1fr)]">
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <nav aria-label={t(lang, "work.contents")}>
+            <p class="text-xs font-semibold uppercase tracking-wider text-(--color-text-tertiary)">
+              {t(lang, "work.contents")}
+            </p>
+            <ul class="mt-4 space-y-2.5 border-l border-(--color-border-primary) text-sm">
+              {sections.map((heading) => (
+                <li>
+                  <a
+                    href={`#${heading.slug}`}
+                    class="-ml-px block border-l border-transparent pl-4 leading-snug text-(--color-text-secondary) transition-colors hover:border-(--color-accent) hover:text-(--color-text-primary)"
+                  >
+                    {heading.text}
+                  </a>
+                </li>
+              ))}
+              {galleryShots.length > 0 && (
+                <li>
+                  <a
+                    href="#project-gallery"
+                    class="-ml-px block border-l border-transparent pl-4 text-(--color-text-secondary) transition-colors hover:border-(--color-accent) hover:text-(--color-text-primary)"
+                  >
+                    {t(lang, "work.gallery")}
+                  </a>
+                </li>
+              )}
+            </ul>
+          </nav>
+          <div class="mt-8 border-t border-(--color-border-primary) pt-6">
+            <p class="text-xs font-semibold uppercase tracking-wider text-(--color-text-tertiary)">Stack</p>
+            <div class="mt-3 flex flex-wrap gap-1.5">
+              {data.tags.map((tag: string) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="min-w-0">
+        {sections.length > 2 && (
+          <details class="mb-8 rounded-lg border border-(--color-border-secondary) p-4 lg:hidden">
+            <summary class="cursor-pointer font-medium">{t(lang, "work.contents")}</summary>
+            <ul class="mt-3 grid gap-2 text-sm sm:grid-cols-2">
+              {sections.map((heading) => (
+                <li><a class="link-accent inline-block py-1" href={`#${heading.slug}`}>{heading.text}</a></li>
+              ))}
+            </ul>
+          </details>
+        )}
+
+        {data.timeline.length > 0 && <Timeline items={data.timeline} lang={lang} />}
+
+        <article class="prose prose-invert mx-auto mt-12 max-w-[72ch]">
+          <Content />
+        </article>
+      </div>
+    </div>
+
+    {galleryShots.length > 0 && (
+      <ScreenshotGallery shots={galleryShots} lang={lang} id={data.routeSlug} />
+    )}
+
+    {(prev || next) && (
+      <nav class="mt-16 flex flex-col gap-4 border-t border-(--color-border-primary) pt-8 sm:flex-row sm:justify-between" aria-label="Projects">
+        {prev ? (
+          <a href={`${getRoute(lang, "work")}${prev.data.routeSlug}/`} class="group max-w-[48%]">
+            <span class="text-xs text-(--color-text-tertiary)">← {t(lang, "work.prev")}</span>
+            <span class="mt-1 block font-medium text-(--color-text-secondary) transition-colors group-hover:text-(--color-accent-light)">
+              {prev.data.title}
+            </span>
+          </a>
+        ) : <span></span>}
+        {next && (
+          <a href={`${getRoute(lang, "work")}${next.data.routeSlug}/`} class="group max-w-[48%] sm:text-right">
+            <span class="text-xs text-(--color-text-tertiary)">{t(lang, "work.next")} →</span>
+            <span class="mt-1 block font-medium text-(--color-text-secondary) transition-colors group-hover:text-(--color-accent-light)">
+              {next.data.title}
+            </span>
+          </a>
+        )}
+      </nav>
+    )}
+  </div>
+</section>
+
+<script>
+  // Scroll reveal (same pattern as CinematicHero, scoped to project pages)
+  const reveals = document.querySelectorAll(".reveal");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 },
+  );
+  reveals.forEach((el) => observer.observe(el));
+
+  // Reading progress bar
+  const bar = document.getElementById("reading-progress");
+  if (bar) {
+    const update = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = scrollable > 0 ? `${(window.scrollY / scrollable) * 100}%` : "0%";
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+  }
+</script>

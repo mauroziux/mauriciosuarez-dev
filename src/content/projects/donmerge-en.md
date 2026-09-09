@@ -12,6 +12,20 @@ screenshots:
   - src: "/projects/donmerge/flow-diagram.svg"
     alt: "GitHub event through a queue, Workflow, model and sandbox, output validation, quality gate and published review"
     caption: "Simplified review flow, reconstructed from the inspected implementation — not a live execution."
+cover: "/projects/donmerge/sentry-integrations.png"
+timeline:
+  - date: "Mar 2026"
+    title: "A webhook reviewer"
+    description: "The earliest state retained in the repository contains a reviewer built on Flue."
+  - title: "Finding identity"
+    description: "Deduplication and lifecycle tracking: repeating a review no longer fills the PR with comments about the same issue."
+  - date: "Jul 2026"
+    title: "Deterministic quality layer"
+    description: "After a documented quality review, a post-model layer filters generic or stylistic feedback and requires a concrete failure mechanism for critical findings."
+  - title: "Durable execution"
+    description: "From Durable Object alarms to Cloudflare Workflows: webhook receipt moves through a queue and retries get a clear owner."
+  - title: "Two retry policies"
+    description: "Exhausting the model chain no longer repeats the whole flow: model and infrastructure failures recover differently."
 ---
 
 DonMerge integrates AI-assisted code review into the pull request workflow. My work covered GitHub integration, finding management and the evolution of review execution into a durable process with explicit failure recovery.

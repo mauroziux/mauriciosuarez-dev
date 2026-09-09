@@ -1,0 +1,71 @@
+---
+import { t, getRoute } from "../../i18n";
+import type { Lang } from "../../i18n";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+  lang: Lang;
+  eager?: boolean;
+  class?: string;
+}
+
+const { project, lang, eager = false, class: className } = Astro.props;
+const shot = project.data.screenshots[0];
+const cover = project.data.cover ?? shot?.src;
+const coverShot = project.data.screenshots.find((s: { src: string }) => s.src === cover);
+const coverAlt = coverShot?.alt ?? shot?.alt ?? project.data.title;
+const isSvg = cover?.endsWith(".svg");
+const url = project.data.liveUrl
+  ? new URL(project.data.liveUrl).hostname.replace("www.", "")
+  : undefined;
+---
+
+<a
+  href={`${getRoute(lang, "work")}${project.data.routeSlug}/`}
+  class:list={["glass-card project-card group block overflow-hidden rounded-lg", className]}
+>
+  {cover && (
+    <div class="relative aspect-[16/10] overflow-hidden border-b border-(--color-glass-border) bg-(--color-bg-tertiary)">
+      <img
+        src={cover}
+        alt={coverAlt}
+        loading={eager ? "eager" : "lazy"}
+        decoding="async"
+        class:list={[
+          "h-full w-full transition-transform duration-500 ease-out group-hover:scale-[1.04]",
+          isSvg ? "object-contain p-5" : "object-cover object-top",
+        ]}
+      />
+      {!isSvg && (
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-(--color-bg-card)/80 via-transparent to-transparent" aria-hidden="true"></div>
+      )}
+      {url && (
+        <span class="pointer-events-none absolute bottom-3 right-3 rounded-md border border-(--color-glass-border) bg-(--color-bg-primary)/70 px-2 py-0.5 font-mono text-[10px] text-(--color-text-tertiary) backdrop-blur-sm">
+          {url}
+        </span>
+      )}
+    </div>
+  )}
+  <div class="p-6">
+    {project.data.anonymized && (
+      <span class="tag mb-3 inline-block">{t(lang, "work.anonymized")}</span>
+    )}
+    <h3 class="font-semibold text-(--color-text-primary) transition-colors group-hover:text-(--color-accent-light)">
+      {project.data.title}
+    </h3>
+    <p class="mt-2 text-sm leading-relaxed text-(--color-text-secondary)">
+      {project.data.description}
+    </p>
+    {project.data.tags.length > 0 && (
+      <div class="mt-4 flex flex-wrap gap-1.5">
+        {project.data.tags.map((tag: string) => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    )}
+    <span class="mt-4 inline-block text-sm font-medium text-(--color-accent) transition-colors group-hover:text-(--color-accent-light)">
+      {t(lang, "work.readMore")}
+    </span>
+  </div>
+</a>

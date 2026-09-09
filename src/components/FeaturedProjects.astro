@@ -6,6 +6,7 @@ interface Props {
 import { t, getRoute } from "../i18n";
 import { getCollection } from "astro:content";
 import SectionHeading from "./SectionHeading.astro";
+import ProjectCard from "./project/ProjectCard.astro";
 
 const { lang } = Astro.props;
 
@@ -30,33 +31,14 @@ const projects = (await getCollection("projects"))
 
     <div class="mt-10 grid gap-6 sm:grid-cols-2">
       {
-        projects.map((project, i) => {
-          const delayClass = i === 0 ? "animate-fade-up"
-            : i === 1 ? "animate-fade-up-delay-1"
-            : i === 2 ? "animate-fade-up-delay-2"
-            : "animate-fade-up";
-          return (
-            <a href={`${workRouteBase}${project.data.routeSlug}/`} class:list={["glass-card project-card rounded-lg p-6", delayClass]}>
-              {project.data.anonymized && (
-                <span class="tag mb-3 inline-block">{t(lang, "work.anonymized")}</span>
-              )}
-              <h3 class="font-semibold text-(--color-text-primary)">{project.data.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-(--color-text-secondary)">
-                {project.data.description}
-              </p>
-              {project.data.tags.length > 0 && (
-                <div class="mt-4 flex flex-wrap gap-1.5">
-                  {project.data.tags.map((tag: string) => (
-                    <span class="tag">{tag}</span>
-                  ))}
-                </div>
-              )}
-              <span class="mt-4 inline-block text-sm font-medium text-(--color-accent) transition-colors hover:text-(--color-accent-light)">
-                {t(lang, "work.readMore")}
-              </span>
-            </a>
-          );
-        })
+        projects.map((project, i) => (
+          <ProjectCard
+            project={project}
+            lang={lang}
+            eager={i === 0}
+            class={i === 0 ? "animate-fade-up" : i === 1 ? "animate-fade-up-delay-1" : i === 2 ? "animate-fade-up-delay-2" : ""}
+          />
+        ))
       }
     </div>
 

@@ -1,0 +1,140 @@
+---
+import { t } from "../../i18n";
+import type { Lang } from "../../i18n";
+
+interface Shot {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  shots: Shot[];
+  lang: Lang;
+  id: string;
+}
+
+const { shots, lang, id } = Astro.props;
+const dialogId = `lightbox-${id}`;
+---
+
+{shots.length > 0 && (
+  <section class="mt-16" aria-labelledby="project-gallery">
+    <h2 id="project-gallery" class="text-lg font-semibold tracking-tight text-(--color-text-primary)">
+      {t(lang, "work.gallery")}
+    </h2>
+    <p class="mt-1 h-px w-16 bg-(--color-accent)" aria-hidden="true"></p>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2">
+      {shots.map((shot, i) => (
+        <figure class="group relative overflow-hidden rounded-lg border border-(--color-glass-border) bg-(--color-bg-secondary)">
+          <button
+            type="button"
+            data-lightbox-trigger={dialogId}
+            data-lightbox-index={i}
+            class="block w-full cursor-zoom-in"
+            aria-label={`${t(lang, "work.openGallery")}: ${shot.alt}`}
+          >
+            <img
+              src={shot.src}
+              alt={shot.alt}
+              loading="lazy"
+              decoding="async"
+              class:list={[
+                "block h-56 w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]",
+                shot.src.endsWith(".svg") && "object-contain p-6",
+              ]}
+            />
+          </button>
+          {shot.caption && (
+            <figcaption class="border-t border-(--color-glass-border) px-4 py-2.5 text-xs text-(--color-text-secondary)">
+              {shot.caption}
+            </figcaption>
+          )}
+        </figure>
+      ))}
+    </div>
+
+    <dialog id={dialogId} class="lightbox p-0" aria-label={t(lang, "work.gallery")}>
+      <div class="p-4">
+        <figure class="relative">
+          <img data-lightbox-img alt="" />
+          <figcaption data-lightbox-caption class="mt-3 text-center text-xs leading-relaxed text-(--color-text-secondary)"></figcaption>
+        </figure>
+      </div>
+      <button
+        type="button"
+        data-lightbox-prev
+        class="absolute -left-14 top-1/2 -translate-y-1/2 rounded-full border border-(--color-border-secondary) bg-(--color-bg-secondary)/90 px-3 py-2 text-(--color-text-secondary) backdrop-blur transition-colors hover:text-(--color-text-primary) sm:-left-16"
+        aria-label={t(lang, "work.galleryPrev")}
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button
+        type="button"
+        data-lightbox-next
+        class="absolute -right-14 top-1/2 -translate-y-1/2 rounded-full border border-(--color-border-secondary) bg-(--color-bg-secondary)/90 px-3 py-2 text-(--color-text-secondary) backdrop-blur transition-colors hover:text-(--color-text-primary) sm:-right-16"
+        aria-label={t(lang, "work.galleryNext")}
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <button
+        type="button"
+        data-lightbox-close
+        class="absolute -top-3 -right-3 rounded-full border border-(--color-border-secondary) bg-(--color-bg-secondary) px-2.5 py-1 text-xs text-(--color-text-secondary) transition-colors hover:text-(--color-text-primary)"
+        aria-label={t(lang, "work.galleryClose")}
+      >
+        ✕
+      </button>
+    </dialog>
+  </section>
+)}
+
+<script>
+  const shots = document.querySelectorAll<HTMLElement>("[data-lightbox-trigger]");
+  shots.forEach((trigger) => {
+    const dialog = document.getElementById(trigger.dataset.lightboxTrigger!) as HTMLDialogElement | null;
+    if (!dialog) return;
+    const imgs = Array.from(
+      dialog.closest("section")?.querySelectorAll<HTMLButtonElement>("[data-lightbox-trigger]") ?? [],
+    );
+    const meta = imgs.map((el) => {
+      const fig = el.closest("figure");
+      const img = el.querySelector("img");
+      return {
+        src: img?.getAttribute("src") ?? "",
+        alt: img?.getAttribute("alt") ?? "",
+        caption: fig?.querySelector("figcaption")?.textContent?.trim() ?? "",
+      };
+    });
+    let index = 0;
+    const imgEl = dialog.querySelector<HTMLImageElement>("[data-lightbox-img]");
+    const capEl = dialog.querySelector<HTMLElement>("[data-lightbox-caption]");
+
+    const render = () => {
+      if (!imgEl || !capEl) return;
+      imgEl.src = meta[index].src;
+      imgEl.alt = meta[index].alt;
+      capEl.textContent = meta[index].caption;
+    };
+    const step = (dir: number) => {
+      index = (index + dir + meta.length) % meta.length;
+      render();
+    };
+
+    trigger.addEventListener("click", () => {
+      index = Number(trigger.dataset.lightboxIndex ?? 0);
+      render();
+      dialog.showModal();
+    });
+    dialog.querySelector("[data-lightbox-prev]")?.addEventListener("click", () => step(-1));
+    dialog.querySelector("[data-lightbox-next]")?.addEventListener("click", () => step(1));
+    dialog.querySelector("[data-lightbox-close]")?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    dialog.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") step(-1);
+      if (e.key === "ArrowRight") step(1);
+    });
+  });
+</script>

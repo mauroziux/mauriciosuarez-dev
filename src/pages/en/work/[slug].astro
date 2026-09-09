@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ProjectDetail from "../../../components/project/ProjectDetail.astro";
 import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { t, getRoute } from "../../../i18n";
 
 export async function getStaticPaths() {
   const projects = (await getCollection("projects")).filter((entry) => entry.data.lang === "en");
@@ -15,78 +15,8 @@ export async function getStaticPaths() {
 const lang = "en" as const;
 const { project } = Astro.props as { project: CollectionEntry<"projects"> };
 const { Content, headings } = await render(project);
-const sections = headings.filter((heading) => heading.depth === 2);
 ---
 
 <BaseLayout lang={lang} title={project.data.title} description={project.data.description}>
-  <div class="section-padding">
-    <div class="mx-auto max-w-4xl px-4">
-      <a class="link-accent text-sm font-medium" href={getRoute(lang, "work")}>{t(lang, "work.backToList")}</a>
-      <div class="mt-6 flex flex-wrap items-center gap-3">
-        <h1 class="text-3xl font-bold tracking-tight text-(--color-text-primary) sm:text-4xl">{project.data.title}</h1>
-        {project.data.anonymized && (
-          <span class="tag">{t(lang, "work.anonymized")}</span>
-        )}
-      </div>
-      <p class="mt-3 text-(--color-text-secondary)">{project.data.description}</p>
-      {project.data.tags.length > 0 && (
-        <div class="mt-4 flex flex-wrap gap-1.5">
-          {project.data.tags.map((tag: string) => (
-            <span class="tag">{tag}</span>
-          ))}
-        </div>
-      )}
-      {(project.data.repoUrl || project.data.liveUrl) && (
-        <div class="mt-4 flex gap-4">
-          {project.data.repoUrl && (
-            <a href={project.data.repoUrl} class="link-accent text-sm" target="_blank" rel="noopener noreferrer">
-              {t(lang, "work.repo")} →
-            </a>
-          )}
-          {project.data.liveUrl && (
-            <a href={project.data.liveUrl} class="link-accent text-sm" target="_blank" rel="noopener noreferrer">
-              {t(lang, "work.live")} →
-            </a>
-          )}
-        </div>
-      )}
-      {sections.length > 2 && (
-        <nav class="mt-8 rounded-lg border border-(--color-border-secondary) p-4" aria-label={t(lang, "work.contents")}>
-          <details>
-            <summary class="cursor-pointer font-medium">{t(lang, "work.contents")}</summary>
-            <ul class="mt-3 grid gap-2 text-sm sm:grid-cols-2">
-              {sections.map((heading) => (
-                <li><a class="link-accent inline-block py-1" href={`#${heading.slug}`}>{heading.text}</a></li>
-              ))}
-            </ul>
-          </details>
-        </nav>
-      )}
-      {project.data.screenshots.length > 0 && (
-        <div class:list={["mt-8 grid gap-4", { "sm:grid-cols-2": project.data.screenshots.length > 1 }]}>
-          {project.data.screenshots.map((shot: { src: string; alt: string; caption?: string }) => (
-            <figure class:list={["overflow-hidden rounded-lg border border-(--color-glass-border) bg-(--color-bg-card)", { "sm:col-span-2": project.data.screenshots.length > 1 && shot.src.endsWith(".svg") }]}>
-              <a href={shot.src} class="block" aria-label={`${t(lang, "work.openImage")}: ${shot.alt}`}>
-                <img
-                  src={shot.src}
-                  alt={shot.alt}
-                  loading="lazy"
-                  decoding="async"
-                  class="mx-auto block w-full max-w-2xl"
-                />
-              </a>
-              {shot.caption && (
-                <figcaption class="px-4 py-2.5 text-xs text-(--color-text-secondary)">
-                  {shot.caption}
-                </figcaption>
-              )}
-            </figure>
-          ))}
-        </div>
-      )}
-      <article class="prose prose-invert mx-auto mt-10 max-w-[72ch]">
-        <Content />
-      </article>
-    </div>
-  </div>
+  <ProjectDetail project={project} lang={lang} Content={Content} headings={headings} />
 </BaseLayout>

@@ -1,0 +1,40 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  url?: string;
+  caption?: string;
+  eager?: boolean;
+}
+
+const { src, alt, url, caption, eager = false } = Astro.props;
+---
+
+<div class="overflow-hidden rounded-xl border border-(--color-glass-border) bg-(--color-bg-secondary) shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
+  <div class="flex items-center gap-2 border-b border-(--color-glass-border) bg-(--color-bg-tertiary) px-4 py-2.5">
+    <span class="flex gap-1.5" aria-hidden="true">
+      <span class="h-2.5 w-2.5 rounded-full bg-[#ff5f57] opacity-80"></span>
+      <span class="h-2.5 w-2.5 rounded-full bg-[#febc2e] opacity-80"></span>
+      <span class="h-2.5 w-2.5 rounded-full bg-[#28c840] opacity-80"></span>
+    </span>
+    <span class="ml-2 flex min-w-0 flex-1 items-center gap-1.5 rounded-md bg-(--color-bg-primary)/70 px-3 py-1 text-xs text-(--color-text-tertiary)">
+      <svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+        <path d="M4.75 7a2.25 2.25 0 1 1 4.5 0 2.25 2.25 0 0 1-4.5 0zM7 3.75a3.25 3.25 0 0 0-2.87 4.79l-1.9 3.32a.75.75 0 0 0 .65 1.12h5.49l3.28-5.73A3.25 3.25 0 0 0 7 3.75z" />
+        <path d="M9.9 12.98l2.93-5.11A3.25 3.25 0 0 0 10.4 3.8a4 4 0 0 1 .28 5.73l-1.35 2.36a.75.75 0 0 0 .57 1.09z" />
+      </svg>
+      <span class="truncate">{url ?? "product screen"}</span>
+    </span>
+  </div>
+  <div class="relative bg-(--color-bg-primary)">
+    <img
+      src={src}
+      alt={alt}
+      loading={eager ? "eager" : "lazy"}
+      decoding="async"
+      class="block w-full object-cover object-top"
+    />
+  </div>
+</div>
+{caption && (
+  <p class="mt-3 text-xs leading-relaxed text-(--color-text-tertiary)">{caption}</p>
+)}

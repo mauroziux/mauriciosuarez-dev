@@ -463,6 +463,55 @@ hr.section-divider {
   border-radius: inherit;
 }
 
+/* ── Reading progress bar ───────────────── */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-accent-dim), var(--color-accent-light));
+  z-index: 60;
+  transition: width 80ms linear;
+}
+
+/* ── Screenshot lightbox ───────────────── */
+dialog.lightbox {
+  margin: auto;
+  max-width: min(92vw, 1200px);
+  border: 1px solid var(--color-glass-border);
+  border-radius: 12px;
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  padding: 0;
+  overflow: visible;
+}
+dialog.lightbox::backdrop {
+  background: rgba(5, 5, 5, 0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+dialog.lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: 78vh;
+  width: auto;
+  margin: 0 auto;
+}
+dialog.lightbox:not([open]) {
+  display: none;
+}
+
+/* ── Timeline dot glow ───────────────── */
+.timeline-dot {
+  box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.12);
+}
+.timeline-dot-active {
+  box-shadow:
+    0 0 0 4px rgba(196, 30, 58, 0.12),
+    0 0 12px rgba(196, 30, 58, 0.35);
+}
+
 /* ── Scroll reveal ────────────────────── */
 .reveal {
   opacity: 0;

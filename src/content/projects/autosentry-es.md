@@ -12,6 +12,15 @@ screenshots:
   - src: "/projects/autosentry/flow-diagram-es.svg"
     alt: "Diagrama de flujo de AutoSentry: error de Sentry, triage y deduplicación, ticket y alcance, reproducción, agente de reparación en sandbox, controles de validación, merge request en borrador con CI y revisión humana"
     caption: "Reconstrucción genérica desde documentación; no es una captura interna ni una demo ejecutable."
+timeline:
+  - title: "El parche que falló"
+    description: "Un intento de reparación de una sola vez sustituyó un archivo grande por un fragmento mínimo. La revisión del borrador lo detectó y el cambio se cerró sin integrarse."
+  - title: "Triage determinista"
+    description: "Filtrado de ruido de red y terceros, agrupación de defectos y un manifiesto que relaciona cada error con repositorios y alcance permitidos."
+  - title: "Agente de reparación en sandbox"
+    description: "El agente trabaja sobre archivos reales dentro de un contenedor: una prueba RED reproduce el fallo y los controles de validación deciden si el intento avanza."
+  - title: "Draft MR y revisión humana"
+    description: "El agente prepara el merge request en borrador; la aprobación, integración y despliegue siguen siendo decisiones humanas."
 ---
 
 Trabajé en una herramienta interna que conecta errores de Sentry con correcciones preparadas para revisión humana. El proyecto aborda el recorrido previo a la revisión de código: seleccionar un problema accionable, evitar duplicados, localizar el código relevante, reproducir el fallo y preparar un cambio que un ingeniero pueda evaluar.

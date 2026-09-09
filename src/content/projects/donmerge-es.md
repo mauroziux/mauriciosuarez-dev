@@ -12,6 +12,20 @@ screenshots:
   - src: "/projects/donmerge/flow-diagram-es.svg"
     alt: "Evento de GitHub, cola, Workflow, modelo y sandbox, validación de salida, control de calidad y revisión publicada"
     caption: "Flujo simplificado reconstruido desde la implementación inspeccionada; no es una ejecución en vivo."
+cover: "/projects/donmerge/sentry-integrations.png"
+timeline:
+  - date: "Mar 2026"
+    title: "Revisor por webhook"
+    description: "El primer estado conservado del repositorio contiene un revisor construido sobre Flue."
+  - title: "Identidad de los hallazgos"
+    description: "Deduplicación y ciclo de vida: repetir una revisión no llena el PR de comentarios sobre el mismo problema."
+  - date: "Jul 2026"
+    title: "Capa de calidad determinista"
+    description: "Tras una revisión de calidad documentada, una capa posterior al modelo filtra comentarios genéricos y exige mecanismos de fallo concretos en los hallazgos críticos."
+  - title: "Ejecución duradera"
+    description: "De alarmas de Durable Objects a Cloudflare Workflows: la recepción del webhook pasa por una cola y los reintentos tienen un dueño claro."
+  - title: "Dos políticas de reintento"
+    description: "Agotar la cadena de modelos ya no repite todo el flujo: los fallos de modelo e infraestructura se recuperan de forma distinta."
 ---
 
 DonMerge integra revisión de código con IA en el flujo de pull requests. Mi trabajo abarcó la integración con GitHub, el tratamiento de los hallazgos y la evolución de la ejecución hacia un proceso duradero con recuperación explícita ante fallos.

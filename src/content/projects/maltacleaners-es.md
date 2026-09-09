@@ -12,6 +12,16 @@ screenshots:
   - src: "/projects/maltacleaners/homepage.jpg"
     alt: "Web pública de MaltaCleaners con servicios de limpieza y reservas en Malta"
     caption: "Web pública de reservas; esta captura no demuestra el funcionamiento privado del Concierge."
+timeline:
+  - date: "May 2026"
+    title: "Web de reservas"
+    description: "El historial disponible comienza con la web pública de reservas y persistencia de datos."
+  - title: "Administración y personal"
+    description: "Portales de administración, personal del servicio y recordatorios amplían el recorrido del producto."
+  - title: "Concierge por WhatsApp"
+    description: "Conversaciones con catálogo autorizado de precios: cuando falta contexto o autoridad, el camino es la intervención de un operador."
+  - title: "Dureza operativa"
+    description: "Prevención de duplicados, concurrencia y continuidad de conversaciones a medida que el asistente asumía más interacciones."
 ---
 
 El historial disponible de MaltaCleaners comienza en mayo de 2026 con una web de reservas y persistencia de datos. Mi trabajo amplió ese recorrido hacia administración, portales de personal, recordatorios y comunicación por WhatsApp. Al crecer el producto, el reto pasó a ser coordinar lo que dice un asistente con lo que realmente sabe y permite la operación.

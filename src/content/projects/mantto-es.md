@@ -21,6 +21,25 @@ screenshots:
   - src: "/projects/mantto/inspector-mobile.webp"
     alt: "Interfaz móvil del inspector accesible desde el navegador"
     caption: "Inspección en campo desde el navegador."
+timeline:
+  - date: "Mar 2026"
+    title: "Arranca el historial disponible"
+    description: "El primer commit visible ya contiene una aplicación de gestión de mantenimiento en funcionamiento."
+  - title: "Integridad de la evidencia en campo"
+    description: "Identificadores únicos en las rutas de almacenamiento: dos fotos con el mismo nombre dejan de sobrescribirse. Pruebas de regresión incluidas."
+  - title: "De la inspección al mantenimiento aprobado"
+    description: "Transiciones de revisión con bloqueo transaccional: la evidencia se comprueba contra su organización, inventario y tipo de medio antes de finalizar."
+  - title: "Gateway de IA con contexto de organización"
+    description: "La configuración de proveedores se resuelve desde la organización y su plan; los intentos de fallback tienen límite y el contexto viaja con el objeto de negocio."
+  - title: "Finalización asíncrona"
+    description: "La transición de estado se separa del trabajo lento: reportes, PDFs y notificaciones continúan en segundo plano."
+highlights:
+  - value: "29 s → <500 ms"
+    label: "respuesta del endpoint al separar la finalización del trabajo lento (registro interno; no es un benchmark)"
+  - value: "~70 %"
+    label: "ahorro de tiempo de inventario estimado (estimación informal, no medida verificada)"
+  - value: "4 h → <1 h"
+    label: "duración de algunos inventarios según estimación informal del autor"
 ---
 
 Mantto reúne procesos de mantenimiento e inspección inmobiliaria. Mi trabajo conectó captura de evidencia, análisis asistido por IA, revisión de hallazgos y ejecución de mantenimiento con las necesidades de un sistema utilizado por distintas organizaciones.

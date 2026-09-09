@@ -12,6 +12,16 @@ screenshots:
   - src: "/projects/maltacleaners/homepage.jpg"
     alt: "MaltaCleaners public website offering home cleaning and booking in Malta"
     caption: "Public booking website — this capture does not demonstrate the private Concierge runtime."
+timeline:
+  - date: "May 2026"
+    title: "Booking website"
+    description: "The available history starts with the public booking website and persistent storage."
+  - title: "Administration and staff"
+    description: "Administration, staff portals and reminders expand the product's flow."
+  - title: "WhatsApp Concierge"
+    description: "Conversations backed by an authorized price catalog: when context or authority is missing, the path is operator intervention."
+  - title: "Operational hardening"
+    description: "Duplicate prevention, concurrency and conversation continuity as the assistant took on more interactions."
 ---
 
 The available history of MaltaCleaners starts in May 2026 with a booking website and persistent storage. My work expanded that flow into administration, staff portals, reminders and WhatsApp communication. As the product grew, the challenge became coordinating what an assistant says with what the operation actually knows and allows.
