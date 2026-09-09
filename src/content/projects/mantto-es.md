@@ -5,6 +5,7 @@ lang: "es"
 routeSlug: "mantto"
 tags: ["empresarial", "property-tech", "integracion-ia", "laravel"]
 publishedDate: 2025-06-01
+featuredOrder: 2
 liveUrl: "https://mantto.app"
 screenshots:
   - src: "/projects/mantto/dashboard.png"

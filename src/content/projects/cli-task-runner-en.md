@@ -6,7 +6,6 @@ routeSlug: "cli-task-runner"
 tags: ["typescript", "cli", "node"]
 featured: false
 publishedDate: 2025-03-01
-repoUrl: "https://github.com/mauriciosuarez/cli-task-runner"
 ---
 
 A minimal CLI tool for defining and running development tasks with a simple YAML config.

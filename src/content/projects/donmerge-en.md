@@ -1,45 +1,50 @@
 ---
-title: "DonMerge — Autonomous Code Review & Error Resolution"
-description: "A developer tool that performs instant code reviews on pull requests and integrates with Sentry to autonomously diagnose and resolve production errors — reducing the gap between error detection and fix from hours to minutes."
+title: "DonMerge — AI Code Review with Guardrails"
+description: "An open-source AI code review tool for GitHub pull requests: durable Cloudflare Workflows, structured output validation, model fallback and a quality gate that only lets concrete findings block a merge."
 lang: "en"
 routeSlug: "donmerge"
-tags: ["developer-tools", "code-review", "error-resolution", "ai-integration"]
+tags: ["developer-tools", "code-review", "ai-integration", "cloudflare"]
 publishedDate: 2025-05-01
+featuredOrder: 1
+repoUrl: "https://github.com/mauroziux/donmerge"
 screenshots:
   - src: "/projects/donmerge/sentry-integrations.png"
-    alt: "DonMerge Sentry integration showing autonomous error diagnosis and resolution"
-    caption: "Sentry integration — autonomous error diagnosis and suggested fixes"
+    alt: "DonMerge integration settings showing Sentry-triggered review workflows"
+    caption: "Sentry-triggered triage workflows share the same durable-execution foundation"
 ---
 
-DonMerge is a developer productivity tool that combines instant AI-powered code review with autonomous Sentry error resolution — turning production incidents from multi-hour investigations into automated diagnosis and suggested fixes.
+DonMerge is an AI code review tool that runs on GitHub pull requests and publishes its findings as check runs and line-specific comments — with validation, fallbacks and a quality gate designed so that only concrete, well-argued findings can block a merge.
 
-## The Idea
+## Context and my role
 
-Engineering teams face two persistent bottlenecks: code review waits that slow down merges, and production errors that require manual investigation, context-gathering, and diagnosis before a fix can even be attempted. These problems share a root cause — the relevant context (codebase knowledge, error patterns, dependency relationships) exists but isn't available at the moment the engineer needs it. DonMerge was built to deliver that context automatically, both at review time and at incident time.
+PR review waits slow teams down, and first-pass review is where an assistant helps most without replacing judgment. I designed and built DonMerge end-to-end as its sole developer — architecture, model runner, quality gate, GitHub integration and deployment — and validated it against a real production codebase.
 
-## The Execution
+## How it works
 
-DonMerge operates at two critical points in the development lifecycle:
+When a review is triggered (PR webhook, or a `@donmerge` comment to re-run), a Cloudflare Workflow executes a four-step durable pipeline:
 
-**Instant Code Review:**
-- Analyzes pull requests immediately on creation, providing feedback before human reviewers are assigned
-- Evaluates code against project-specific patterns, potential bugs, security concerns, and architectural consistency
-- Delivers actionable comments directly on the PR, reducing the back-and-forth cycles typical of manual review
+1. Fetch PR data and create the check run
+2. Prepare files — filters and context
+3. Run the LLM review in a sandbox
+4. Publish the review — match and deduplicate findings
 
-**Autonomous Sentry Error Resolution:**
-- Integrates directly with Sentry to receive error events in real time
-- Automatically diagnoses the root cause by analyzing stack traces, affected code, recent changes, and historical patterns
-- Generates suggested fixes with context — the engineer reviews and approves rather than investigating from scratch
-- Reduces the investigation phase of incident response to near-zero
+Two design decisions carry most of the weight:
 
-The tool is designed to augment rather than replace engineering judgment — it handles the first-pass analysis and context gathering, leaving the final decision to the team.
+- **A dedicated model runner** owns model ordering, structured-output validation, one format-repair retry and direct-provider fallback. If a model exhausts its options, the durable step is not replayed wholesale; unclassified infrastructure errors stay workflow-retryable.
+- **A quality gate** filters findings before publishing. Only issues with a described failure mechanism can block a merge; vague or style-level comments are dropped or downgraded to non-blocking suggestions. Findings carry stable issue keys, so re-runs deduplicate instead of repeating themselves, and addressed comments are auto-resolved.
 
-## The Impact
+## Evidence from a documented production validation
 
-DonMerge is in active development and validation on real codebases. Early results show:
+On 2026-08-21, after a timeout incident and a refactor of the retry policy, a validation run was recorded against a live private repository:
 
-- Pull request feedback delivered in seconds rather than hours during testing, enabling faster merge cycles
-- Sentry errors diagnosed with root cause analysis and suggested fixes automatically, cutting investigation time significantly
-- Engineers spend less time on mechanical review tasks and incident triage, and more time on implementation
+- A re-triggered review on the incident PR completed in **7m15s** and correctly reported a real state-machine bypass in the target code
+- Of fifteen open PRs re-triggered in a burst, six checks initially failed (`DM-E005`); **all six completed successfully on rerun** with no code change — treated as transient failures under burst load, not a proven root cause
+- Pre-deploy verification: `typecheck`, `npm test -- --run` (1,096 tests), `git diff --check` and a `wrangler deploy --dry-run`
 
-The tool demonstrates a practical AI integration pattern: rather than replacing engineering workflows, it compresses the time spent on context-gathering and first-pass analysis — the parts of review and incident response that are most amenable to automation.
+These are documented observations from one validation, not a benchmark.
+
+## Limits
+
+- A human still decides the merge; DonMerge compresses first-pass analysis, it doesn't approve code
+- The Sentry-triggered triage workflows in the codebase share the durable-execution foundation; I don't claim autonomous error resolution
+- The figures above come from a single dated validation record, published with the project

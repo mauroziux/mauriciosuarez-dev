@@ -13,7 +13,11 @@ const workRouteBase = getRoute(lang, "work");
 
 const projects = (await getCollection("projects"))
   .filter((entry) => entry.data.lang === lang && entry.data.featured !== false)
-  .sort((a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf())
+  .sort(
+    (a, b) =>
+      a.data.featuredOrder - b.data.featuredOrder ||
+      b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf(),
+  )
   .slice(0, 4);
 ---
 

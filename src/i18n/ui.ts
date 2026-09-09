@@ -18,54 +18,40 @@ export const ui = {
     "nav.contact": "Contact",
 
     // ── Hero ──
-    "home.hero.eyebrow": "Enterprise Software Engineering",
-    "home.hero.title": "Build, modernize, and scale enterprise software — with AI where it counts.",
+    "home.hero.eyebrow": "Applied AI Engineer · Senior Software Engineer",
+    "home.hero.title": "I build AI agents and software for real business workflows.",
     "home.hero.tagline":
-      "I help engineering teams build robust enterprise platforms, modernize legacy systems, and integrate AI capabilities where they deliver real value — without disrupting what already works.",
+      "My work spans AI code review, incident triage, property operations and service platforms. I combine TypeScript, PHP/Laravel and Cloudflare to connect AI capabilities with the systems people use every day.",
     "home.hero.tone":
-      "Production-grade systems. Clean architecture. Practical AI integration that fits how your team already works.",
-    "home.hero.title.lead": "Build, modernize, and scale ",
-    "home.hero.title.highlight": "enterprise software",
-    "home.hero.title.tail": " — with AI where it counts.",
-    "home.hero.badge.1": "Platform Live",
-    "home.hero.badge.2": "API Integrated",
-    "home.hero.badge.3": "99.9% Uptime",
-    "home.hero.cta.audit": "Book a Systems Assessment",
-    "home.hero.cta.work": "View Case Studies",
+      "Open to senior engineering opportunities and selected consulting engagements.",
+    "home.hero.title.lead": "I build ",
+    "home.hero.title.highlight": "AI agents and software",
+    "home.hero.title.tail": " for real business workflows.",
+    "home.hero.badge.1": "AI Code Review",
+    "home.hero.badge.2": "WhatsApp Concierge",
+    "home.hero.badge.3": "Property Ops Platform",
+    "home.hero.cta.primary": "Explore my work",
+    "home.hero.cta.secondary": "Get in touch",
 
-    // ── Problem / Where Teams Get Stuck ──
-    "home.problem.heading": "Where Engineering Teams Hit Walls",
-    "home.problem.body":
-      "Growing teams face operational friction that slows delivery and compounds technical debt. Here's where the pain shows up:",
-    "home.problem.card1.title": "Legacy Systems Stalling Growth",
-    "home.problem.card1.body":
-      "Your platform was built for a smaller scale. Now the architecture can't keep up — undocumented code, fragile integrations, and features that take longer to ship than to spec.",
-    "home.problem.card2.title": "AI Experiments Not Reaching Production",
-    "home.problem.card2.body":
-      "Your team has explored AI tools and prototypes, but nothing is integrated into your actual engineering workflows. The gap between demo and production remains wide.",
-    "home.problem.card3.title": "Fragmented Development Operations",
-    "home.problem.card3.body":
-      "CI/CD is slow, observability is scattered, documentation is perpetually out of date, and each engineer has a different setup. The team spends more time on tooling than shipping.",
-    "home.problem.card4.title": "Scaling Without Structure",
-    "home.problem.card4.body":
-      "The team has grown, but the processes haven't. Onboarding takes months, knowledge is siloed, and there's no shared engineering practice that scales across the org.",
-    "home.problem.card5.title": "Unclear Path for AI Integration",
-    "home.problem.card5.body":
-      "You know AI should be part of your stack, but security, cost, and reliability questions are unresolved. You need a practical plan — not another proof of concept.",
-
-    // ── Who This Is For ──
-    "home.whofor.heading": "Who This Is For",
-    "home.whofor.body":
-      "I work with teams that build and operate real software — enterprise platforms, SaaS products, internal tools, and production systems that need to run reliably at scale.",
-    "home.whofor.card1.title": "Enterprise Engineering Teams",
-    "home.whofor.card1.body":
-      "You maintain platforms that power real operations — property management, logistics, finance. You need systems that scale, integrate cleanly, and deliver measurable business outcomes.",
-    "home.whofor.card2.title": "CTOs & Engineering Leaders",
-    "home.whofor.card2.body":
-      "You're responsible for platform reliability, team velocity, and technology decisions. You need a practical partner who understands both architecture and execution.",
-    "home.whofor.card3.title": "Teams Modernizing Existing Systems",
-    "home.whofor.card3.body":
-      "You're not starting from zero. You have Laravel apps, TypeScript services, internal tools, CI/CD pipelines — and you need to evolve them incrementally while keeping production stable.",
+    // ── How I Work ──
+    "home.how.heading": "How I Work",
+    "home.how.body":
+      "From problem definition to production operation — with verification at every step.",
+    "home.how.card1.title": "Context first",
+    "home.how.card1.body":
+      "Understand the business process, users and constraints before writing code — what exists today, what breaks, what the operation actually needs.",
+    "home.how.card2.title": "Deliberate decisions",
+    "home.how.card2.body":
+      "Choose boring, reversible solutions. Document the trade-offs on architecture, integrations and AI boundaries so the reasoning survives the code.",
+    "home.how.card3.title": "Ship in slices",
+    "home.how.card3.body":
+      "Deliver working vertical slices into the real system — booking flows, review pipelines, maintenance workflows — not isolated prototypes.",
+    "home.how.card4.title": "Verify relentlessly",
+    "home.how.card4.body":
+      "Tests, structured-output validation for AI, retries with fallbacks, and approval gates where mistakes matter. Evidence over claims.",
+    "home.how.card5.title": "Operate and learn",
+    "home.how.card5.body":
+      "Monitor in production, triage what fails, feed lessons back into the product. Software isn't done at deploy.",
 
     // ── Services Preview (How I Help) ──
     "home.services.heading": "How I Help",
@@ -93,42 +79,22 @@ export const ui = {
     "home.featured.confidentiality":
       "Some work is anonymized due to client confidentiality.",
 
-    // ── Engagements (Ways to Work Together) ──
-    "home.engagements.heading": "Ways to Work Together",
-    "home.engagements.subtitle":
-      "Three engagement models depending on where you are — from initial assessment to full platform build.",
-    "home.engagements.audit.title": "Systems Assessment",
-    "home.engagements.audit.duration": "1–2 weeks",
-    "home.engagements.audit.body":
-      "Assessment of your current platform architecture, technical debt, integration opportunities, and a prioritized roadmap. You'll know what to build next, what to refactor, and where AI fits.",
-    "home.engagements.prototype.title": "Platform Build & Integration",
-    "home.engagements.prototype.duration": "2–4 weeks",
-    "home.engagements.prototype.body":
-      "A working feature or integration delivered into your actual platform — new service, API layer, AI capability, or modernization milestone — shipped with your real tools and constraints.",
-    "home.engagements.production.title": "Full Engagement",
-    "home.engagements.production.duration": "4–8+ weeks",
-    "home.engagements.production.body":
-      "End-to-end design, build, and deployment of enterprise features or platforms. Includes architecture, AI integration, monitoring, documentation, and team handoff for long-term success.",
-
-    // ── About Teaser ──
+    // ── Featured Work ──
     "home.about.heading": "About Mauricio",
     "home.about.teaser":
-      "I'm Mauricio Suárez, a full-stack software engineer based in Malta with years of experience building and operating production systems — enterprise platforms, SaaS products, payment integrations, infrastructure, and developer tooling.\n\nI focus on enterprise software engineering with practical AI integration — building platforms that work reliably, modernizing what exists, and introducing AI capabilities where they deliver real, measurable value.",
+      "I'm Mauricio Suárez, a software engineer based in Malta. I build and operate production systems — service platforms, property operations tools, AI code review and error triage — with PHP/Laravel, TypeScript and Cloudflare.\n\nMy focus is applied AI: agents and workflows that fit into real business processes, with validation, fallbacks and human review where mistakes matter.",
     "home.about.stacks":
       "Laravel · TypeScript · Node.js · Cloudflare · AWS · CI/CD · Observability",
     "home.about.cta": "More about me →",
     "home.about.portrait.alt":
       "Mauricio Suarez — full-stack software engineer specializing in enterprise platforms",
 
-    // ── Engagements CTA ──
-    "home.engagements.cta": "Get started →",
-
     // ── Contact CTA ──
-    "home.contact.heading": "Ready to build software that scales?",
+    "home.contact.heading": "Hiring an engineer who ships?",
     "home.contact.teaser":
-      "Start with a focused conversation about your platform, your team, and where engineering improvements can deliver the most impact. No generic pitch — just a practical discussion about your systems and goals.",
-    "home.contact.cta.primary": "Book a Systems Assessment",
-    "home.contact.cta.secondary": "Or just say hello →",
+      "I'm open to senior software and applied AI engineering roles, plus selected consulting engagements. The best starting point is the work — then a direct conversation.",
+    "home.contact.cta.primary": "Get in touch",
+    "home.contact.cta.secondary": "View case studies →",
 
     // ── Services Page ──
     "services.title": "Services",
@@ -207,9 +173,9 @@ export const ui = {
     // ── About Page ──
     "about.title": "About Me",
     "about.intro":
-      "Full-stack software engineer based in Malta. I build and operate production enterprise systems — SaaS platforms, property management tools, payment integrations, infrastructure, and developer tooling — with practical AI integration where it delivers measurable value.",
+      "Software engineer based in Malta. I build and operate production systems — service platforms, property operations tools, AI code review and error triage — integrating applied AI where it survives contact with real workflows.",
     "about.description":
-      "I specialize in enterprise software engineering with practical AI integration. My experience spans building and operating real production systems: SaaS products, property management platforms, payment processing, third-party integrations, cloud infrastructure, and developer tooling. I don't sell buzzwords — I build systems that work and integrate AI where it solves concrete engineering problems. Stacks I work with: Laravel, TypeScript, Node.js, Cloudflare, AWS, CI/CD, observability tooling.",
+      "I specialize in applied AI and product engineering on a senior software base. My experience covers building and operating real production systems: booking and service platforms, property management, payments, third-party integrations, cloud infrastructure and developer tooling. I don't sell buzzwords — I build systems that work and integrate AI where it solves concrete problems, with validation, fallbacks and human review where mistakes matter. Stacks I work with: Laravel, TypeScript, Node.js, Cloudflare, AWS, CI/CD, observability tooling.",
     "about.background.title": "Background",
     "about.background.body":
       "Years of experience building production software across SaaS, property tech, payments, integrations, infrastructure, and developer tooling. Based in Malta, working with teams across time zones.",
@@ -217,14 +183,14 @@ export const ui = {
     // ── Contact Page ──
     "contact.title": "Contact",
     "contact.description":
-      "Want to discuss a project or explore how to improve your engineering platform? Reach out — straightforward conversation, no filler.",
+      "Get in touch about senior engineering opportunities or selected consulting engagements. Straightforward conversation, no filler.",
     "contact.email": "Email",
     "contact.github": "GitHub",
     "contact.linkedin": "LinkedIn",
 
     // ── Meta Descriptions ──
     "meta.description.home":
-      "Enterprise software engineering with practical AI integration. I help teams build robust platforms, modernize legacy systems, and integrate AI where it delivers real value.",
+      "Applied AI Engineer and Senior Software Engineer. AI code review, incident triage, property operations and service platforms — built with TypeScript, PHP/Laravel and Cloudflare.",
     "meta.description.services":
       "Enterprise software services: Platform Development, AI Integration, System Architecture, and Developer Productivity. Build, modernize, and scale with confidence.",
     "meta.description.work":
@@ -232,9 +198,9 @@ export const ui = {
     "meta.description.writing":
       "Ideas, guides, and lessons from building enterprise software and integrating AI in production. AI Engineering, Developer Experience, and System Architecture.",
     "meta.description.about":
-      "Full-stack software engineer based in Malta. Building enterprise systems at the intersection of software architecture, AI integration, and developer productivity.",
+      "Software engineer based in Malta. Building production systems at the intersection of product engineering, applied AI and operations.",
     "meta.description.contact":
-      "Get in touch to discuss a project or explore how to improve your engineering platform. Email, GitHub, and LinkedIn.",
+      "Get in touch about senior engineering opportunities or selected consulting. Email, GitHub, and LinkedIn.",
 
     // ── Footer ──
     "footer.rights": "All rights reserved.",
@@ -249,54 +215,40 @@ export const ui = {
     "nav.contact": "Contacto",
 
     // ── Hero ──
-    "home.hero.eyebrow": "Ingeniería de Software Empresarial",
-    "home.hero.title": "Construye, moderniza y escala software empresarial — con IA donde cuenta.",
+    "home.hero.eyebrow": "Applied AI Engineer · Ingeniero de Software Senior",
+    "home.hero.title": "Construyo agentes de IA y software para flujos de negocio reales.",
     "home.hero.tagline":
-      "Ayudo a equipos de ingeniería a construir plataformas empresariales robustas, modernizar sistemas legacy e integrar capacidades de IA donde generan valor real — sin interrumpir lo que ya funciona.",
+      "Mi trabajo abarca revisión de código con IA, triage de incidentes, operaciones inmobiliarias y plataformas de servicios. Combino TypeScript, PHP/Laravel y Cloudflare para conectar capacidades de IA con los sistemas que la gente usa cada día.",
     "home.hero.tone":
-      "Sistemas en grado de producción. Arquitectura limpia. Integración práctica de IA que se adapta a la forma en que tu equipo ya trabaja.",
-    "home.hero.title.lead": "Construye, moderniza y escala ",
-    "home.hero.title.highlight": "software empresarial",
-    "home.hero.title.tail": " — con IA donde cuenta.",
-    "home.hero.badge.1": "Plataforma Activa",
-    "home.hero.badge.2": "API Integrada",
-    "home.hero.badge.3": "99.9% Disponibilidad",
-    "home.hero.cta.audit": "Agendar una Evaluación de Sistemas",
-    "home.hero.cta.work": "Ver Casos de Estudio",
+      "Abierto a oportunidades senior de ingeniería y a consultoría selectiva.",
+    "home.hero.title.lead": "Construyo ",
+    "home.hero.title.highlight": "agentes de IA y software",
+    "home.hero.title.tail": " para flujos de negocio reales.",
+    "home.hero.badge.1": "Revisión de Código con IA",
+    "home.hero.badge.2": "Concierge por WhatsApp",
+    "home.hero.badge.3": "Plataforma de Operaciones",
+    "home.hero.cta.primary": "Ver mi trabajo",
+    "home.hero.cta.secondary": "Contáctame",
 
-    // ── Problema / Dónde los equipos se estancan ──
-    "home.problem.heading": "Dónde los Equipos de Ingeniería se Estancan",
-    "home.problem.body":
-      "Los equipos en crecimiento enfrentan fricción operacional que ralentiza la entrega y acumula deuda técnica. Aquí es donde aparece el dolor:",
-    "home.problem.card1.title": "Sistemas Legacy que Frenan el Crecimiento",
-    "home.problem.card1.body":
-      "Tu plataforma fue construida para una escala menor. Ahora la arquitectura no aguanta — código sin documentar, integraciones frágiles, y features que tardan más en implementarse que en especificarse.",
-    "home.problem.card2.title": "Experimentos de IA que No Llegan a Producción",
-    "home.problem.card2.body":
-      "Tu equipo ha explorado herramientas y prototipos de IA, pero nada está integrado en los flujos de ingeniería reales. La brecha entre demo y producción sigue siendo amplia.",
-    "home.problem.card3.title": "Operaciones de Desarrollo Fragmentadas",
-    "home.problem.card3.body":
-      "CI/CD lento, observabilidad dispersa, documentación perpetuamente desactualizada, y cada ingeniero con un setup diferente. El equipo dedica más tiempo a tooling que a entregar.",
-    "home.problem.card4.title": "Crecimiento sin Estructura",
-    "home.problem.card4.body":
-      "El equipo ha crecido, pero los procesos no. La incorporación de nuevos ingenieros toma meses, el conocimiento está aislado, y no hay prácticas de ingeniería compartidas que escalen en la organización.",
-    "home.problem.card5.title": "Camino poco Claro para Integrar IA",
-    "home.problem.card5.body":
-      "Sabes que la IA debería ser parte de tu stack, pero las preguntas de seguridad, costos y confiabilidad están sin resolver. Necesitas un plan práctico — no otra prueba de concepto.",
-
-    // ── Para Quién Es ──
-    "home.whofor.heading": "Para Quién Es",
-    "home.whofor.body":
-      "Trabajo con equipos que construyen y operan software real — plataformas empresariales, productos SaaS, herramientas internas y sistemas en producción que necesitan funcionar de forma confiable a escala.",
-    "home.whofor.card1.title": "Equipos de Ingeniería Empresarial",
-    "home.whofor.card1.body":
-      "Mantienen plataformas que impulsan operaciones reales — gestión de propiedades, logística, finanzas. Necesitan sistemas que escalen, se integren limpiamente, y entreguen resultados de negocio medibles.",
-    "home.whofor.card2.title": "CTOs y Líderes de Ingeniería",
-    "home.whofor.card2.body":
-      "Son responsables de la confiabilidad de la plataforma, la velocidad del equipo y las decisiones tecnológicas. Necesitan un socio práctico que entienda tanto la arquitectura como la ejecución.",
-    "home.whofor.card3.title": "Equipos Modernizando Sistemas Existentes",
-    "home.whofor.card3.body":
-      "No están empezando de cero. Tienen apps Laravel, servicios TypeScript, herramientas internas, pipelines CI/CD — y necesitan evolucionarlos de forma incremental manteniendo la producción estable.",
+    // ── Cómo trabajo ──
+    "home.how.heading": "Cómo trabajo",
+    "home.how.body":
+      "De la definición del problema a la operación en producción — con verificación en cada paso.",
+    "home.how.card1.title": "Primero el contexto",
+    "home.how.card1.body":
+      "Entender el proceso de negocio, los usuarios y las restricciones antes de escribir código — qué existe hoy, qué falla y qué necesita realmente la operación.",
+    "home.how.card2.title": "Decisiones deliberadas",
+    "home.how.card2.body":
+      "Elegir soluciones aburridas y reversibles. Documentar los trade-offs de arquitectura, integraciones y límites de IA para que el razonamiento sobreviva al código.",
+    "home.how.card3.title": "Entregar en slices",
+    "home.how.card3.body":
+      "Entregar slices verticales funcionales en el sistema real — flujos de reservas, pipelines de revisión, flujos de mantenimiento — no prototipos aislados.",
+    "home.how.card4.title": "Verificar sin descanso",
+    "home.how.card4.body":
+      "Tests, validación de salida estructurada para IA, reintentos con fallbacks y puertas de aprobación donde los errores importan. Evidencia sobre afirmaciones.",
+    "home.how.card5.title": "Operar y aprender",
+    "home.how.card5.body":
+      "Monitorear en producción, hacer triage de lo que falla y devolver las lecciones al producto. El software no termina en el deploy.",
 
     // ── Servicios (Preview) ──
     "home.services.heading": "Cómo Ayudo",
@@ -324,42 +276,22 @@ export const ui = {
     "home.featured.confidentiality":
       "Algunos trabajos están anonimizados por confidencialidad del cliente.",
 
-    // ── Modalidades de Trabajo ──
-    "home.engagements.heading": "Modalidades de Trabajo",
-    "home.engagements.subtitle":
-      "Tres modelos de engagement según dónde estás — desde evaluación inicial hasta construcción completa de plataforma.",
-    "home.engagements.audit.title": "Evaluación de Sistemas",
-    "home.engagements.audit.duration": "1–2 semanas",
-    "home.engagements.audit.body":
-      "Evaluación de la arquitectura actual de tu plataforma, deuda técnica, oportunidades de integración, y un roadmap priorizado. Sabrás qué construir, qué refactorizar y dónde encaja la IA.",
-    "home.engagements.prototype.title": "Construcción e Integración de Plataforma",
-    "home.engagements.prototype.duration": "2–4 semanas",
-    "home.engagements.prototype.body":
-      "Una feature o integración funcional entregada en tu plataforma real — nuevo servicio, capa de API, capacidad de IA, o hito de modernización — con tus herramientas y restricciones reales.",
-    "home.engagements.production.title": "Engagement Completo",
-    "home.engagements.production.duration": "4–8+ semanas",
-    "home.engagements.production.body":
-      "Diseño, construcción y despliegue completo de features o plataformas empresariales. Incluye arquitectura, integración de IA, monitoreo, documentación y handoff al equipo para éxito a largo plazo.",
-
     // ── Sobre Mí (Teaser) ──
     "home.about.heading": "Sobre Mauricio",
     "home.about.teaser":
-      "Soy Mauricio Suárez, ingeniero de software full-stack radicado en Malta con años de experiencia construyendo y operando sistemas en producción — plataformas empresariales, productos SaaS, integraciones de pagos, infraestructura y developer tooling.\n\nMe enfoco en ingeniería de software empresarial con integración práctica de IA — construyendo plataformas que funcionan de forma confiable, modernizando lo existente, e introduciendo capacidades de IA donde generan valor real y medible.",
+      "Soy Mauricio Suárez, ingeniero de software radicado en Malta. Construyo y opero sistemas en producción — plataformas de servicios, herramientas de operaciones inmobiliarias, revisión de código con IA y triage de errores — con PHP/Laravel, TypeScript y Cloudflare.\n\nMi foco es la IA aplicada: agentes y flujos que encajan en procesos de negocio reales, con validación, fallbacks y revisión humana donde los errores importan.",
     "home.about.stacks":
       "Laravel · TypeScript · Node.js · Cloudflare · AWS · CI/CD · Observabilidad",
     "home.about.cta": "Más sobre mí →",
     "home.about.portrait.alt":
       "Mauricio Suarez — ingeniero de software full-stack especializado en plataformas empresariales",
 
-    // ── CTA Modalidades ──
-    "home.engagements.cta": "Comenzar →",
-
     // ── Contacto CTA ──
-    "home.contact.heading": "¿Listo para construir software que escale?",
+    "home.contact.heading": "¿Buscas un ingeniero que entrega?",
     "home.contact.teaser":
-      "Empieza con una conversación enfocada sobre tu plataforma, tu equipo y dónde las mejoras de ingeniería pueden generar el mayor impacto. Sin presentación genérica — solo una discusión práctica sobre tus sistemas y objetivos.",
-    "home.contact.cta.primary": "Agendar una Evaluación de Sistemas",
-    "home.contact.cta.secondary": "O simplemente saluda →",
+      "Estoy abierto a posiciones senior de software e IA aplicada, además de consultoría selectiva. El mejor punto de partida es el trabajo — y luego una conversación directa.",
+    "home.contact.cta.primary": "Contáctame",
+    "home.contact.cta.secondary": "Ver casos de estudio →",
 
     // ── Página de Servicios ──
     "services.title": "Servicios",
@@ -438,9 +370,9 @@ export const ui = {
     // ── Página Sobre Mí ──
     "about.title": "Sobre mí",
     "about.intro":
-      "Ingeniero de software full-stack radicado en Malta. Construyo y opero sistemas empresariales en producción — plataformas SaaS, herramientas de gestión de propiedades, integraciones de pagos, infraestructura y developer tooling — con integración práctica de IA donde genera valor medible.",
+      "Ingeniero de software radicado en Malta. Construyo y opero sistemas en producción — plataformas de servicios, herramientas de operaciones inmobiliarias, revisión de código con IA y triage de errores — integrando IA aplicada donde sobrevive el contacto con flujos reales.",
     "about.description":
-      "Me especializo en ingeniería de software empresarial con integración práctica de IA. Mi experiencia abarca construcción y operación de sistemas reales en producción: productos SaaS, plataformas de gestión de propiedades, procesamiento de pagos, integraciones con terceros, infraestructura cloud y developer tooling. No vendo buzzwords — construyo sistemas que funcionan e integro IA donde resuelve problemas concretos de ingeniería. Stacks con los que trabajo: Laravel, TypeScript, Node.js, Cloudflare, AWS, CI/CD, herramientas de observabilidad.",
+      "Me especializo en IA aplicada e ingeniería de producto sobre una base senior de software. Mi experiencia cubre construcción y operación de sistemas reales en producción: plataformas de reservas y servicios, gestión de propiedades, pagos, integraciones con terceros, infraestructura cloud y developer tooling. No vendo buzzwords — construyo sistemas que funcionan e integro IA donde resuelve problemas concretos, con validación, fallbacks y revisión humana donde los errores importan. Stacks: Laravel, TypeScript, Node.js, Cloudflare, AWS, CI/CD, herramientas de observabilidad.",
     "about.background.title": "Trayectoria",
     "about.background.body":
       "Años de experiencia construyendo software en producción en SaaS, property tech, pagos, integraciones, infraestructura y developer tooling. Radicado en Malta, trabajando con equipos en diferentes zonas horarias.",
@@ -448,14 +380,14 @@ export const ui = {
     // ── Página de Contacto ──
     "contact.title": "Contacto",
     "contact.description":
-      "¿Quieres discutir un proyecto o explorar cómo mejorar tu plataforma de ingeniería? Escríbeme — conversación directa, sin relleno.",
+      "Escríbeme sobre oportunidades senior de ingeniería o consultoría selectiva. Conversación directa, sin relleno.",
     "contact.email": "Correo",
     "contact.github": "GitHub",
     "contact.linkedin": "LinkedIn",
 
     // ── Meta Descripciones ──
     "meta.description.home":
-      "Ingeniería de software empresarial con integración práctica de IA. Ayudo a equipos a construir plataformas robustas, modernizar sistemas legacy e integrar IA donde genera valor real.",
+      "Applied AI Engineer e Ingeniero de Software Senior. Revisión de código con IA, triage de incidentes, operaciones inmobiliarias y plataformas de servicios — con TypeScript, PHP/Laravel y Cloudflare.",
     "meta.description.services":
       "Servicios de software empresarial: Desarrollo de Plataformas, Integración de IA, Arquitectura de Sistemas y Productividad de Desarrollo. Construye, moderniza y escala con confianza.",
     "meta.description.work":
@@ -463,9 +395,9 @@ export const ui = {
     "meta.description.writing":
       "Ideas, guías y lecciones de construir software empresarial e integrar IA en producción. Ingeniería de IA, Experiencia del Desarrollador y Arquitectura de Sistemas.",
     "meta.description.about":
-      "Ingeniero de software full-stack radicado en Malta. Construyendo sistemas empresariales en la intersección de arquitectura de software, integración de IA y productividad de desarrollo.",
+      "Ingeniero de software radicado en Malta. Construyendo sistemas en producción en la intersección de ingeniería de producto, IA aplicada y operaciones.",
     "meta.description.contact":
-      "Contáctame para discutir un proyecto o explorar cómo mejorar tu plataforma de ingeniería. Correo, GitHub y LinkedIn.",
+      "Escríbeme sobre oportunidades senior de ingeniería o consultoría selectiva. Correo, GitHub y LinkedIn.",
 
     // ── Footer ──
     "footer.rights": "Todos los derechos reservados.",

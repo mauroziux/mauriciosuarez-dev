@@ -6,7 +6,7 @@ routeSlug: "portfolio-website"
 tags: ["astro", "tailwind", "cloudflare"]
 featured: false
 publishedDate: 2025-01-15
-repoUrl: "https://github.com/mauriciosuarez/mauriciosuarez-dev"
+repoUrl: "https://github.com/mauroziux/mauriciosuarez-dev"
 liveUrl: "https://mauriciosuarez.dev"
 ---
 
