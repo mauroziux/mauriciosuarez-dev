@@ -1,50 +1,63 @@
 ---
-title: "DonMerge — AI Code Review with Guardrails"
-description: "An open-source AI code review tool for GitHub pull requests: durable Cloudflare Workflows, structured output validation, model fallback and a quality gate that only lets concrete findings block a merge."
+title: "DonMerge — Making AI Code Review Operational"
+description: "From a webhook reviewer to durable review execution: finding identity, quality gates, queued delivery and separate recovery policies for models and infrastructure."
 lang: "en"
 routeSlug: "donmerge"
-tags: ["developer-tools", "code-review", "ai-integration", "cloudflare"]
-publishedDate: 2025-05-01
-featuredOrder: 1
+tags: ["code-review", "TypeScript", "Cloudflare Workflows", "AI agents"]
+# Editorial revision date, not the project's start or launch date.
+publishedDate: 2026-09-09
+featuredOrder: 2
 repoUrl: "https://github.com/mauroziux/donmerge"
 screenshots:
-  - src: "/projects/donmerge/sentry-integrations.png"
-    alt: "DonMerge integration settings showing Sentry-triggered review workflows"
-    caption: "Sentry-triggered triage workflows share the same durable-execution foundation"
+  - src: "/projects/donmerge/flow-diagram.svg"
+    alt: "GitHub event through a queue, Workflow, model and sandbox, output validation, quality gate and published review"
+    caption: "Simplified review flow, reconstructed from the inspected implementation — not a live execution."
 ---
 
-DonMerge is an AI code review tool that runs on GitHub pull requests and publishes its findings as check runs and line-specific comments — with validation, fallbacks and a quality gate designed so that only concrete, well-argued findings can block a merge.
+DonMerge integrates AI-assisted code review into the pull request workflow. My work covered GitHub integration, finding management and the evolution of review execution into a durable process with explicit failure recovery.
 
-## Context and my role
+## Context and contribution
 
-PR review waits slow teams down, and first-pass review is where an assistant helps most without replacing judgment. I designed and built DonMerge end-to-end as its sole developer — architecture, model runner, quality gate, GitHub integration and deployment — and validated it against a real production codebase.
+The earliest state retained in the repository, from March 2026, contains a webhook reviewer built on Flue. That dates the available history, not necessarily the beginning of the product. Subsequent changes show the engineering work required around that first capability: recognising previously reported issues, deciding which findings deserve attention and completing reviews when providers or infrastructure fail.
 
-## How it works
+My contribution was to make those boundaries explicit, rather than treating a successful model response as a completed review. Flue, the models and Cloudflare supply underlying capabilities; the integration, finding lifecycle and execution policies are the work described here.
 
-When a review is triggered (PR webhook, or a `@donmerge` comment to re-run), a Cloudflare Workflow executes a four-step durable pipeline:
+## Findings need identity, not more comments
 
-1. Fetch PR data and create the check run
-2. Prepare files — filters and context
-3. Run the LLM review in a sandbox
-4. Publish the review — match and deduplicate findings
+I introduced deduplication and issue lifecycle tracking in March. Repeating a review should not fill a pull request with copies of the same finding. The system needs continuity across executions as well as an understanding of the current diff.
 
-Two design decisions carry most of the weight:
+Stable issue keys let findings retain their identity across re-runs. Tracking their lifecycle also makes unresolved findings visible: a new pass must not quietly erase the significance of an earlier concern. This turns isolated model messages into review state that engineers can follow and resolve.
 
-- **A dedicated model runner** owns model ordering, structured-output validation, one format-repair retry and direct-provider fallback. If a model exhausts its options, the durable step is not replayed wholesale; unclassified infrastructure errors stay workflow-retryable.
-- **A quality gate** filters findings before publishing. Only issues with a described failure mechanism can block a merge; vague or style-level comments are dropped or downgraded to non-blocking suggestions. Findings carry stable issue keys, so re-runs deduplicate instead of repeating themselves, and addressed comments are auto-resolved.
+## Deciding what can block a change
 
-## Evidence from a documented production validation
+Review quality became a separate engineering problem. Following a documented quality review in July, I added a deterministic layer after model output to filter generic or stylistic feedback and require a concrete failure mechanism for critical findings. Non-blocking suggestions receive different treatment.
 
-On 2026-08-21, after a timeout incident and a refactor of the retry policy, a validation run was recorded against a live private repository:
+These are explicit heuristics whose behaviour can be tested, not proof that every retained finding is correct. Their limitations still need evaluation. The gate's purpose is to distinguish actionable risk from noise before publishing comments and checks to GitHub.
 
-- A re-triggered review on the incident PR completed in **7m15s** and correctly reported a real state-machine bypass in the target code
-- Of fifteen open PRs re-triggered in a burst, six checks initially failed (`DM-E005`); **all six completed successfully on rerun** with no code change — treated as transient failures under burst load, not a proven root cause
-- Pre-deploy verification: `typecheck`, `npm test -- --run` (1,096 tests), `git diff --check` and a `wrangler deploy --dry-run`
+## Moving execution beyond the HTTP request
 
-These are documented observations from one validation, not a benchmark.
+I migrated orchestration from Durable Object alarms to Cloudflare Workflows. A subsequent failure showed that starting long-running work from an HTTP request lifecycle could leave a review unstarted. Separating webhook receipt from processing through a queue gave each part a clearer job: the endpoint accepts the event; the consumer handles processing and retries.
 
-## Limits
+The review path is:
 
-- A human still decides the merge; DonMerge compresses first-pass analysis, it doesn't approve code
-- The Sentry-triggered triage workflows in the codebase share the durable-execution foundation; I don't claim autonomous error resolution
-- The figures above come from a single dated validation record, published with the project
+1. A GitHub event is accepted and queued.
+2. A Workflow fetches PR data and prepares the files and context.
+3. The model reviews the change inside a sandbox.
+4. Output validation, the quality gate and finding matching determine what is published.
+5. GitHub receives the check run and line-specific comments.
+
+I then addressed duplicate deliveries and the distinction between fresh work and an active review. Explicit sandbox cleanup releases resources after execution without discarding a valid review when cleanup itself fails.
+
+## Two different retry policies
+
+Slow provider responses later exposed another boundary: model retries and infrastructure retries need different policies. I extracted model ordering, output validation and format repair into a dedicated execution component.
+
+Exhausting the model chain no longer causes that entire chain to be replayed by the durable workflow. Infrastructure failures remain recoverable. This avoids multiplying model attempts simply because an outer layer also knows how to retry.
+
+## Evidence and limits
+
+This account draws on the inspected Git history, selected diffs and the project's August production-validation record. That historical record documents a review completed in **7m15s**, actionable findings and a group of six initially failed executions that completed on rerun. It does not establish a general speed, accuracy or reliability benchmark; those runs were not repeated for this portfolio update.
+
+DonMerge also contains triage and auto-fix functionality. This case focuses on GitHub review execution with Workflows. [AutoSentry](/en/work/autosentry/) is a separate documented repair workflow using Agents SDK, Durable Objects and Sandbox, ending in GitLab draft merge requests. Their results and evidence are not interchangeable.
+
+The project demonstrates how I approach applied AI: connect a model to a real engineering process, then make the surrounding state, publication decisions and recovery behaviour explicit. Automated checks and review status support the team's decision; they are not a substitute for engineering judgment.

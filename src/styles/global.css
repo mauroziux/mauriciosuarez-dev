@@ -232,7 +232,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-accent-light);
   background: rgba(196, 30, 58, 0.08);
   border: 1px solid rgba(196, 30, 58, 0.12);
   border-radius: 4px;
@@ -264,6 +264,17 @@ hr.section-divider {
   );
 }
 
+/* ── Keyboard navigation and motion preferences ── */
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-light);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
 /* ── Prose (minimal for article content) ─────── */
 
 .prose-invert {
@@ -277,6 +288,7 @@ hr.section-divider {
   font-weight: 600;
   margin-top: 2em;
   margin-bottom: 0.75em;
+  scroll-margin-top: 8rem;
 }
 .prose-invert h2 { font-size: 1.375rem; }
 .prose-invert h3 { font-size: 1.125rem; }
@@ -286,7 +298,10 @@ hr.section-divider {
   margin-bottom: 1.25em;
   padding-left: 1.5em;
 }
+.prose-invert ul { list-style: disc; }
+.prose-invert ol { list-style: decimal; }
 .prose-invert li { margin-bottom: 0.375em; }
+.prose-invert { overflow-wrap: anywhere; }
 .prose-invert a {
   color: var(--color-accent-light);
   text-decoration: underline;

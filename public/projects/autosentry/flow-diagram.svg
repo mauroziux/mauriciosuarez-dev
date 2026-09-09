@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 676" role="img" aria-labelledby="title desc" lang="en">
+<title id="title">AutoSentry · eligible repair path</title>
+<desc id="desc">Documented flow from Sentry to GitLab draft MR. Out-of-scope defects go to a human. Failed gates stop the attempt. Agents SDK and Durable Objects orchestrate Sandbox execution.</desc>
+<rect width="620" height="676" rx="8" fill="#0a0a0a"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#a8a8a8"/></marker></defs>
+<g font-family="Inter, system-ui, sans-serif">
+<text x="20" y="38" font-size="22" fill="#a8a8a8">AutoSentry · eligible repair path</text>
+<path d="M280 127 H335" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M470 182 V217" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M340 277 H285" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M150 332 V367" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M280 427 H335" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M470 482 V517" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="20" y="72" width="260" height="110" rx="20" fill="#111111" stroke="#C41E3A" stroke-width="2"/>
+<text x="150" y="118" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Sentry error</text>
+<text x="150" y="145" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">REST</text>
+<rect x="340" y="72" width="260" height="110" rx="6" fill="#111111" stroke="#4a4a4a" stroke-width="2"/>
+<text x="470" y="118" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Triage</text>
+<text x="470" y="145" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">Deduplicate</text>
+<rect x="340" y="222" width="260" height="110" rx="6" fill="#111111" stroke="#4a4a4a" stroke-width="2"/>
+<text x="470" y="268" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Ticket</text>
+<text x="470" y="295" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">Repository scope</text>
+<rect x="20" y="222" width="260" height="110" rx="6" fill="#111111" stroke="#4a4a4a" stroke-width="2"/>
+<text x="150" y="268" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Reproduce</text>
+<text x="150" y="295" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">RED test</text>
+<rect x="20" y="372" width="260" height="110" rx="6" fill="#111111" stroke="#4a4a4a" stroke-width="2"/>
+<text x="150" y="418" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Repair agent</text>
+<text x="150" y="445" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">Sandbox</text>
+<rect x="340" y="372" width="260" height="110" rx="6" fill="#111111" stroke="#4a4a4a" stroke-width="2"/>
+<text x="470" y="418" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Validate</text>
+<text x="470" y="445" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">GREEN · diff · types</text>
+<rect x="340" y="522" width="260" height="110" rx="20" fill="#111111" stroke="#C41E3A" stroke-width="2"/>
+<text x="470" y="560" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Draft MR</text>
+<text x="470" y="587" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">GitLab · CI</text>
+<text x="470" y="614" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">Human review</text>
+<text x="20" y="541" font-size="22" fill="#a8a8a8">Outside scope?</text>
+<text x="20" y="570" font-size="22" fill="#a8a8a8">Human handoff.</text>
+<text x="20" y="599" font-size="22" fill="#a8a8a8">Gate fails?</text>
+<text x="20" y="628" font-size="22" fill="#a8a8a8">Stop; no draft MR.</text>
+</g>
+</svg>

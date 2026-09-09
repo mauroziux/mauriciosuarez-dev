@@ -1,50 +1,63 @@
 ---
-title: "DonMerge — Revisión de Código con IA y Controles"
-description: "Una herramienta open-source de revisión de código con IA para pull requests de GitHub: Cloudflare Workflows durables, validación de salida estructurada, fallback de modelos y una puerta de calidad que solo deja pasar hallazgos concretos."
+title: "DonMerge — Operar un sistema de revisión con IA"
+description: "De un revisor por webhook a una ejecución duradera: identidad de hallazgos, controles de calidad, recepción por cola y recuperación diferenciada de modelos e infraestructura."
 lang: "es"
 routeSlug: "donmerge"
-tags: ["herramientas-developer", "revision-codigo", "integracion-ia", "cloudflare"]
-publishedDate: 2025-05-01
-featuredOrder: 1
+tags: ["revisión de código", "TypeScript", "Cloudflare Workflows", "agentes de IA"]
+# Fecha de revisión editorial, no de inicio ni lanzamiento del producto.
+publishedDate: 2026-09-09
+featuredOrder: 2
 repoUrl: "https://github.com/mauroziux/donmerge"
 screenshots:
-  - src: "/projects/donmerge/sentry-integrations.png"
-    alt: "Configuración de DonMerge mostrando flujos de revisión disparados por Sentry"
-    caption: "Los flujos de triage disparados por Sentry comparten la misma base de ejecución durable"
+  - src: "/projects/donmerge/flow-diagram-es.svg"
+    alt: "Evento de GitHub, cola, Workflow, modelo y sandbox, validación de salida, control de calidad y revisión publicada"
+    caption: "Flujo simplificado reconstruido desde la implementación inspeccionada; no es una ejecución en vivo."
 ---
 
-DonMerge es una herramienta de revisión de código con IA que corre sobre pull requests de GitHub y publica sus hallazgos como check runs y comentarios línea a línea — con validación, fallbacks y una puerta de calidad diseñada para que solo hallazgos concretos y argumentados puedan bloquear un merge.
+DonMerge integra revisión de código con IA en el flujo de pull requests. Mi trabajo abarcó la integración con GitHub, el tratamiento de los hallazgos y la evolución de la ejecución hacia un proceso duradero con recuperación explícita ante fallos.
 
-## Contexto y mi rol
+## Contexto y contribución
 
-Las esperas de revisión ralentizan a los equipos, y la primera pasada es donde un asistente más ayuda sin reemplazar el criterio. Diseñé y construí DonMerge de extremo a extremo como único desarrollador — arquitectura, model runner, puerta de calidad, integración con GitHub y despliegue — y lo validé contra un codebase real en producción.
+El primer estado conservado en el repositorio, de marzo de 2026, contiene un revisor por webhook construido sobre Flue. Esa fecha describe el historial disponible, no necesariamente el inicio del producto. Los cambios posteriores muestran el trabajo necesario alrededor de esa primera capacidad: reconocer problemas ya señalados, distinguir observaciones útiles de ruido y completar revisiones cuando fallan proveedores o infraestructura.
 
-## Cómo funciona
+Mi contribución consistió en hacer explícitos esos límites, en lugar de tratar una respuesta exitosa del modelo como una revisión terminada. Flue, los modelos y Cloudflare aportan capacidades de base; aquí describo el trabajo de integración, ciclo de vida de hallazgos y políticas de ejecución.
 
-Cuando se dispara una revisión (webhook del PR, o un comentario `@donmerge` para re-ejecutar), un Cloudflare Workflow ejecuta un pipeline durable de cuatro pasos:
+## Los hallazgos necesitan identidad
 
-1. Obtener los datos del PR y crear el check run
-2. Preparar archivos — filtros y contexto
-3. Ejecutar la revisión LLM en un sandbox
-4. Publicar la revisión — emparejar y deduplicar hallazgos
+En marzo incorporé deduplicación y seguimiento del ciclo de vida de los hallazgos. Repetir una revisión no debería llenar el PR de comentarios sobre el mismo problema. El sistema necesita continuidad entre ejecuciones, además de interpretar el diff actual.
 
-Dos decisiones de diseño cargan con la mayor parte del peso:
+Las claves estables permiten que los hallazgos conserven su identidad al repetir una revisión. Seguir su ciclo de vida también hace visibles los problemas pendientes: una nueva pasada no debe borrar silenciosamente la importancia de una observación anterior. Así, los mensajes aislados del modelo se convierten en estado de revisión que un ingeniero puede seguir y resolver.
 
-- **Un model runner dedicado** gestiona el orden de modelos, la validación de salida estructurada, un reintento de reparación de formato y fallback a proveedores directos. Si un modelo agota sus opciones, el paso durable no se repite completo; los errores de infraestructura sin clasificar siguen siendo reintentables por el Workflow.
-- **Una puerta de calidad** filtra los hallazgos antes de publicar. Solo los problemas con un mecanismo de fallo descrito pueden bloquear un merge; los comentarios vagos o de estilo se descartan o degradan a sugerencias no bloqueantes. Los hallazgos usan claves estables, así que las re-ejecuciones deduplican en lugar de repetirse, y los comentarios atendidos se resuelven automáticamente.
+## Decidir qué puede bloquear un cambio
 
-## Evidencia de una validación en producción documentada
+La calidad de la revisión se convirtió en un problema de ingeniería independiente. Una revisión de calidad documentada en julio motivó una capa determinista posterior a la respuesta del modelo. Esta capa filtra comentarios genéricos o de estilo y exige describir un mecanismo de fallo para los hallazgos críticos. Las recomendaciones no bloqueantes reciben otro tratamiento.
 
-El 2026-08-21, tras un incidente de timeouts y un refactor de la política de reintentos, se registró una validación contra un repositorio privado en vivo:
+Son heurísticas explícitas y comprobables, no una demostración de que cada hallazgo retenido sea correcto. Sus límites todavía necesitan evaluación. El control busca separar riesgos accionables de ruido antes de publicar comentarios y checks en GitHub.
 
-- Una revisión re-disparada sobre el PR del incidente completó en **7m15s** y reportó correctamente un bypass real de la máquina de estados en el código objetivo
-- De quince PRs abiertos re-disparados en ráfaga, seis checks fallaron inicialmente (`DM-E005`); **los seis completaron exitosamente al re-ejecutar** sin cambio de código — tratados como fallos transitorios bajo carga en ráfaga, no como causa raíz probada
-- Verificación pre-despliegue: `typecheck`, `npm test -- --run` (1.096 tests), `git diff --check` y `wrangler deploy --dry-run`
+## Sacar la ejecución de la petición HTTP
 
-Son observaciones documentadas de una validación, no un benchmark.
+Migré la orquestación basada en alarmas de Durable Objects a Cloudflare Workflows. Un fallo posterior mostró que iniciar trabajo largo desde la vida de una petición HTTP podía dejar revisiones sin arrancar. Separar la recepción del webhook mediante una cola dio una responsabilidad clara a cada parte: el endpoint acepta el evento; un consumidor gestiona el procesamiento y los reintentos.
 
-## Límites
+El recorrido de una revisión es:
 
-- Un humano decide el merge; DonMerge comprime el análisis de primera pasada, no aprueba código
-- Los flujos de triage disparados por Sentry que existen en el codebase comparten la base de ejecución durable; no afirmo resolución autónoma de errores
-- Las cifras anteriores provienen de un registro de validación único y fechado, publicado con el proyecto
+1. Se acepta y encola un evento de GitHub.
+2. Un Workflow obtiene los datos del PR y prepara archivos y contexto.
+3. El modelo revisa el cambio dentro de un sandbox.
+4. La validación de salida, el control de calidad y el emparejamiento de hallazgos determinan qué publicar.
+5. GitHub recibe el check run y los comentarios por línea.
+
+Después traté las entregas duplicadas y la distinción entre trabajo nuevo y una revisión ya activa. Incorporé limpieza explícita de los sandboxes para liberar recursos al terminar, sin descartar una revisión válida cuando falla su limpieza.
+
+## Dos políticas de reintento distintas
+
+Las respuestas lentas de los proveedores hicieron visible otro límite: los reintentos de modelos y de infraestructura necesitan políticas diferentes. Separé el orden de modelos, la validación de salida y la reparación de formato en un componente de ejecución dedicado.
+
+Agotar la cadena de modelos deja de provocar que el Workflow repita toda esa cadena. Los fallos de infraestructura mantienen su tratamiento recuperable. Así se evita multiplicar intentos de modelo simplemente porque una capa exterior también sabe reintentar.
+
+## Evidencia y límites
+
+La historia se apoya en historial Git inspeccionado, diffs seleccionados y el registro de validación en producción de agosto. Ese registro histórico documenta una revisión completada en **7m15s**, hallazgos accionables y un grupo de seis ejecuciones inicialmente fallidas que completaron al repetirse. No establece un benchmark general de velocidad, precisión o fiabilidad; esas ejecuciones no se repitieron para esta actualización del portfolio.
+
+DonMerge también contiene triage y auto-fix. Este caso se centra en la revisión de GitHub mediante Workflows. [AutoSentry](/es/proyectos/autosentry/) es otro flujo documentado de reparación, basado en Agents SDK, Durable Objects y Sandbox, que termina en merge requests de GitLab en borrador. Sus resultados y evidencias no son intercambiables.
+
+El proyecto refleja mi forma de trabajar con IA aplicada: integrar el modelo en un proceso real y hacer explícitos el estado, las decisiones de publicación y la recuperación. Los checks y estados automáticos apoyan la decisión del equipo, no sustituyen el criterio de ingeniería.

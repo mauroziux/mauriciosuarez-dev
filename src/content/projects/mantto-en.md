@@ -1,50 +1,75 @@
 ---
-title: "Mantto — AI-Powered Property Operations"
-description: "A mobile-first property inspection and inventory platform that uses AI to automate finding transcription, evidence capture, and maintenance request generation — reducing inventory time from hours to under one hour via browser-based magic links."
+title: "Mantto — Evidence, AI and Property Operations"
+description: "Connecting inspection evidence, AI-assisted analysis, finding review and maintenance: organisation-aware permissions, shared AI routing and background report generation."
 lang: "en"
 routeSlug: "mantto"
-tags: ["enterprise", "property-tech", "ai-integration", "laravel"]
-publishedDate: 2025-06-01
-featuredOrder: 2
+tags: ["Laravel", "applied AI", "property operations", "queues"]
+# Editorial revision date, not the project's start or launch date.
+publishedDate: 2026-09-09
+featuredOrder: 3
 liveUrl: "https://mantto.app"
 screenshots:
   - src: "/projects/mantto/dashboard.png"
-    alt: "Mantto dashboard showing property overview with active inspections and AI-generated findings"
-    caption: "Property operations dashboard with real-time inspection data"
+    alt: "Mantto property operations dashboard"
+    caption: "Product view — property operations."
   - src: "/projects/mantto/inventories.png"
-    alt: "AI-assisted property inventory with auto-transcribed findings and evidence frames"
-    caption: "AI-proposed findings — auto-transcribed with evidence capture"
+    alt: "Mantto inventory interface with inspection findings and evidence"
+    caption: "Inspection findings and supporting evidence."
   - src: "/projects/mantto/maintenance.png"
-    alt: "Maintenance request workflow converting inspection findings into actionable requests"
-    caption: "Findings → maintenance requests in one click"
+    alt: "Mantto maintenance request interface"
+    caption: "Maintenance follows the review of inspection findings."
   - src: "/projects/mantto/inspector-mobile.webp"
-    alt: "Mobile browser inspector interface using magic link access — no app install required"
-    caption: "Mobile inspector — browser-based, zero app installs"
+    alt: "Mobile inspector interface accessed through a browser"
+    caption: "Browser-based inspection in the field."
 ---
 
-Mantto is a property operations platform that replaces manual inspection workflows with AI-assisted inventories, maintenance requests, and traceable reporting — all through a mobile browser, no app install required.
+Mantto brings property maintenance and inspection workflows into one product. My work connected evidence capture, AI-assisted analysis, finding review and maintenance execution with the requirements of a system serving multiple organisations.
 
-## The Idea
+## Context and contribution
 
-Property managers and real estate operators were spending 4+ hours per property inventory using clipboards, spreadsheets, and separate camera apps. Findings were manually transcribed into reports, maintenance requests required duplicate data entry, and there was no audit trail connecting inspection evidence to resolved issues. The team behind Mantto saw an opportunity to collapse this entire workflow into a single browser-based tool powered by AI.
+The earliest visible commit, from March 2026, already contains a maintenance management application. It is a point in the available history, not a verified launch date. Its evolution shows field and operational problems alongside the addition of AI capabilities.
 
-## The Execution
+My contributions span evidence storage, review transitions, shared AI routing and the boundary between a state change and the slow work it triggers. The goal is not merely to generate a useful finding: that finding must belong to the right inspection and organisation, retain its evidence and reach maintenance through an explicit review step.
 
-Built as a Laravel-based platform with a mobile-first browser interface:
+## Preserving evidence in the field
 
-- **Magic-link access** — inspectors open the tool directly in their mobile browser; no app download or account setup needed
-- **AI-assisted inspections** — the system proposes findings, transcribes observations, and frames photographic evidence automatically
-- **One-click maintenance requests** — findings from inspections convert directly into structured maintenance requests without re-entry
-- **Traceable PDF reports** — generated with digital signatures and full evidence chain for legal and compliance requirements
-- **Notification routing** — automated WhatsApp and email notifications to property managers, owners, and tenants based on event type
-- **Analytics and API** — tiered access to portfolio analytics and integration API for enterprise clients
+Evidence integrity was one of the first problems. Two photos with the same filename could target the same storage path. I introduced unique identifiers into those paths and added regression coverage.
 
-## The Impact
+It is a small implementation detail with an important consequence: an inspection finding depends on the evidence behind it. Generating a report is of little use if an attachment has overwritten another before review.
 
-According to Mantto's product metrics:
+## From inspection to approved maintenance
 
-- Inventory time reduced by **70%** — from approximately 4 hours to under 1 hour per property
-- **Zero app installs** required — the browser-first approach eliminated adoption friction for field teams
-- **100% traceability** — every finding links to its source inspection, evidence photos, and resolution status
+I strengthened inventory review transitions so submitted evidence is checked against its organisation, inventory and expected media type. Submission uses transactional locking, and administrative finalisation requires the review state.
 
-The platform demonstrates how AI integration into an existing operational workflow (property inspection) can eliminate manual steps without requiring users to change how they work — inspectors still walk properties and take photos, but the system handles transcription, classification, and routing automatically.
+The flow connects:
+
+1. **Capture** — an inspector records evidence through the browser.
+2. **Draft** — AI-assisted analysis proposes findings, rather than making an administrative decision.
+3. **Review** — evidence and state are checked before finalisation.
+4. **Maintenance** — approved findings become requests, retaining their evidence relationship and avoiding duplicate conversion.
+
+The AI output is one part of that flow. Permissions and state transitions remain application responsibilities; neither a screenshot nor an AI finding establishes a legal certification or a structural diagnosis.
+
+## An AI gateway with organisation context
+
+As AI capabilities expanded, each service could not independently own every provider decision. I worked on a common gateway: configuration is resolved from the organisation and subscription plan, attachment capabilities guide routing, and fallback attempts are capped.
+
+Context is passed from the business object rather than set as mutable shared gateway state. That matters across requests and queued jobs: work for one organisation must not accidentally reuse another organisation's configuration.
+
+## Separating completion from slow follow-up work
+
+The maintenance completion endpoint waited for AI report generation, PDF creation, attachment retrieval and outgoing communications. I separated the state transition from that subsequent work.
+
+Report generation and notifications are dispatched independently. A report retry does not create a dependency that prevents notification processing. The state update can finish while the slower work continues in the background.
+
+The internal incident record reports roughly **29 seconds of endpoint waiting before the change and a response below 500 milliseconds afterwards**. The commit and incident documentation support this historical observation of one flow; this portfolio review did not repeat the measurement and does not provide a sample distribution or percentiles. It is not a platform-wide benchmark, and the report still takes time to generate.
+
+There is an explicit trade-off: a notification may be sent before the PDF is available. Generation failures remain visible for retries and recovery, while maintenance state is managed independently.
+
+## Evidence, personal estimates and limits
+
+This account draws on inspected commits, selected diffs, current services and technical notes covering evidence paths, review transitions, gateway routing and asynchronous completion. It describes implementation decisions, not independently measured adoption or business impact.
+
+**Personal estimates, not verified measurements:** I have estimated inventory-time savings at around 70% and described some inventories as going from roughly four hours to under one hour. These are informal estimates without a documented period, sample or measurement method. They are not one consistent before/after calculation, and they should not be read as a benchmark or confused with the separate endpoint-latency observation above.
+
+Mantto demonstrates how I connect model capabilities to evidence, permissions, state and cost controls — and define what happens when individual parts fail.

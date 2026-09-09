@@ -1,39 +1,61 @@
 ---
-title: "MaltaCleaners — Plataforma de Operación de Servicios con Concierge de IA"
-description: "Plataforma full-stack para una operación real de limpieza en Malta: reservas, concierge por WhatsApp con aprobación humana, portales de administración/empleado/reprogramación, módulo financiero devengo y sincronización iCal con Airbnb — construida de extremo a extremo sobre Cloudflare."
+title: "MaltaCleaners — De una web de reservas a una operación con IA"
+description: "Una plataforma de reservas evolucionó hacia operación de servicios con un Concierge por WhatsApp: control humano, precios con contexto, resultados tardíos y evaluación aislada."
 lang: "es"
 routeSlug: "maltacleaners"
-tags: ["ingenieria-producto", "saas", "integracion-ia", "cloudflare"]
-publishedDate: 2025-07-01
-featuredOrder: 3
+tags: ["TypeScript", "Cloudflare", "WhatsApp", "evaluación de IA"]
+# Fecha de revisión editorial, no de inicio ni lanzamiento del producto.
+publishedDate: 2026-09-09
+featuredOrder: 4
 liveUrl: "https://malta-cleaners.com"
 screenshots:
   - src: "/projects/maltacleaners/homepage.jpg"
-    alt: "Sitio de MaltaCleaners con reservas integradas para limpieza de hogares y servicios de turnover para anfitriones"
-    caption: "Sitio con reservas integradas — malta-cleaners.com"
+    alt: "Web pública de MaltaCleaners con servicios de limpieza y reservas en Malta"
+    caption: "Web pública de reservas; esta captura no demuestra el funcionamiento privado del Concierge."
 ---
 
-MaltaCleaners es la plataforma operativa de un servicio de limpieza en Malta que atiende hogares y anfitriones de alquiler corto: sitio de marketing, reservas, concierge por WhatsApp, portales de personal y finanzas — un sistema que cubre el ciclo completo del primer contacto al pago mensual.
+El historial disponible de MaltaCleaners comienza en mayo de 2026 con una web de reservas y persistencia de datos. Mi trabajo amplió ese recorrido hacia administración, portales de personal, recordatorios y comunicación por WhatsApp. Al crecer el producto, el reto pasó a ser coordinar lo que dice un asistente con lo que realmente sabe y permite la operación.
 
-## Contexto y mi rol
+## Contexto y contribución
 
-El negocio opera con restricciones reales: personal de campo sin estación de trabajo, clientes en WhatsApp, anfitriones sincronizando calendarios de Airbnb y Booking.com. Diseñé y construí la plataforma completa como único desarrollador — arquitectura, modelo de datos (57 migraciones), integraciones y despliegue — trabajando directamente contra las necesidades de la operación.
+Una reserva involucra fechas, precios, personas y cambios posteriores. El producto conecta una web pública Astro e interfaces React con APIs y almacenamiento persistente en Cloudflare. Las reservas, la coordinación del personal y la comunicación con clientes necesitan describir la misma realidad operativa.
 
-## Qué hace
+Mi contribución combina conocimiento del servicio, decisiones de producto y controles técnicos. Mientras el Concierge asumía más interacciones, trabajé en prevención de duplicados, concurrencia y continuidad de las conversaciones. Una respuesta útil también debe corresponder a la solicitud correcta y reflejar su estado vigente.
 
-- **Reservas con precio autoritativo en el servidor** — selector de fecha, slots y duración; dedup, verificaciones anti-bot (origen, timing, honeypot) y precio calculado solo server-side
-- **Concierge por WhatsApp** — auto-respuesta con IA sobre una cadena de fallback multi-modelo (texto y visión), creación y cancelación autónoma de reservas vía tokens firmados, difusión de disponibilidad al personal, auto-bloqueo cuando un humano toma el control y comandos `/pause`/`/unpause`
-- **Tres portales** — un SPA React de administración detrás de Cloudflare Access (reservas, clientes, finanzas, gastos, supervisión del concierge, auditoría de emails); un portal de empleados con agenda, desglose de ingresos, subida de fotos antes/después a R2 y disponibilidad semanal; un flujo de auto-servicio de reprogramación para clientes vía tokens firmados
-- **Finanzas en base devengo** — P&L con ingreso reconocido al completar, distribuciones entre socios, snapshots mensuales inmutables, ROI por canal y margen por servicio
-- **Operación de alquiler corto** — matriz de precios planos de turnover, gestión de propiedades con borrado suave y cascada, y sincronización iCal horaria con auto reserva/cancelación desde feeds de Airbnb, Booking y Vrbo
-- **Notificaciones** — email (SendEmail) y plantillas de WhatsApp: confirmaciones, recordatorios, solicitudes de reseña, informes de servicio
+## Una solicitud necesita contexto y autoridad
 
-## Decisiones que vale la pena notar
+Un recorrido representativo empieza cuando un cliente pregunta por una reserva. El sistema necesita el contexto de la conversación y el catálogo autorizado de precios antes de decidir una respuesta o acción. Cuando no puede establecer el significado o la autoridad de una solicitud, el camino es la intervención de un operador, no inventar una respuesta.
 
-- **Cloudflare-native de extremo a extremo**: Pages Functions para la API, D1 para almacenamiento, R2 para fotos, cuatro Workers (cron de reservas, email de reservas, forwarder de email, sincronización iCal) — una plataforma, sin servidores que atender
-- **Tokens firmados en lugar de cuentas** para clientes y reprogramaciones — acceso sin fricción donde las contraseñas matarían la adopción
-- **Humano en el ciclo por diseño**: el concierge puede actuar, pero la administración aprueba, toma el control y pausa. La autonomía de la IA la delimita la confianza de la operación, no al revés
+El flujo previsto es: **solicitud de reserva → conversación y catálogo → decisión → acción autorizada o intervención humana**. Entender una conversación y tener permiso para actuar sobre ella son responsabilidades diferentes. Esa distinción orientó las correcciones siguientes.
+
+## Cuando una persona toma el control
+
+Rechazar una propuesta del bot no establecía siempre el mismo estado de toma de control que responder manualmente. Un caso documentado mostró al asistente continuando después del rechazo. Añadí una ventana de control humano y la comprobación correspondiente en el supervisor.
+
+Una conversación pausada y la evidencia de una respuesta humana aceptada siguen siendo hechos distintos. Conservar ambos evita tratar una pausa como prueba de que alguien ya respondió, o interpretar un rechazo como permiso para que el asistente continúe.
+
+## Un precio es más que una cifra
+
+El mismo importe puede representar una tarifa por hora, un total de visita o un saldo pendiente. Las pruebas de reproducción mostraron cómo corregir una cantidad sin conservar su significado podía producir la respuesta equivocada.
+
+Trabajé en mantener unidades e intención, fundamentar los precios en el catálogo autorizado y derivar situaciones inciertas al operador. Revisar un pago no autoriza automáticamente una nueva cotización. Es una restricción del dominio que debe sobrevivir tanto a la interpretación del modelo como al procesamiento posterior de la respuesta.
+
+## Los resultados pueden llegar tarde
+
+Una conversación puede avanzar, cambiar de alcance o pasar a una persona mientras una clasificación está en curso. Reforcé los controles de resultados tardíos: los efectos y las escrituras de estado deben comprobarse de nuevo cuando regresa el resultado, no solo cuando comienza la petición.
+
+El sistema conserva un contexto amplio de conversación, pero limita qué solicitud puede afectar una acción concreta. Sin esa segunda comprobación, una interpretación razonable de un mensaje antiguo puede convertirse en una acción incorrecta para la conversación actual.
+
+## Evaluar mensajes y efectos
+
+Incorporé un entorno local que compara el comportamiento del baseline y el candidato con almacenamiento aislado. Las pruebas observan mensajes, acciones, cambios de estado y casos en los que no se debe enviar nada. La evaluación no se limita a comprobar si una respuesta generada suena plausible.
+
+Un runner posterior permite realizar llamadas reales al modelo a través del Gateway, con presupuesto acotado de llamadas, registro de uso y etiquetas A/B. Ambos caminos importan: los escenarios deterministas ejercitan controles específicos; las comparaciones con modelos reales permiten investigar comportamientos que esos escenarios no acreditan por sí solos.
 
 ## Evidencia y límites
 
-La plataforma está en producción en [malta-cleaners.com](https://malta-cleaners.com). Esta página no publica métricas de adopción ni throughput — el alcance honesto es el sistema entregado, su arquitectura y su operación en producción, no resultados de negocio medidos.
+El caso se apoya en historial Git disponible, diffs seleccionados, código de evaluación y registros de verificación local revisados en septiembre de 2026. Esa revisión no ejecutó el runner de modelos reales, confirmó la promoción del candidato ni estableció una mejora de calidad del modelo en producción. Construir la evaluación y medir una mejora son hitos distintos.
+
+La web pública está disponible en [malta-cleaners.com](https://malta-cleaners.com). Su disponibilidad no acredita qué capacidades privadas del Concierge están activadas actualmente. Aquí no se reproduce el corpus de conversaciones de clientes, sus identificadores ni capturas internas.
+
+MaltaCleaners muestra la evolución de una web de reservas hacia software operativo con IA aplicada: mantener cada acción vinculada al precio, la conversación y la responsabilidad humana correspondientes.

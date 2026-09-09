@@ -14,7 +14,8 @@ export async function getStaticPaths() {
 
 const lang = "es" as const;
 const { project } = Astro.props as { project: CollectionEntry<"projects"> };
-const { Content } = await render(project);
+const { Content, headings } = await render(project);
+const sections = headings.filter((heading) => heading.depth === 2);
 ---
 
 <BaseLayout lang={lang} title={project.data.title} description={project.data.description}>
@@ -49,18 +50,33 @@ const { Content } = await render(project);
           )}
         </div>
       )}
-      {project.data.screenshots && project.data.screenshots.length > 0 && (
-        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      {sections.length > 2 && (
+        <nav class="mt-8 rounded-lg border border-(--color-border-secondary) p-4" aria-label={t(lang, "work.contents")}>
+          <details>
+            <summary class="cursor-pointer font-medium">{t(lang, "work.contents")}</summary>
+            <ul class="mt-3 grid gap-2 text-sm sm:grid-cols-2">
+              {sections.map((heading) => (
+                <li><a class="link-accent inline-block py-1" href={`#${heading.slug}`}>{heading.text}</a></li>
+              ))}
+            </ul>
+          </details>
+        </nav>
+      )}
+      {project.data.screenshots.length > 0 && (
+        <div class:list={["mt-8 grid gap-4", { "sm:grid-cols-2": project.data.screenshots.length > 1 }]}>
           {project.data.screenshots.map((shot: { src: string; alt: string; caption?: string }) => (
-            <figure class="overflow-hidden rounded-lg border border-(--color-glass-border) bg-(--color-bg-card)">
-              <img
-                src={shot.src}
-                alt={shot.alt}
-                loading="lazy"
-                class="block w-full"
-              />
+            <figure class:list={["overflow-hidden rounded-lg border border-(--color-glass-border) bg-(--color-bg-card)", { "sm:col-span-2": project.data.screenshots.length > 1 && shot.src.endsWith(".svg") }]}>
+              <a href={shot.src} class="block" aria-label={`${t(lang, "work.openImage")}: ${shot.alt}`}>
+                <img
+                  src={shot.src}
+                  alt={shot.alt}
+                  loading="lazy"
+                  decoding="async"
+                  class="mx-auto block w-full max-w-2xl"
+                />
+              </a>
               {shot.caption && (
-                <figcaption class="px-4 py-2.5 text-xs text-(--color-text-tertiary)">
+                <figcaption class="px-4 py-2.5 text-xs text-(--color-text-secondary)">
                   {shot.caption}
                 </figcaption>
               )}
@@ -68,7 +84,7 @@ const { Content } = await render(project);
           ))}
         </div>
       )}
-      <article class="prose prose-invert mt-8 max-w-none">
+      <article class="prose prose-invert mx-auto mt-10 max-w-[72ch]">
         <Content />
       </article>
     </div>

@@ -5,7 +5,8 @@ import { t, getRoute } from "../../../i18n";
 
 const lang = "es" as const;
 const projects = (await getCollection("projects")).filter((entry) => entry.data.lang === lang).sort(
-  (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
+  (a, b) => a.data.featuredOrder - b.data.featuredOrder ||
+    b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
 );
 ---
 

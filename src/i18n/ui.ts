@@ -74,7 +74,7 @@ export const ui = {
     // ── Featured Work ──
     "home.featured.heading": "Featured Work",
     "home.featured.subtitle":
-      "Case studies from real engineering engagements. Some work is anonymized due to client confidentiality.",
+      "The problems, decisions and lessons behind my work in applied AI and product engineering — with evidence and limits made explicit.",
     "home.featured.viewAll": "View all case studies →",
     "home.featured.confidentiality":
       "Some work is anonymized due to client confidentiality.",
@@ -156,6 +156,8 @@ export const ui = {
       "Case studies from real engineering engagements — enterprise platforms, system modernization, and AI integration.",
     "work.backToList": "← Back to all work",
     "work.readMore": "View case study →",
+    "work.contents": "On this page",
+    "work.openImage": "Open full-size image",
     "work.repo": "Repository",
     "work.live": "Live Demo",
     "work.anonymized": "Anonymized Case Study",
@@ -271,7 +273,7 @@ export const ui = {
     // ── Trabajo Destacado ──
     "home.featured.heading": "Trabajo Destacado",
     "home.featured.subtitle":
-      "Casos de estudio de engagements de ingeniería reales. Algunos trabajos están anonimizados por confidencialidad del cliente.",
+      "Problemas, decisiones y aprendizajes de mi trabajo en IA aplicada e ingeniería de producto, con evidencia y límites explícitos.",
     "home.featured.viewAll": "Ver todos los casos de estudio →",
     "home.featured.confidentiality":
       "Algunos trabajos están anonimizados por confidencialidad del cliente.",
@@ -353,6 +355,8 @@ export const ui = {
       "Casos de estudio de engagements de ingeniería reales — plataformas empresariales, modernización de sistemas e integración de IA.",
     "work.backToList": "← Volver a todos los proyectos",
     "work.readMore": "Ver caso de estudio →",
+    "work.contents": "En esta página",
+    "work.openImage": "Abrir imagen a tamaño completo",
     "work.repo": "Repositorio",
     "work.live": "Demo en vivo",
     "work.anonymized": "Caso de Estudio Anonimizado",
