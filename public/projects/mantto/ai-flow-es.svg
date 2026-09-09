@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 620" role="img" aria-labelledby="title desc" lang="es">
+<title id="title">Mantto · de la inspección al mantenimiento</title>
+<desc id="desc">Flujo documentado de Mantto: el inspector captura evidencia, la IA propone hallazgos en borrador, la revisión humana comprueba evidencia y estado, el mantenimiento aprobado conserva su evidencia y el trabajo lento continúa en segundo plano.</desc>
+<rect width="620" height="620" rx="8" fill="#0a0a0a"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#a8a8a8"/></marker></defs>
+<g font-family="Inter, system-ui, sans-serif">
+<text x="20" y="38" font-size="22" fill="#a8a8a8">Mantto · de la inspección al mantenimiento</text>
+<path d="M280 127 H335" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M470 182 V217" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M340 277 H285" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M150 332 V367" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="20" y="72" width="260" height="110" rx="20" fill="#111111" stroke="#C41E3A" stroke-width="2"/>
+<text x="150" y="118" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Inspección en campo</text>
+<text x="150" y="145" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">Evidencia en campo</text>
+<rect x="340" y="72" width="260" height="110" rx="6" fill="#111111" stroke="#c9a052" stroke-width="2"/>
+<text x="470" y="118" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">IA propone</text>
+<text x="470" y="145" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">Hallazgos en borrador</text>
+<rect x="340" y="222" width="260" height="110" rx="20" fill="#111111" stroke="#C41E3A" stroke-width="2"/>
+<text x="470" y="268" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Revisión humana</text>
+<text x="470" y="295" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">Evidencia · estado</text>
+<rect x="20" y="222" width="260" height="110" rx="6" fill="#111111" stroke="#4a4a4a" stroke-width="2"/>
+<text x="150" y="268" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Mantenimiento</text>
+<text x="150" y="295" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">Con evidencia adjunta</text>
+<rect x="20" y="372" width="260" height="110" rx="6" fill="#111111" stroke="#c9a052" stroke-width="2"/>
+<text x="150" y="418" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">En segundo plano</text>
+<text x="150" y="445" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">PDF · reporte · avisos</text>
+<text x="20" y="530" font-size="22" fill="#a8a8a8">La IA propone hallazgos;</text>
+<text x="20" y="559" font-size="22" fill="#a8a8a8">la app revisa y decide.</text>
+<text x="20" y="588" font-size="22" fill="#a8a8a8">Finalizar no espera el trabajo lento.</text>
+</g>
+</svg>

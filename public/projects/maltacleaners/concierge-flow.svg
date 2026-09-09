@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 600" role="img" aria-labelledby="title desc" lang="en">
+<title id="title">MaltaCleaners · WhatsApp Concierge</title>
+<desc id="desc">Documented Concierge flow: a WhatsApp message is interpreted against the conversation and the authorized catalog; the decision requires meaning and authority, and routes to an operator when either is missing.</desc>
+<rect width="620" height="600" rx="8" fill="#0a0a0a"/>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#a8a8a8"/></marker></defs>
+<g font-family="Inter, system-ui, sans-serif">
+<text x="20" y="38" font-size="22" fill="#a8a8a8">MaltaCleaners · WhatsApp Concierge</text>
+<path d="M280 127 H335" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M470 182 V217" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M340 277 H285" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M470 332 V367" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="20" y="72" width="260" height="110" rx="20" fill="#111111" stroke="#C41E3A" stroke-width="2"/>
+<text x="150" y="118" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">WhatsApp</text>
+<text x="150" y="145" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">Client request</text>
+<rect x="340" y="72" width="260" height="110" rx="6" fill="#111111" stroke="#c9a052" stroke-width="2"/>
+<text x="470" y="118" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Context</text>
+<text x="470" y="145" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">Chat + catalog</text>
+<rect x="340" y="222" width="260" height="110" rx="6" fill="#111111" stroke="#4a4a4a" stroke-width="2"/>
+<text x="470" y="268" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Decision</text>
+<text x="470" y="295" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">Meaning + authority?</text>
+<rect x="20" y="222" width="260" height="110" rx="6" fill="#111111" stroke="#4a4a4a" stroke-width="2"/>
+<text x="150" y="268" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Authorized action</text>
+<text x="150" y="295" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">Current prices</text>
+<rect x="340" y="372" width="260" height="110" rx="20" fill="#111111" stroke="#C41E3A" stroke-width="2"/>
+<text x="470" y="418" text-anchor="middle" font-size="24" font-weight="600" fill="#ececec">Operator</text>
+<text x="470" y="445" text-anchor="middle" font-size="22" font-weight="400" fill="#a8a8a8">Human intervention</text>
+<text x="20" y="510" font-size="22" fill="#a8a8a8">Missing context or authority:</text>
+<text x="20" y="539" font-size="22" fill="#a8a8a8">an operator, not invention.</text>
+<text x="20" y="573" font-size="22" fill="#a8a8a8">An action reflects its current state.</text>
+</g>
+</svg>

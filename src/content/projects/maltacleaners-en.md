@@ -12,6 +12,9 @@ screenshots:
   - src: "/projects/maltacleaners/homepage.jpg"
     alt: "MaltaCleaners public website offering home cleaning and booking in Malta"
     caption: "Public booking website — this capture does not demonstrate the private Concierge runtime."
+  - src: "/projects/maltacleaners/concierge-flow.svg"
+    alt: "MaltaCleaners Concierge flow diagram: WhatsApp message, conversation context and authorized catalog, decision on meaning and authority, authorized action with current prices or operator intervention"
+    caption: "Missing context or authority, the path is the operator. Documented reconstruction."
 timeline:
   - date: "May 2026"
     title: "Booking website"

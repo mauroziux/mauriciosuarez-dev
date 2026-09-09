@@ -12,6 +12,9 @@ screenshots:
   - src: "/projects/maltacleaners/homepage.jpg"
     alt: "Web pública de MaltaCleaners con servicios de limpieza y reservas en Malta"
     caption: "Web pública de reservas; esta captura no demuestra el funcionamiento privado del Concierge."
+  - src: "/projects/maltacleaners/concierge-flow-es.svg"
+    alt: "Diagrama de flujo del Concierge de MaltaCleaners: mensaje de WhatsApp, contexto de conversación y catálogo autorizado, decisión sobre significado y autoridad, acción autorizada con precios vigentes o intervención de un operador"
+    caption: "Sin contexto o autoridad, el camino es el operador. Reconstrucción documentada."
 timeline:
   - date: "May 2026"
     title: "Web de reservas"
