@@ -107,6 +107,26 @@ const updated = new Intl.DateTimeFormat(lang === "es" ? "es" : "en", {
               {t(lang, "work.contents")}
             </p>
             <ul class="mt-4 space-y-2.5 border-l border-(--color-border-primary) text-sm">
+              {data.highlights.length > 0 && (
+                <li>
+                  <a
+                    href="#project-highlights"
+                    class="-ml-px block border-l border-transparent pl-4 leading-snug text-(--color-text-secondary) transition-colors hover:border-(--color-accent) hover:text-(--color-text-primary)"
+                  >
+                    {t(lang, "work.numbers")}
+                  </a>
+                </li>
+              )}
+              {data.timeline.length > 0 && (
+                <li>
+                  <a
+                    href="#project-timeline"
+                    class="-ml-px block border-l border-transparent pl-4 leading-snug text-(--color-text-secondary) transition-colors hover:border-(--color-accent) hover:text-(--color-text-primary)"
+                  >
+                    {t(lang, "work.story")}
+                  </a>
+                </li>
+              )}
               {sections.map((heading) => (
                 <li>
                   <a
@@ -145,6 +165,12 @@ const updated = new Intl.DateTimeFormat(lang === "es" ? "es" : "en", {
           <details class="mb-8 rounded-lg border border-(--color-border-secondary) p-4 lg:hidden">
             <summary class="cursor-pointer font-medium">{t(lang, "work.contents")}</summary>
             <ul class="mt-3 grid gap-2 text-sm sm:grid-cols-2">
+              {data.highlights.length > 0 && (
+                <li><a class="link-accent inline-block py-1" href="#project-highlights">{t(lang, "work.numbers")}</a></li>
+              )}
+              {data.timeline.length > 0 && (
+                <li><a class="link-accent inline-block py-1" href="#project-timeline">{t(lang, "work.story")}</a></li>
+              )}
               {sections.map((heading) => (
                 <li><a class="link-accent inline-block py-1" href={`#${heading.slug}`}>{heading.text}</a></li>
               ))}

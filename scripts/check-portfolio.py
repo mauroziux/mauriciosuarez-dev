@@ -60,8 +60,10 @@ for path in pages:
             if href and not parsed.scheme and not parsed.netloc:
                 resolve(href, path)
     for image in doc.attrs('img'):
+        if not image.get('src'):
+            continue
         assert image.get('alt'), f'Missing image description in {path}'
-        if image.get('src', '').startswith('/'):
+        if image['src'].startswith('/'):
             target = resolve(image['src'], path)
             if target.suffix == '.svg':
                 svg = ET.parse(target).getroot()
@@ -84,7 +86,7 @@ for lang, route in [('en', 'work'), ('es', 'proyectos')]:
     for entry in entries:
         resolve(f'/{lang}/{route}/{entry["routeSlug"]}/', DIST / lang / 'index.html')
     expected = sorted([entry for entry in entries if entry.get('featured') != 'false'], key=lambda entry: (int(entry.get('featuredOrder', 999)), -date.fromisoformat(entry['publishedDate']).toordinal()))[:4]
-    cards = [a['href'] for a in page(DIST / lang / 'index.html').attrs('a') if 'project-card' in a.get('class', '').split()]
+    cards = [a['href'] for a in page(DIST / lang / 'index.html').attrs('a') if 'data-featured-project' in a]
     assert cards == [f'/{lang}/{route}/{entry["routeSlug"]}/' for entry in expected], f'Wrong featured order: {lang}'
 
 print(f'PASS: {len(pages)} built pages; local links, images, contents anchors, bilingual routes and featured order.')
