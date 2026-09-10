@@ -16,7 +16,10 @@ const copy = {
     home: "ms. — Mauricio Suárez, home",
     nav: "Primary navigation",
     work: "Selected work",
+    writing: "Writing",
+    aboutNav: "About",
     contact: "Let's talk ↗",
+    services: "Services",
     eyebrow: "SOFTWARE / AGENTS / PRODUCT",
     aside: "Not just code.",
     titleLead: "There is a person",
@@ -65,7 +68,10 @@ const copy = {
     home: "ms. — Mauricio Suárez, inicio",
     nav: "Navegación principal",
     work: "Trabajo seleccionado",
+    writing: "Artículos",
+    aboutNav: "Sobre mí",
     contact: "Hablemos ↗",
+    services: "Servicios",
     eyebrow: "SOFTWARE / AGENTES / PRODUCTO",
     aside: "No solo código.",
     titleLead: "Hay una persona",
@@ -131,8 +137,11 @@ if (!lead) throw new Error("Author notes home requires a featured project.");
     <a class="author-notes-monogram" href={getRoute(lang, "home")} aria-label={text.home}>ms<span>.</span></a>
     <p>MAURICIO SUÁREZ<br /><span>{text.role}</span></p>
     <nav aria-label={text.nav}>
-      <a href="#author-notes-work">{text.work}</a>
+      <a href={getRoute(lang, "work")}>{text.work}</a>
+      <a href={getRoute(lang, "writing")}>{text.writing}</a>
+      <a href={getRoute(lang, "about")}>{text.aboutNav}</a>
       <a href={getRoute(lang, "contact")}>{text.contact}</a>
+      <a href={getRoute(lang, "services")}>{text.services}</a>
       <a class="author-notes-language" href={getRoute(alternateLang, "home")} lang={alternateLang} aria-label={`Switch to ${alternateLang === "en" ? "English" : "Español"}`}>{alternateLang.toUpperCase()}</a>
     </nav>
   </header>
@@ -214,7 +223,7 @@ if (!lead) throw new Error("Author notes home requires a featured project.");
   .author-notes-monogram span { color: var(--notes-red); }
   .author-notes-header > p { padding-left: 20px; border-left: 1px solid #454545; font: 10px/1.75 var(--font-mono); letter-spacing: .025em; }
   .author-notes-header > p span { color: var(--color-text-secondary); font-size: 10px; letter-spacing: 0; }
-  .author-notes-header nav { margin-left: auto; display: flex; align-items: center; gap: 32px; font-size: 12px; }
+  .author-notes-header nav { margin-left: auto; display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 10px 24px; font-size: 12px; }
   .author-notes-header nav a { padding: 12px 0; }
   .author-notes-header a:hover { color: var(--notes-red); }
   .author-notes-language { border: 1px solid var(--color-border-secondary); border-radius: 4px; padding: 5px 8px !important; font: 10px var(--font-mono); }
@@ -280,7 +289,8 @@ if (!lead) throw new Error("Author notes home requires a featured project.");
   .author-notes-signature { font: italic 52px Georgia, serif; color: var(--color-text-primary); letter-spacing: -.09em; }
   @media (max-width: 900px) {
     .author-notes { padding: 0 30px; }
-    .author-notes-header nav { gap: 20px; }
+    .author-notes-header > p { display: none; }
+    .author-notes-header nav { gap: 8px 18px; }
     .author-notes-introduction, .author-notes-feature { grid-template-columns: .5fr 1fr; gap: 40px; }
     .author-notes-working { gap: 40px; }
     .author-notes-photo { height: 380px; }
@@ -293,9 +303,9 @@ if (!lead) throw new Error("Author notes home requires a featured project.");
     .author-notes-monogram { font-size: 53px; }
     .author-notes-header > p { font-size: 9px; padding-left: 16px; }
     .author-notes-header > p span { font-size: 9px; }
-    .author-notes-header nav { width: 100%; justify-content: space-between; margin: 0; font-size: 11px; }
-    .author-notes-header nav a { padding: 4px 0; }
-    .author-notes-language { padding: 4px 6px !important; }
+    .author-notes-header nav { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 12px; justify-content: initial; margin: 0; font-size: 10px; }
+    .author-notes-header nav a { padding: 4px 0; white-space: nowrap; }
+    .author-notes-language { justify-self: end; padding: 4px 6px !important; }
     .author-notes-cover { padding-top: 24px; }
     .author-notes-title-line > span:first-child { font-size: 7px; letter-spacing: 0; }
     .author-notes-title-line > span:last-child { font-size: 15px; }
