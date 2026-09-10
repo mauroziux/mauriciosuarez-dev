@@ -1,32 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import Hero from "../../components/Hero.astro";
-import FeaturedProjects from "../../components/FeaturedProjects.astro";
-import HowIWork from "../../components/HowIWork.astro";
-import AboutTeaser from "../../components/AboutTeaser.astro";
-import ContactCTA from "../../components/ContactCTA.astro";
-import ServicesPreview from "../../components/ServicesPreview.astro";
+import AuthorNotesHome from "../../components/AuthorNotesHome.astro";
 import { t } from "../../i18n";
 
 const lang = "en" as const;
 ---
 
-<BaseLayout lang={lang} title="Mauricio Suárez — Applied AI Engineer" description={t(lang, "meta.description.home")}>
-  <!-- 1. Hero: who I am and what I build -->
-  <Hero lang={lang} />
-  <hr class="section-divider" />
-  <!-- 2. Selected work -->
-  <FeaturedProjects lang={lang} />
-  <hr class="section-divider" />
-  <!-- 3. How I work -->
-  <HowIWork lang={lang} />
-  <hr class="section-divider" />
-  <!-- 4. Trajectory -->
-  <AboutTeaser lang={lang} />
-  <hr class="section-divider" />
-  <!-- 5. Contact for opportunities -->
-  <ContactCTA lang={lang} />
-  <hr class="section-divider" />
-  <!-- 6. Consulting (secondary) -->
-  <ServicesPreview lang={lang} />
+<BaseLayout lang={lang} title="Mauricio Suárez — Applied AI Engineer" description={t(lang, "meta.description.home")} showSiteChrome={false}>
+  <AuthorNotesHome lang={lang} />
 </BaseLayout>

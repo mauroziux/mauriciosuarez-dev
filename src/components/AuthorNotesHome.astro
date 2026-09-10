@@ -1,0 +1,333 @@
+---
+import { getCollection } from "astro:content";
+import { getRoute } from "../i18n";
+import type { Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const alternateLang: Lang = lang === "en" ? "es" : "en";
+
+const copy = {
+  en: {
+    role: "Software engineer · Applied AI",
+    home: "ms. — Mauricio Suárez, home",
+    nav: "Primary navigation",
+    work: "Selected work",
+    contact: "Let's talk ↗",
+    eyebrow: "SOFTWARE / AGENTS / PRODUCT",
+    aside: "Not just code.",
+    titleLead: "There is a person",
+    titleTail: "behind the",
+    titleEmphasis: "code.",
+    photoAlt: "Mauricio Suárez by the sea, holding a coffee",
+    photoGreeting: "HELLO,\nI'M MAURICIO.",
+    photoCaption: "Context first.",
+    photoCaptionEmphasis: "Tools later.",
+    noteLabel: "A PERSONAL NOTE",
+    stack: "TypeScript · PHP · Cloudflare",
+    intro: "I like building things that someone genuinely needs. Agents that review code, software that runs a business, and tools that keep working when the model gets it wrong.",
+    introSmall: "Here I share the decisions behind the work. Also the ones I changed after finding a problem.",
+    explore: "Explore my work",
+    workLabel: "SELECTED WORK",
+    workAside: "The story, not just the result.",
+    leadKind: "Repair agents\nInternal tool",
+    leadSidenote: "The interesting part\nstarts when something breaks.",
+    leadTitle: "One patch is not\na",
+    leadTitleEmphasis: "solution.",
+    leadBody: "In AutoSentry, a generated repair deleted too much code. Review caught it. The next design had to reproduce the error and check the correction before opening a proposal.",
+    leadNote: "An engineering decision, not a longer prompt.",
+    readLead: "Read the story of",
+    allStories: "All stories",
+    practiceLabel: "HOW I WORK",
+    practiceTitle: "Technology changes.",
+    practiceEmphasis: "Judgment matters.",
+    about: "More about me ↗",
+    principleOne: "Understand before automating.",
+    principleOneBody: "Who will use it, what they need, and what the system should not do.",
+    principleTwo: "Review what gets delivered.",
+    principleTwoBody: "A convincing model output does not replace a check.",
+    principleThree: "Describe the limits, too.",
+    principleThreeBody: "I prefer a concrete story to a promise that is hard to prove.",
+    availability: "Open to engineering\nand product opportunities.",
+    footerLead: "Let's start with",
+    footerEmphasis: "a conversation.",
+    projectNotes: {
+      donmerge: "Fewer repeated comments. More findings that matter.",
+      mantto: "Evidence doesn't end in a report: it reaches maintenance.",
+      maltacleaners: "A good assistant also knows when to stop replying.",
+    },
+  },
+  es: {
+    role: "Ingeniero de software · IA aplicada",
+    home: "ms. — Mauricio Suárez, inicio",
+    nav: "Navegación principal",
+    work: "Trabajo seleccionado",
+    contact: "Hablemos ↗",
+    eyebrow: "SOFTWARE / AGENTES / PRODUCTO",
+    aside: "No solo código.",
+    titleLead: "Hay una persona",
+    titleTail: "detrás del",
+    titleEmphasis: "código.",
+    photoAlt: "Mauricio Suárez junto al mar, con un café en la mano",
+    photoGreeting: "HOLA,\nSOY MAURICIO.",
+    photoCaption: "Contexto primero.",
+    photoCaptionEmphasis: "Herramientas después.",
+    noteLabel: "UNA NOTA PERSONAL",
+    stack: "TypeScript · PHP · Cloudflare",
+    intro: "Me gusta construir cosas que alguien necesita de verdad. Agentes que revisan código, software para operar un negocio y herramientas que siguen funcionando cuando el modelo se equivoca.",
+    introSmall: "Aquí cuento las decisiones detrás del trabajo. También las que cambié después de encontrar un problema.",
+    explore: "Conoce mi trabajo",
+    workLabel: "TRABAJO SELECCIONADO",
+    workAside: "La historia, no solo el resultado.",
+    leadKind: "Agentes de reparación\nHerramienta interna",
+    leadSidenote: "La parte interesante\nempieza cuando algo falla.",
+    leadTitle: "Un parche no es\nuna",
+    leadTitleEmphasis: "solución.",
+    leadBody: "En AutoSentry, una reparación generada borró demasiado código. La revisión lo detectó. El siguiente diseño exigió reproducir el error y comprobar la corrección antes de abrir una propuesta.",
+    leadNote: "Una decisión de ingeniería, no un prompt más largo.",
+    readLead: "Leer la historia de",
+    allStories: "Todas las historias",
+    practiceLabel: "MI FORMA DE TRABAJAR",
+    practiceTitle: "La tecnología cambia.",
+    practiceEmphasis: "El criterio importa.",
+    about: "Más sobre mí ↗",
+    principleOne: "Entender antes de automatizar.",
+    principleOneBody: "Quién va a usarlo, qué necesita y qué no debería hacer el sistema.",
+    principleTwo: "Revisar lo que se entrega.",
+    principleTwoBody: "Una salida convincente del modelo no sustituye una comprobación.",
+    principleThree: "Contar también los límites.",
+    principleThreeBody: "Prefiero una historia concreta a una promesa difícil de demostrar.",
+    availability: "Abierto a oportunidades\nde ingeniería y producto.",
+    footerLead: "Empecemos por",
+    footerEmphasis: "una conversación.",
+    projectNotes: {
+      donmerge: "Menos comentarios repetidos. Más hallazgos que importan.",
+      mantto: "La evidencia no termina en un reporte: llega a mantenimiento.",
+      maltacleaners: "Un buen asistente también sabe cuándo dejar de responder.",
+    },
+  },
+} as const;
+
+const text = copy[lang];
+const projects = (await getCollection("projects"))
+  .filter((entry) => entry.data.lang === lang && entry.data.featuredOrder <= 4)
+  .sort((a, b) => a.data.featuredOrder - b.data.featuredOrder)
+  .map(({ data }) => ({
+    name: data.title.split(" — ")[0],
+    slug: data.routeSlug,
+    href: `${getRoute(lang, "work")}${data.routeSlug}/`,
+    tags: data.tags.slice(0, 2).join(" / "),
+  }));
+
+const [lead, ...otherProjects] = projects;
+if (!lead) throw new Error("Author notes home requires a featured project.");
+---
+
+<div class="author-notes">
+  <header class="author-notes-header">
+    <a class="author-notes-monogram" href={getRoute(lang, "home")} aria-label={text.home}>ms<span>.</span></a>
+    <p>MAURICIO SUÁREZ<br /><span>{text.role}</span></p>
+    <nav aria-label={text.nav}>
+      <a href="#author-notes-work">{text.work}</a>
+      <a href={getRoute(lang, "contact")}>{text.contact}</a>
+      <a class="author-notes-language" href={getRoute(alternateLang, "home")} lang={alternateLang} aria-label={`Switch to ${alternateLang === "en" ? "English" : "Español"}`}>{alternateLang.toUpperCase()}</a>
+    </nav>
+  </header>
+
+  <section class="author-notes-cover" aria-labelledby="author-notes-title">
+    <div class="author-notes-title-line"><span>{text.eyebrow}</span><span>{text.aside}</span></div>
+    <h1 id="author-notes-title">{text.titleLead}<br />{text.titleTail} <em>{text.titleEmphasis}</em></h1>
+    <figure class="author-notes-photo">
+      <img src="/portrait.webp" alt={text.photoAlt} width="1122" height="1122" loading="eager" decoding="async" fetchpriority="high" />
+      <div class="author-notes-photo-credit" aria-hidden="true"><span>{text.photoGreeting.split("\n").map((line) => <>{line}<br /></>)}</span><svg width="90" height="55" viewBox="0 0 90 55"><path d="M7 11q35 2 63 30m-21-2 22 3-8-20" fill="none" stroke="currentColor" stroke-width="1.5" /></svg></div>
+      <figcaption>{text.photoCaption}<br /><em>{text.photoCaptionEmphasis}</em></figcaption>
+    </figure>
+    <div class="author-notes-introduction">
+      <p class="author-notes-intro-label">{text.noteLabel}<br /><span>{text.stack}</span></p>
+      <div>
+        <p>{text.intro}</p>
+        <p class="author-notes-intro-small">{text.introSmall}</p>
+        <a href="#author-notes-work" class="author-notes-underline">{text.explore} <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="author-notes-work" id="author-notes-work" aria-labelledby="author-notes-work-title">
+    <div class="author-notes-section-label"><h2 id="author-notes-work-title">{text.workLabel}</h2><span>{text.workAside}</span></div>
+    <article class="author-notes-feature">
+      <div class="author-notes-feature-aside">
+        <span class="author-notes-kicker">{lead.name}</span>
+        <p>{text.leadKind.split("\n").map((line) => <>{line}<br /></>)}</p>
+        <span class="author-notes-sidenote">{text.leadSidenote.split("\n").map((line) => <>{line}<br /></>)}</span>
+        <svg viewBox="0 0 140 70" width="140" height="70" aria-hidden="true"><path d="M12 12C29 65 73 61 124 43m-22-10 25 10-21 14" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+      </div>
+      <div class="author-notes-feature-story">
+        <h3>{text.leadTitle.split("\n").map((line) => <>{line}<br /></>)}<em>{text.leadTitleEmphasis}</em></h3>
+        <p>{text.leadBody}</p>
+        <p class="author-notes-feature-note">{text.leadNote}</p>
+        <a class="author-notes-underline" href={lead.href} data-featured-project>{text.readLead} {lead.name} <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+    <div class="author-notes-other-work">
+      {otherProjects.map((project) => (
+        <article class="author-notes-project">
+          <span class="author-notes-kicker">{project.name}</span>
+          <h3><a href={project.href} data-featured-project>{text.projectNotes[project.slug as keyof typeof text.projectNotes]}<span aria-hidden="true">↗</span></a></h3>
+          <p>{project.tags}</p>
+        </article>
+      ))}
+    </div>
+    <a class="author-notes-underline author-notes-all" href={getRoute(lang, "work")}>{text.allStories} <span aria-hidden="true">→</span></a>
+  </section>
+
+  <section class="author-notes-working" aria-labelledby="author-notes-working-title">
+    <div class="author-notes-working-title">
+      <span class="author-notes-kicker">{text.practiceLabel}</span>
+      <h2 id="author-notes-working-title">{text.practiceTitle}<br /><em>{text.practiceEmphasis}</em></h2>
+      <a class="author-notes-underline" href={getRoute(lang, "about")}>{text.about}</a>
+    </div>
+    <div class="author-notes-principles">
+      <p><strong>{text.principleOne}</strong> {text.principleOneBody}</p>
+      <p><strong>{text.principleTwo}</strong> {text.principleTwoBody}</p>
+      <p><strong>{text.principleThree}</strong> {text.principleThreeBody}</p>
+    </div>
+  </section>
+
+  <footer class="author-notes-footer">
+    <div class="author-notes-footer-note">{text.availability.split("\n").map((line) => <>{line}<br /></>)}</div>
+    <a class="author-notes-contact" href={getRoute(lang, "contact")}>{text.footerLead}<br /><em>{text.footerEmphasis}</em><span aria-hidden="true">↗</span></a>
+    <div class="author-notes-footer-bottom">
+      <span>Mauricio Suárez</span>
+      <div><a href="https://github.com/mauroziux">GitHub ↗</a><a href="https://www.linkedin.com/in/mauroziux">LinkedIn ↗</a></div>
+      <span class="author-notes-signature" aria-hidden="true">ms.</span>
+    </div>
+  </footer>
+</div>
+
+<style>
+  .author-notes { --notes-red: #e14b64; max-width: 1296px; margin: auto; padding: 0 56px; color: var(--color-text-primary); }
+  .author-notes-header { display: flex; align-items: center; gap: 24px; min-height: 116px; border-bottom: 1px solid #454545; }
+  .author-notes-monogram { font: italic 64px/.8 Georgia, "Times New Roman", serif; letter-spacing: -.095em; }
+  .author-notes-monogram span { color: var(--notes-red); }
+  .author-notes-header > p { padding-left: 20px; border-left: 1px solid #454545; font: 10px/1.75 var(--font-mono); letter-spacing: .025em; }
+  .author-notes-header > p span { color: var(--color-text-secondary); font-size: 10px; letter-spacing: 0; }
+  .author-notes-header nav { margin-left: auto; display: flex; align-items: center; gap: 32px; font-size: 12px; }
+  .author-notes-header nav a { padding: 12px 0; }
+  .author-notes-header a:hover { color: var(--notes-red); }
+  .author-notes-language { border: 1px solid var(--color-border-secondary); border-radius: 4px; padding: 5px 8px !important; font: 10px var(--font-mono); }
+  .author-notes-cover { padding-top: 33px; }
+  .author-notes-title-line { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+  .author-notes-title-line > span:first-child { font: 9px var(--font-mono); letter-spacing: .08em; color: var(--color-text-secondary); }
+  .author-notes-title-line > span:last-child { font: italic 19px Georgia, serif; color: var(--notes-red); }
+  .author-notes h1 { text-align: center; font: 400 clamp(57px, 7.8vw, 105px)/.97 Georgia, "Times New Roman", serif; letter-spacing: -.055em; margin: 29px 0 43px; }
+  .author-notes h1 em { color: var(--notes-red); font-weight: 400; }
+  .author-notes-photo { position: relative; height: 420px; overflow: hidden; background: var(--color-bg-tertiary); }
+  .author-notes-photo::after { content: ""; pointer-events: none; position: absolute; inset: 0; background: linear-gradient(90deg, #0008, transparent 38%, transparent 67%, #0009); }
+  .author-notes-photo > img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 31%; filter: grayscale(1); transition: filter 650ms; }
+  @media (hover: hover) { .author-notes-photo:hover > img { filter: grayscale(0); } }
+  .author-notes-photo-credit { position: absolute; z-index: 1; top: 34px; left: 30px; color: #fff; display: flex; align-items: end; font: 10px/1.7 var(--font-mono); }
+  .author-notes-photo-credit svg { transform: rotate(-20deg); }
+  .author-notes-photo figcaption { position: absolute; z-index: 1; right: 28px; bottom: 27px; color: #fff; font: 26px/1.15 Georgia, serif; text-align: right; }
+  .author-notes-photo figcaption em { color: #e9c3ca; }
+  .author-notes-introduction { display: grid; grid-template-columns: .65fr 1fr; gap: 80px; padding: 38px 0 76px; }
+  .author-notes-intro-label { font: 10px/2 var(--font-mono); }
+  .author-notes-intro-label span { color: var(--color-text-secondary); font-size: 9px; }
+  .author-notes-introduction > div > p:first-child { font: 400 22px/1.55 Georgia, serif; max-width: 650px; }
+  .author-notes-intro-small { color: var(--color-text-secondary); font-size: 13px; line-height: 1.8; max-width: 510px; margin-top: 17px; }
+  .author-notes-underline { display: inline-flex; align-items: center; gap: 34px; font: 11px/1.6 var(--font-mono); border-bottom: 1px solid #666; padding-bottom: 7px; margin-top: 25px; }
+  .author-notes-underline:hover { color: var(--notes-red); border-color: var(--notes-red); }
+  .author-notes-underline span { color: var(--notes-red); font-size: 18px; }
+  .author-notes-work { border-top: 1px solid #777; padding: 23px 0 80px; scroll-margin-top: 25px; }
+  .author-notes-section-label { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .author-notes-section-label h2 { font: 500 11px var(--font-mono); text-transform: uppercase; letter-spacing: .04em; }
+  .author-notes-section-label > span { color: var(--color-text-secondary); font: italic 18px Georgia, serif; }
+  .author-notes-feature { display: grid; grid-template-columns: .65fr 1fr; gap: 80px; padding: 70px 0 60px; }
+  .author-notes-kicker { color: var(--notes-red); font: 11px var(--font-mono); }
+  .author-notes-feature-aside > p { color: var(--color-text-secondary); font: 12px/1.7 var(--font-mono); margin-top: 15px; }
+  .author-notes-sidenote { display: block; margin-top: 65px; font: italic 22px/1.3 Georgia, serif; color: #e7a9b4; transform: rotate(-4deg); }
+  .author-notes-feature-aside > svg { color: #e7a9b4; margin-left: 70px; }
+  .author-notes-feature-story > h3 { font: 400 67px/.99 Georgia, serif; letter-spacing: -.04em; }
+  .author-notes-feature-story > h3 em { color: var(--notes-red); }
+  .author-notes-feature-story > p { font: 14px/1.9 var(--font-sans); max-width: 505px; color: #bbb; margin-top: 25px; }
+  .author-notes-feature-note { color: var(--color-text-primary) !important; font: italic 20px/1.5 Georgia, serif !important; margin-top: 18px !important; }
+  .author-notes-other-work { display: grid; grid-template-columns: repeat(3, 1fr); gap: 35px; }
+  .author-notes-project { border-top: 1px solid #555; padding-top: 22px; }
+  .author-notes-project h3 { font: 400 27px/1.16 Georgia, serif; letter-spacing: -.025em; margin: 21px 0 20px; }
+  .author-notes-project h3 a { display: block; }
+  .author-notes-project h3 a:hover { color: #e7a9b4; }
+  .author-notes-project h3 span { color: var(--notes-red); display: inline-block; margin-left: 9px; font: 20px var(--font-sans); transition: transform var(--transition-base); }
+  .author-notes-project a:hover span { transform: translate(3px, -3px); }
+  .author-notes-project > p { font: 9px/1.8 var(--font-mono); color: var(--color-text-secondary); }
+  .author-notes-all { margin-top: 35px; }
+  .author-notes-working { border-top: 1px solid #555; border-bottom: 1px solid #555; padding: 60px 0 70px; display: grid; grid-template-columns: 1fr .85fr; gap: 100px; }
+  .author-notes-working h2 { font: 400 43px/1.1 Georgia, serif; letter-spacing: -.04em; margin-top: 24px; }
+  .author-notes-working h2 em { color: #d5b6bc; }
+  .author-notes-principles { padding-top: 30px; }
+  .author-notes-principles p { font-size: 13px; line-height: 1.8; color: var(--color-text-secondary); padding: 0 0 21px; margin: 0 0 21px; border-bottom: 1px solid #292929; }
+  .author-notes-principles p:last-child { border: 0; margin: 0; padding: 0; }
+  .author-notes-principles strong { font-weight: 500; color: var(--color-text-primary); }
+  .author-notes-footer { padding: 55px 0 35px; }
+  .author-notes-footer-note { color: var(--color-text-secondary); font: 10px/1.9 var(--font-mono); }
+  .author-notes-contact { position: relative; display: block; width: fit-content; font: 400 clamp(42px, 6vw, 74px)/1.05 Georgia, serif; letter-spacing: -.04em; margin-top: 28px; padding-right: 85px; }
+  .author-notes-contact em { color: var(--notes-red); }
+  .author-notes-contact > span { position: absolute; right: 0; top: 0; font: 70px var(--font-sans); transition: transform var(--transition-base); }
+  .author-notes-contact:hover > span { transform: translate(5px, -5px); }
+  .author-notes-footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 65px; font: 10px var(--font-mono); color: var(--color-text-secondary); }
+  .author-notes-footer-bottom > div { display: flex; gap: 27px; }
+  .author-notes-signature { font: italic 52px Georgia, serif; color: var(--color-text-primary); letter-spacing: -.09em; }
+  @media (max-width: 900px) {
+    .author-notes { padding: 0 30px; }
+    .author-notes-header nav { gap: 20px; }
+    .author-notes-introduction, .author-notes-feature { grid-template-columns: .5fr 1fr; gap: 40px; }
+    .author-notes-working { gap: 40px; }
+    .author-notes-photo { height: 380px; }
+    .author-notes-photo figcaption { font-size: 22px; }
+    .author-notes-other-work { gap: 22px; }
+  }
+  @media (max-width: 650px) {
+    .author-notes { padding: 0 22px; }
+    .author-notes-header { flex-wrap: wrap; gap: 17px; padding: 22px 0; }
+    .author-notes-monogram { font-size: 53px; }
+    .author-notes-header > p { font-size: 9px; padding-left: 16px; }
+    .author-notes-header > p span { font-size: 9px; }
+    .author-notes-header nav { width: 100%; justify-content: space-between; margin: 0; font-size: 11px; }
+    .author-notes-header nav a { padding: 4px 0; }
+    .author-notes-language { padding: 4px 6px !important; }
+    .author-notes-cover { padding-top: 24px; }
+    .author-notes-title-line > span:first-child { font-size: 7px; letter-spacing: 0; }
+    .author-notes-title-line > span:last-child { font-size: 15px; }
+    .author-notes h1 { font-size: clamp(40px, 10.8vw, 65px); margin: 31px 0; line-height: 1.02; }
+    .author-notes-photo { height: 390px; }
+    .author-notes-photo > img { object-position: 53% 35%; }
+    .author-notes-photo-credit { top: 20px; left: 16px; font-size: 8px; }
+    .author-notes-photo-credit svg { width: 50px; }
+    .author-notes-photo figcaption { font-size: 22px; right: 17px; bottom: 20px; }
+    .author-notes-introduction, .author-notes-feature { display: block; }
+    .author-notes-introduction { padding: 24px 0 50px; }
+    .author-notes-intro-label { margin-bottom: 26px; }
+    .author-notes-introduction > div > p:first-child { font-size: 22px; }
+    .author-notes-section-label { align-items: start; }
+    .author-notes-section-label > span { max-width: 110px; font-size: 15px; text-align: right; }
+    .author-notes-section-label h2 { font-size: 9px; line-height: 1.7; }
+    .author-notes-feature { padding: 35px 0; }
+    .author-notes-feature-aside > p { margin-top: 7px; font-size: 10px; }
+    .author-notes-sidenote, .author-notes-feature-aside > svg { display: none; }
+    .author-notes-feature-story { margin-top: 30px; }
+    .author-notes-feature-story > h3 { font-size: 53px; }
+    .author-notes-other-work { display: block; }
+    .author-notes-project { margin-bottom: 32px; }
+    .author-notes-project h3 { font-size: 27px; max-width: 340px; margin-top: 15px; }
+    .author-notes-work { padding-bottom: 45px; }
+    .author-notes-working { display: block; padding: 40px 0; }
+    .author-notes-working h2 { font-size: 37px; }
+    .author-notes-principles { margin-top: 10px; }
+    .author-notes-contact { font-size: 42px; padding-right: 36px; }
+    .author-notes-contact > span { font-size: 30px; }
+    .author-notes-footer-bottom { flex-wrap: wrap; margin-top: 40px; gap: 17px; }
+    .author-notes-footer-bottom > span:first-child { flex-basis: 100%; }
+    .author-notes-signature { font-size: 39px; }
+  }
+</style>

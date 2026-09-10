@@ -1,32 +1,11 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import CinematicHero from "../../components/CinematicHero.astro";
-import FeaturedProjects from "../../components/FeaturedProjects.astro";
-import HowIWork from "../../components/HowIWork.astro";
-import AboutTeaser from "../../components/AboutTeaser.astro";
-import ContactCTA from "../../components/ContactCTA.astro";
-import ServicesPreview from "../../components/ServicesPreview.astro";
+import AuthorNotesHome from "../../components/AuthorNotesHome.astro";
 import { t } from "../../i18n";
 
 const lang = "es" as const;
 ---
 
-<BaseLayout lang={lang} title="Mauricio Suárez — Applied AI Engineer" description={t(lang, "meta.description.home")}>
-  <!-- 1. Hero: quién soy y qué construyo -->
-  <CinematicHero lang={lang} />
-  <hr class="section-divider" />
-  <!-- 2. Trabajo seleccionado -->
-  <FeaturedProjects lang={lang} />
-  <hr class="section-divider" />
-  <!-- 3. Cómo trabajo -->
-  <HowIWork lang={lang} />
-  <hr class="section-divider" />
-  <!-- 4. Trayectoria -->
-  <AboutTeaser lang={lang} />
-  <hr class="section-divider" />
-  <!-- 5. Contacto para oportunidades -->
-  <ContactCTA lang={lang} />
-  <hr class="section-divider" />
-  <!-- 6. Consultoría (secundaria) -->
-  <ServicesPreview lang={lang} />
+<BaseLayout lang={lang} title="Mauricio Suárez — Applied AI Engineer" description={t(lang, "meta.description.home")} showSiteChrome={false}>
+  <AuthorNotesHome lang={lang} />
 </BaseLayout>
