@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" role="img" aria-label="Comparación: un LLM de Sistema 2 lee, razona y escribe texto libre lento y caro; Jev de Sistema 1 decide con tipos, rápido y barato">
+  <!-- Input -->
+  <rect x="250" y="16" width="300" height="44" rx="10" fill="#131313" stroke="#2a2a2a"/>
+  <text x="400" y="43" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#a8a8a8">Mensaje de WhatsApp (estado)</text>
+  <line x1="290" y1="60" x2="200" y2="100" stroke="#2a2a2a" stroke-width="1.5"/>
+  <line x1="510" y1="60" x2="600" y2="100" stroke="#2a2a2a" stroke-width="1.5"/>
+
+  <!-- Left: System 2 LLM -->
+  <rect x="40" y="100" width="330" height="270" rx="12" fill="#131313" stroke="#2a2a2a"/>
+  <rect x="40" y="100" width="330" height="48" rx="12" fill="#181818"/>
+  <text x="205" y="130" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600" fill="#ececec">Sistema 2 · LLM</text>
+  <text x="205" y="182" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#a8a8a8">lee · razona · escribe</text>
+  <rect x="64" y="204" width="282" height="52" rx="8" fill="#0a0a0a" stroke="#1f1f1f"/>
+  <text x="205" y="226" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#707070">output</text>
+  <text x="205" y="245" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#ececec">texto libre → parsear y validar</text>
+  <text x="205" y="296" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#ececec">~1–3 s por decisión</text>
+  <text x="205" y="322" text-anchor="middle" font-family="Inter, ui-monospace, monospace" font-size="15" font-weight="600" fill="#c9a052">$$$</text>
+  <text x="205" y="350" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12.5" fill="#707070">puede alucinar estructura</text>
+
+  <!-- Right: System 1 Jev -->
+  <rect x="430" y="100" width="330" height="270" rx="12" fill="#131313" stroke="#C41E3A" stroke-opacity="0.45"/>
+  <rect x="430" y="100" width="330" height="48" rx="12" fill="#1c1113"/>
+  <text x="595" y="130" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="16" font-weight="600" fill="#E14B64">Sistema 1 · Jev</text>
+  <text x="595" y="182" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#a8a8a8">decide con tipos</text>
+  <rect x="454" y="204" width="282" height="52" rx="8" fill="#0a0a0a" stroke="#1f1f1f"/>
+  <text x="595" y="226" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#707070">output</text>
+  <text x="595" y="245" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#ececec">choice + probabilidad · sí/no · score</text>
+  <text x="595" y="296" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#ececec">p50 322 ms · p95 457 ms</text>
+  <text x="595" y="322" text-anchor="middle" font-family="Inter, ui-monospace, monospace" font-size="15" font-weight="600" fill="#E14B64">~$0.00006 / decisión</text>
+  <text x="595" y="350" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12.5" fill="#707070">el tipo está garantizado</text>
+</svg>

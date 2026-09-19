@@ -293,6 +293,36 @@ hr.section-divider {
 .prose-invert h2 { font-size: 1.375rem; }
 .prose-invert h3 { font-size: 1.125rem; }
 .prose-invert p { margin-bottom: 1.25em; }
+.prose-invert img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 2rem auto 0.75rem;
+  border: 1px solid var(--color-border-primary);
+  border-radius: 10px;
+  background: var(--color-bg-secondary);
+}
+.prose-invert p:has(> img) { margin-bottom: 0.65rem; }
+.prose-invert p:has(> img) + p {
+  margin-bottom: 2rem;
+  color: var(--color-text-tertiary);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+@media (max-width: 640px) {
+  .prose-invert p:has(> img[src*="/articles/typesafe-jev/"]) {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    padding-bottom: 0.6rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border-secondary) transparent;
+  }
+  .prose-invert p:has(> img[src*="/articles/typesafe-jev/"]) img {
+    width: 520px;
+    max-width: none;
+    margin-top: 0;
+  }
+}
 .prose-invert ul,
 .prose-invert ol {
   margin-bottom: 1.25em;

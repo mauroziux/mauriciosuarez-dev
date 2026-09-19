@@ -6,6 +6,7 @@ routeSlug: "typesafe-jev"
 tags: ["integracion-ia", "llm", "evaluacion", "arquitectura", "automatizacion"]
 publishedDate: 2026-09-19
 draft: false
+ogImage: "/articles/typesafe-jev/og.png"
 ---
 
 Esta semana probé un modelo de IA que no puede generar ni una palabra. Ni un "hola". Y esa es exactamente la razón por la que me interesa para producción.
@@ -14,9 +15,13 @@ Se llama [Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev), 
 
 Jev no genera texto. Recibe un estado (un mensaje, un JSON, un contexto) y un set de preguntas tipadas, y devuelve respuestas estructuradas: una elección con su distribución de probabilidades, un puntaje sobre una rúbrica, o un sí/no con probabilidad. Todo en paralelo, en una sola llamada, sin alucinar estructura — matemáticamente no puede: el tipo está garantizado. El nombre viene de William Stanley Jevons: cada orden de magnitud que baja el costo de la inteligencia habilita órdenes de magnitud de nuevos casos de uso.
 
+![Comparación entre un LLM de Sistema 2 que produce texto libre y Jev de Sistema 1 que devuelve decisiones tipadas](/articles/typesafe-jev/sistema-1-vs-sistema-2.svg)
+
+*No son modelos competidores: el LLM conserva el razonamiento y la redacción; Jev resuelve decisiones estructuradas con una forma de output que el código puede consumir directamente. En celular, deslizá los gráficos horizontalmente para verlos completos.*
+
 ## Por qué le importa a una empresa de limpieza
 
-Mi caso de prueba es real: el WhatsApp de reservas de [una empresa de limpieza que automatizo](/es/proyectos/maltacleaners/) lo atiende un concierge autónomo. Cada turno de conversación pasa por un clasificador contextual con **24 categorías de intención** (cotización, cancelación, recibo, postulante de trabajo, pedido de humano, queja, etc.).
+Mi caso de prueba es real: el WhatsApp de reservas de [MaltaClean](https://malta-cleaners.com) — una empresa de limpieza que automatizo ([caso completo](/es/proyectos/maltacleaners/)) — lo atiende un concierge autónomo. Cada turno de conversación pasa por un clasificador contextual con **24 categorías de intención** (cotización, cancelación, recibo, postulante de trabajo, pedido de humano, queja, etc.).
 
 ¿Qué mejora un modelo así acá? Nada de ciencia ficción — las tres cosas que duele en cualquier empresa de servicios:
 
@@ -51,11 +56,15 @@ Después, la comparación pareada contra el clasificador productivo real (DeepSe
 - Categorías ambiguas: acá gana el productivo (80.8% vs. 75.6%)
 - Acuerdo entre ambos: solo 69.9% — **50 casos donde Jev acierta y el productivo no**
 
+![Gráfico de barras comparando la precisión de Jev y del clasificador productivo en el mismo corpus](/articles/typesafe-jev/precision-comparada.svg)
+
+*El subset limpio elimina el sesgo de contexto: el dry-run del clasificador productivo no podía pasar contexto de cliente en 117 casos del corpus completo.*
+
 ## La auditoría que casi no hago (y por qué era obligatoria)
 
 Había un problema metodológico incómodo: **el mismo agente había escrito las etiquetas y la rúbrica de Jev**. Sesgo correlacionado garantizado. La solución estándar: un segundo anotador ciego de otra familia de modelo, viendo solo la taxonomía, sin mis etiquetas. 292 casos anotados a ciegas.
 
-Resultado: 86.6% de acuerdo en intención, 99.7% en emoción, cero discrepancias en "¿es postulante?". Y el hallazgo incómodo: al re-corregar contra la verdad del anotador independiente, la ventaja de Jev **creció** (86.6% vs. 72.3% = +14.3pp). Mi sesgo, si existía, era conservador.
+Resultado: 86.6% de acuerdo en intención, 99.7% en emoción, cero discrepancias en "¿es postulante?". Y el hallazgo incómodo: al recalcular contra la verdad del anotador independiente, la ventaja de Jev **creció** (86.6% vs. 72.3% = +14.3pp). Mi sesgo, si existía, era conservador.
 
 Pero lo mejor vino con un tercer modelo como desempate ciego en las 39 disputas: la adjudicación reveló que **varios "fallos" de Jev eran errores míos de etiquetado** — había marcado `fecha: no` en mensajes que decían "Saturday" o "6pm". Corregido mi propio trabajo, la señal de fecha pasó de 80.1% a **95.5%**. La lección de método: auditá tus etiquetas antes de auditar un modelo.
 
@@ -64,6 +73,10 @@ Pero lo mejor vino con un tercer modelo como desempate ciego en las 39 disputas:
 La intención mixta ("quiero cancelar pero vuelve a reservar") fue el fracaso más fructífero. Primera versión: **15.6%** contra un gate de 70%. La autopsia encontró la moraleja técnica del artículo entero: **la distribución de una pregunta exclusiva expresa "a qué se parece esto", no "qué más quiere el cliente"**. Para multi-etiqueta hacen falta preguntas sí/no por familia de intención — las docs de TypeSafe lo decían explícitamente y lo ignoré porque un smoke temprano tuvo suerte.
 
 La v2 agregó seis preguntas binarias (`quiere_cancelar`, `quiere_reservar`, `mencionar_pago`...) más rúbricas corregidas. Resultado: **71.4%**, gate superado. Y una confesión: el gate midió 44.4% durante horas hasta que descubrí que el bug estaba en **mi código de evaluación**, no en el modelo — 17 casos mixtos sin familias derivables contaban como fallados por diseño. Cuando un número se ve mal, auditá tu instrumento antes de auditárselo al modelo.
+
+![La intención mixta pasó de 15.6 por ciento a 71.4 por ciento al rediseñar las preguntas sin cambiar el modelo](/articles/typesafe-jev/intencion-mezcla.svg)
+
+*El modelo no cambió: una pregunta exclusiva responde «a qué se parece esto»; las preguntas por familia permiten capturar qué más quiere el cliente.*
 
 ## El estado final
 
@@ -83,6 +96,10 @@ La v2 agregó seis preguntas binarias (`quiere_cancelar`, `quiere_reservar`, `me
 Lo que **no** hice, también documentado: nada de datos reales de clientes todavía (el gate legal con el proveedor está pendiente — todo corrió sobre sintético), y el 89.6% en categorías de contexto es un empate estadístico con el umbral, no una victoria. La Fase 2 — Jev clasificando en shadow junto al productivo sobre tráfico real — queda para el próximo capítulo.
 
 ## Cómo se adopta (si los números aguantan)
+
+![Diagrama de la cascada del concierge: Jev resuelve casos claros, el LLM razona los ambiguos y un humano recibe las excepciones](/articles/typesafe-jev/cascada-concierge.svg)
+
+*La arquitectura no sustituye al concierge: le da una capa de decisiones rápidas y verificables antes de gastar razonamiento o atención humana.*
 
 1. **Shadow primero**: Jev clasifica en paralelo al productivo, sin efecto alguno. Se mide acuerdo, calibración y latencia sobre volumen real.
 2. **Cascada después**: Jev resuelve la masa fácil con confianza alta; lo ambiguo escala al LLM. El LLM pasa de "clasificador de todo" a "razonador de los casos difíciles".
