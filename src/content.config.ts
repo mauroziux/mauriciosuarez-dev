@@ -34,4 +34,33 @@ const projects = defineCollection({
   }),
 });
 
-export const collections = { projects };
+const articles = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/articles" }),
+  schema: z
+    .object({
+      title: z.string(),
+      description: z.string(),
+      lang: z.enum(["en", "es"]),
+      routeSlug: z
+        .string()
+        .regex(
+          /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+          "routeSlug must be a lowercase slug: lowercase letters and digits separated by single hyphens",
+        ),
+      tags: z.array(z.string()).default([]),
+      publishedDate: z.coerce.date(),
+      updatedDate: z.coerce.date().optional(),
+      draft: z.boolean().default(false),
+      ogImage: z.string().optional(),
+      experimentUrl: z.string().optional(),
+    })
+    .refine(
+      (data) => data.updatedDate === undefined || data.updatedDate >= data.publishedDate,
+      {
+        message: "updatedDate must be on or after publishedDate",
+        path: ["updatedDate"],
+      },
+    ),
+});
+
+export const collections = { projects, articles };
