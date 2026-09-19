@@ -1,8 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { t } from "../../i18n";
+import { t, getRoute } from "../../i18n";
+import { getPublishedArticles, formatDateUTC, readingTimeMinutes } from "../../lib/articles";
+import type { Article } from "../../lib/articles";
 
 const lang = "en" as const;
+
+const articles: Article[] = await getPublishedArticles(lang);
+const rssUrl = "/en/rss.xml";
 
 const pillars = [
   { key: "writing.pillars.ai-eng", icon: "brain" },
@@ -44,12 +49,54 @@ const pillars = [
         ))}
       </div>
 
-      <!-- Empty state -->
-      <div class="animate-fade-up-delay-3 mt-16 text-center">
-        <div class="mx-auto max-w-md glass-card rounded-lg p-8">
-          <p class="text-(--color-text-secondary)">{t(lang, "writing.empty")}</p>
+      {/* Empty state */}
+      {articles.length > 0 ? (
+        <div class="mt-16">
+          <div class="flex flex-col gap-5">
+            {articles.map((article, i) => (
+              <a
+                href={`${getRoute(lang, "writing")}${article.data.routeSlug}/`}
+                class:list={[
+                  "glass-card group block rounded-lg p-6 transition-colors hover:border-(--color-accent-dim)",
+                  i === 0 ? "animate-fade-up" : i === 1 ? "animate-fade-up-delay-1" : "animate-fade-up-delay-2",
+                ]}
+              >
+                <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                  <h2 class="text-xl font-semibold text-(--color-text-primary) transition-colors group-hover:text-(--color-accent-light)">
+                    {article.data.title}
+                  </h2>
+                  <span class="font-mono text-xs text-(--color-text-tertiary)">
+                    {formatDateUTC(article.data.publishedDate, lang)} · {t(lang, "writing.readingTime").replace("{n}", String(readingTimeMinutes(article.body)))}
+                  </span>
+                </div>
+                <p class="mt-2 text-sm leading-relaxed text-(--color-text-secondary)">
+                  {article.data.description}
+                </p>
+                {article.data.tags.length > 0 && (
+                  <div class="mt-4 flex flex-wrap gap-1.5">
+                    {article.data.tags.map((tag: string) => <span class="tag">{tag}</span>)}
+                  </div>
+                )}
+              </a>
+            ))}
+          </div>
+          <div class="mt-8 text-center">
+            <a
+              href={rssUrl}
+              class="inline-flex items-center gap-1.5 text-xs text-(--color-text-tertiary) transition-colors hover:text-(--color-text-secondary)"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
+              {t(lang, "writing.rss")}
+            </a>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div class="animate-fade-up-delay-3 mt-16 text-center">
+          <div class="mx-auto max-w-md glass-card rounded-lg p-8">
+            <p class="text-(--color-text-secondary)">{t(lang, "writing.empty")}</p>
+          </div>
+        </div>
+      )}
     </div>
   </div>
 </BaseLayout>

@@ -184,6 +184,12 @@ export const ui = {
     "writing.pillars.arch": "System Architecture",
     "writing.empty": "Articles coming soon. Subscribe to be notified.",
     "writing.subscribe": "Stay updated →",
+    "writing.readingTime": "{n} min read",
+    "writing.published": "Published",
+    "writing.updated": "Updated",
+    "writing.backToList": "← All articles",
+    "writing.translationComing": "The translation of this article is on its way.",
+    "writing.rss": "RSS feed",
 
     // ── About Page ──
     "about.title": "About Me",
@@ -396,6 +402,12 @@ export const ui = {
     "writing.pillars.arch": "Arquitectura de Sistemas",
     "writing.empty": "Artículos próximamente. Suscríbete para ser notificado.",
     "writing.subscribe": "Mantente informado →",
+    "writing.readingTime": "{n} min de lectura",
+    "writing.published": "Publicado",
+    "writing.updated": "Actualizado",
+    "writing.backToList": "← Todos los artículos",
+    "writing.translationComing": "La traducción de este artículo está en camino.",
+    "writing.rss": "Feed RSS",
 
     // ── Página Sobre Mí ──
     "about.title": "Sobre mí",
