@@ -1,0 +1,43 @@
+---
+import { render } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ArticleDetail from "../../../components/ArticleDetail.astro";
+import { getRoute } from "../../../i18n";
+import type { Lang } from "../../../i18n";
+import { getPublishedArticles, getArticleTranslationMap } from "../../../lib/articles";
+import type { Article } from "../../../lib/articles";
+
+export async function getStaticPaths() {
+  const articles = await getPublishedArticles("en");
+  return articles.map((article) => ({
+    params: { slug: article.data.routeSlug },
+    props: { article },
+  }));
+}
+
+const lang = "en" as const;
+const alternateLang: Lang = "es";
+const { article } = Astro.props as { article: Article };
+const { Content } = await render(article);
+
+const translations = await getArticleTranslationMap(article.data.routeSlug);
+const sibling = translations[alternateLang];
+const siteOrigin = Astro.site?.origin ?? "https://mauriciosuarez.dev";
+const siblingPath = sibling
+  ? `${getRoute(alternateLang, "writing")}${sibling.data.routeSlug}/`
+  : undefined;
+---
+
+<BaseLayout
+  lang={lang}
+  title={article.data.title}
+  description={article.data.description}
+  ogType="article"
+  articlePublishedTime={article.data.publishedDate}
+  articleModifiedTime={article.data.updatedDate}
+  ogImage={article.data.ogImage}
+  alternateUrl={siblingPath ? `${siteOrigin}${siblingPath}` : null}
+  languageSwitchUrl={siblingPath ?? getRoute(alternateLang, "writing")}
+>
+  <ArticleDetail article={article} lang={lang} Content={Content} sibling={sibling} />
+</BaseLayout>

@@ -1,0 +1,102 @@
+---
+import { t, getRoute } from "../i18n";
+import type { Lang } from "../i18n";
+import { formatDateUTC, readingTimeMinutes, toISODate } from "../lib/articles";
+import type { Article } from "../lib/articles";
+
+interface Props {
+  article: Article;
+  lang: Lang;
+  Content: any;
+  /** Published translation in the alternate language, when it exists. */
+  sibling?: Article;
+}
+
+const { article, lang, Content, sibling } = Astro.props;
+const data = article.data;
+
+const minutes = readingTimeMinutes(article.body);
+const readingTimeLabel = t(lang, "writing.readingTime").replace("{n}", String(minutes));
+
+const siteOrigin = Astro.site?.origin ?? "https://mauriciosuarez.dev";
+const canonicalUrl = `${siteOrigin}${getRoute(lang, "writing")}${data.routeSlug}/`;
+const imageUrl =
+  data.ogImage && /^https?:\/\//.test(data.ogImage)
+    ? data.ogImage
+    : `${siteOrigin}${data.ogImage ?? "/og-image.png"}`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: data.title,
+  description: data.description,
+  datePublished: toISODate(data.publishedDate),
+  ...(data.updatedDate ? { dateModified: toISODate(data.updatedDate) } : {}),
+  inLanguage: lang,
+  mainEntityOfPage: { "@type": "WebPage", "@id": canonicalUrl },
+  author: { "@type": "Person", name: "Mauricio Suárez", url: siteOrigin },
+  image: imageUrl,
+  ...(data.tags.length > 0 ? { keywords: data.tags.join(", ") } : {}),
+};
+// Escape "<" so a "</script>" sequence inside content can't break out of the JSON-LD script.
+const jsonLdScript = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
+---
+
+<script type="application/ld+json" set:html={jsonLdScript} />
+
+<section class="section-padding pt-10 md:pt-14">
+  <div class="mx-auto max-w-4xl px-4">
+    <a class="link-accent text-sm font-medium" href={getRoute(lang, "writing")}>
+      {t(lang, "writing.backToList")}
+    </a>
+
+    <header class="animate-fade-up mt-6">
+      <h1 class="text-3xl font-bold tracking-tight text-(--color-text-primary) sm:text-4xl">
+        {data.title}
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-(--color-text-secondary)">{data.description}</p>
+
+      <div class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-(--color-text-tertiary)">
+        <span>
+          {t(lang, "writing.published")}:
+          <time datetime={toISODate(data.publishedDate)}>{formatDateUTC(data.publishedDate, lang)}</time>
+        </span>
+        {data.updatedDate && (
+          <span>
+            · {t(lang, "writing.updated")}:
+            <time datetime={toISODate(data.updatedDate)}>{formatDateUTC(data.updatedDate, lang)}</time>
+          </span>
+        )}
+        <span aria-hidden="true">·</span>
+        <span>{readingTimeLabel}</span>
+      </div>
+
+      {data.tags.length > 0 && (
+        <div class="mt-4 flex flex-wrap gap-1.5">
+          {data.tags.map((tag: string) => <span class="tag">{tag}</span>)}
+        </div>
+      )}
+
+      {data.experimentUrl && (
+        <div class="mt-6">
+          <a href={data.experimentUrl} class="btn-tactile" target="_blank" rel="noopener noreferrer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+            {t(lang, "work.viewProject")}
+          </a>
+        </div>
+      )}
+    </header>
+
+    {!sibling && (
+      <div class="animate-fade-up-delay-1 mt-8">
+        <div class="glass-card rounded-lg p-4 text-sm text-(--color-text-secondary)">
+          {t(lang, "writing.translationComing")}
+        </div>
+      </div>
+    )}
+
+    <article class="prose prose-invert mx-auto mt-12 max-w-[72ch]">
+      <Content />
+    </article>
+  </div>
+</section>
