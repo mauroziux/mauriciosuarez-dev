@@ -35,7 +35,7 @@ Ojo: a este volumen el costo directo del clasificador es de $4–11 al mes — e
 
 ## El experimento: 292 casos, gates cuantificados
 
-Armé una evaluación offline con corpus sintético estratificado (cero datos reales de clientes — son PII y no van a un proveedor nuevo sin un gate legal explícito): **292 casos** que costaron **$0.02** en total, con gates numéricos definidos antes de correr nada.
+Armé una evaluación offline con corpus sintético estratificado (cero datos reales de clientes; la evaluación corrió sobre datos sintéticos): **292 casos** que costaron **$0.02** en total, con gates numéricos definidos antes de correr nada.
 
 Primero, el smoke inicial que me hizo ilusiones — cinco de cinco casos perfectos:
 
@@ -93,7 +93,7 @@ La v2 agregó seis preguntas binarias (`quiere_cancelar`, `quiere_reservar`, `me
 | Costo por decisión | ~$0.00006 |
 | Latencia p95 (path productivo) | 457ms |
 
-Lo que **no** hice, también documentado: nada de datos reales de clientes todavía (el gate legal con el proveedor está pendiente — todo corrió sobre sintético), y el 89.6% en categorías de contexto es un empate estadístico con el umbral, no una victoria. La Fase 2 — Jev clasificando en shadow junto al productivo sobre tráfico real — queda para el próximo capítulo.
+Lo que **no** hice, también documentado: no usé datos reales de clientes — todo corrió sobre datos sintéticos —, y el 89.6% en categorías de contexto es un empate estadístico con el umbral, no una victoria. La Fase 2 — Jev clasificando en shadow junto al productivo sobre tráfico real — queda para el próximo capítulo.
 
 ## Cómo se adopta (si los números aguantan)
 

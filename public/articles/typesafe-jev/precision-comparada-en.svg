@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 440" role="img" aria-label="Accuracy chart comparing Jev with the production classifier on 292 synthetic cases: Jev leads overall, on the clean subset, and with context; production leads on ambiguous cases.">
+  <text x="24" y="33" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="600" fill="#ececec">Accuracy comparison — same corpus, 292 cases</text>
+
+  <rect x="24" y="52" width="14" height="14" rx="3" fill="#C41E3A"/>
+  <text x="44" y="64" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#a8a8a8">Jev</text>
+  <rect x="100" y="52" width="14" height="14" rx="3" fill="#4a4a4a"/>
+  <text x="120" y="64" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#a8a8a8">Production classifier</text>
+
+  <!-- Axis guides -->
+  <line x1="235" y1="88" x2="235" y2="407" stroke="#2a2a2a" stroke-width="1"/>
+  <line x1="477" y1="88" x2="477" y2="407" stroke="#1f1f1f" stroke-width="1"/>
+  <line x1="720" y1="88" x2="720" y2="407" stroke="#1f1f1f" stroke-width="1"/>
+
+  <!-- Overall -->
+  <text x="225" y="115" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Overall</text>
+  <rect x="235" y="100" width="457" height="20" rx="4" fill="#C41E3A"/>
+  <text x="684" y="115" text-anchor="end" font-family="Inter, ui-monospace, monospace" font-size="12.5" font-weight="600" fill="#ffffff">94.2%</text>
+  <rect x="235" y="126" width="386" height="20" rx="4" fill="#4a4a4a"/>
+  <text x="629" y="141" font-family="Inter, ui-monospace, monospace" font-size="12.5" fill="#a8a8a8">79.5%</text>
+
+  <!-- Clean subset -->
+  <text x="225" y="195" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Clean subset*</text>
+  <rect x="235" y="180" width="413" height="20" rx="4" fill="#C41E3A"/>
+  <text x="640" y="195" text-anchor="end" font-family="Inter, ui-monospace, monospace" font-size="12.5" font-weight="600" fill="#ffffff">85.1%</text>
+  <rect x="235" y="206" width="319" height="20" rx="4" fill="#4a4a4a"/>
+  <text x="562" y="221" font-family="Inter, ui-monospace, monospace" font-size="12.5" fill="#a8a8a8">65.7%</text>
+
+  <!-- Context -->
+  <text x="225" y="275" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">With context</text>
+  <rect x="235" y="260" width="434" height="20" rx="4" fill="#C41E3A"/>
+  <text x="661" y="275" text-anchor="end" font-family="Inter, ui-monospace, monospace" font-size="12.5" font-weight="600" fill="#ffffff">89.4%</text>
+  <rect x="235" y="286" width="330" height="20" rx="4" fill="#4a4a4a"/>
+  <text x="573" y="301" font-family="Inter, ui-monospace, monospace" font-size="12.5" fill="#a8a8a8">68.1%</text>
+
+  <!-- Ambiguous -->
+  <text x="225" y="355" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Ambiguous</text>
+  <rect x="235" y="340" width="367" height="20" rx="4" fill="#C41E3A"/>
+  <text x="594" y="355" text-anchor="end" font-family="Inter, ui-monospace, monospace" font-size="12.5" font-weight="600" fill="#ffffff">75.6%</text>
+  <rect x="235" y="366" width="392" height="20" rx="4" fill="#4a4a4a"/>
+  <text x="635" y="381" font-family="Inter, ui-monospace, monospace" font-size="12.5" fill="#c9a052">80.8%</text>
+  <text x="235" y="405" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#c9a052">↳ only segment where production wins</text>
+
+  <text x="235" y="430" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">0%</text>
+  <text x="477" y="430" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">50%</text>
+  <text x="720" y="430" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">100%</text>
+</svg>

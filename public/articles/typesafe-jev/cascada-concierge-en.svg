@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 490" role="img" aria-label="Concierge cascade: Jev resolves high-confidence cases, the LLM reasons about ambiguous cases, and Jev can verify LLM decisions before escalation to a human.">
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#707070"/>
+    </marker>
+  </defs>
+
+  <rect x="270" y="18" width="260" height="42" rx="21" fill="#131313" stroke="#2a2a2a"/>
+  <text x="400" y="44" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="14" fill="#a8a8a8">WhatsApp message</text>
+  <line x1="400" y1="60" x2="400" y2="92" stroke="#707070" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="300" y="95" width="200" height="44" rx="10" fill="#131313" stroke="#2a2a2a"/>
+  <text x="400" y="122" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#ececec">Concierge</text>
+  <line x1="400" y1="139" x2="400" y2="170" stroke="#707070" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <rect x="210" y="173" width="380" height="70" rx="12" fill="#1c1113" stroke="#C41E3A" stroke-opacity="0.6"/>
+  <text x="400" y="201" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="600" fill="#E14B64">Jev · first decision layer</text>
+  <text x="400" y="223" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12.5" fill="#a8a8a8">typed output · calibrated probabilities · p95 457 ms</text>
+
+  <!-- High-confidence path -->
+  <path d="M 310 243 L 195 275 L 195 292" fill="none" stroke="#707070" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="112" y="271" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#707070">High confidence</text>
+  <rect x="40" y="295" width="310" height="72" rx="10" fill="#131313" stroke="#2a2a2a"/>
+  <text x="195" y="324" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#ececec">Automatic reply</text>
+  <text x="195" y="347" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#707070">quote · cancellation · receipt</text>
+
+  <!-- Ambiguous path -->
+  <path d="M 490 243 L 605 275 L 605 292" fill="none" stroke="#707070" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="605" y="271" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#707070">Ambiguous or low confidence</text>
+  <rect x="450" y="295" width="310" height="72" rx="10" fill="#131313" stroke="#2a2a2a"/>
+  <text x="605" y="324" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="15" fill="#ececec">LLM · reasoning</text>
+  <text x="605" y="347" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#707070">mixed intent · context · exception</text>
+
+  <!-- Verification and escalation -->
+  <path d="M 450 332 L 390 332 L 390 426" fill="none" stroke="#c9a052" stroke-opacity="0.8" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arr)"/>
+  <rect x="40" y="398" width="350" height="56" rx="10" fill="#131313" stroke="#c9a052" stroke-opacity="0.6"/>
+  <text x="215" y="422" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#c9a052">Jev also verifies the LLM</text>
+  <text x="215" y="441" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#a8a8a8">second opinion: ~$0.06/month at this volume</text>
+
+  <line x1="605" y1="367" x2="605" y2="397" stroke="#707070" stroke-width="1.5" marker-end="url(#arr)"/>
+  <rect x="450" y="398" width="310" height="56" rx="10" fill="#131313" stroke="#2a2a2a"/>
+  <text x="605" y="422" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Human only when needed</text>
+  <text x="605" y="441" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">urgent complaint · disagreement · sensitive case</text>
+
+  <text x="400" y="472" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#707070">Cheap, calibrated decisions where they suffice. Expensive reasoning where it is needed.</text>
+</svg>

@@ -87,6 +87,18 @@ const jsonLdScript = JSON.stringify(jsonLd).replace(/</g, "\\u003c");
       )}
     </header>
 
+    {data.ogImage && (
+      <figure class="article-hero">
+        <img
+          src={data.ogImage}
+          alt={data.title}
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </figure>
+    )}
+
     {!sibling && (
       <div class="animate-fade-up-delay-1 mt-8">
         <div class="glass-card rounded-lg p-4 text-sm text-(--color-text-secondary)">
