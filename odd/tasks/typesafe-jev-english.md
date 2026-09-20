@@ -19,8 +19,8 @@ Create the English counterpart of the published Spanish TypeSafe Jev article, pr
       Render `ogImage` as a wide editorial hero beneath the article title/lede through the shared `ArticleDetail` component, with responsive styling that belongs to the existing dark editorial system. In both article variants, retain the fact that the evaluation used synthetic data but remove all references to a pending legal/provider gate.
 - [x] T4: Validate and visually review both language variants
       Automated production validation passed. Desktop English and mobile English/Spanish browser checks confirmed hero framing, no document overflow, and a 520px horizontal-scroll fallback for each text-heavy graphic.
-- [ ] T5: Commit the work units without publishing
-      Ready to commit content/assets/tracking on `feat/articles-infrastructure`. Do not push, fast-forward `main`, or deploy: publication of this new translation remains a separate user decision.
+- [x] T5: Commit the work units without publishing
+      Committed content/assets/tracking on `feat/articles-infrastructure` as `f2566c2`. Did not push, fast-forward `main`, or deploy: publication of this new translation remains a separate user decision.
 
 ## Evidence
 
@@ -30,7 +30,7 @@ Create the English counterpart of the published Spanish TypeSafe Jev article, pr
 - `git diff --check`: PASS.
 - Browser visual review (parent fallback; `gentle-ai-verify` launch was rejected by the harness before execution): desktop English screenshot reviewed; mobile English and Spanish screenshots reviewed; hero stayed full width, document width equaled viewport width, and each article graphic reported `overflow-x: auto`, `scrollWidth: 520`, `clientWidth: 358` on iPhone 14 emulation.
 - Pre-commit status inspection: `.gitignore` contains the pre-existing local `.atl/` ignore change and remains intentionally excluded.
-- Intended work-unit commit subject: `feat(articles): add English TypeSafe Jev article` (commit identity will be reported after creation).
+- Work-unit commit: `f2566c2 feat(articles): add English TypeSafe Jev article`.
 
 ## Notes
 
