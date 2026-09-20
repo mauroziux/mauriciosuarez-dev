@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="TypeSafe hero: Jev turns a WhatsApp message into structured decisions that software can use directly.">
+  <defs>
+    <pattern id="grid-a-en" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#fff" stroke-opacity=".035"/>
+    </pattern>
+    <linearGradient id="line-a-en" x1="0" x2="1">
+      <stop offset="0" stop-color="#C41E3A"/><stop offset="1" stop-color="#E14B64"/>
+    </linearGradient>
+    <linearGradient id="panel-a-en" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#191113"/><stop offset="1" stop-color="#0f1011"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#grid-a-en)"/>
+  <rect x="58" y="74" width="7" height="362" rx="3.5" fill="url(#line-a-en)"/>
+
+  <text x="94" y="112" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="700" letter-spacing="2.2" fill="#E14B64">EXPERIMENT · TYPESAFE AI</text>
+  <text x="94" y="218" font-family="DejaVu Sans, sans-serif" font-size="76" font-weight="700" fill="#ececec">TypeSafe</text>
+  <rect x="96" y="240" width="152" height="4" rx="2" fill="#E14B64"/>
+  <text x="94" y="296" font-family="DejaVu Sans, sans-serif" font-size="29" fill="#a8a8a8">Jev: decisions code can use</text>
+  <text x="94" y="351" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#707070">SYSTEM ONE · does not write · decides with types</text>
+
+  <rect x="94" y="392" width="244" height="43" rx="21.5" fill="#1c1113" stroke="#C41E3A" stroke-opacity=".6"/>
+  <text x="216" y="420" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="700" fill="#E14B64">TYPE-SAFE OUTPUT</text>
+
+  <rect x="735" y="76" width="370" height="360" rx="16" fill="url(#panel-a-en)" stroke="#2a2a2a"/>
+  <text x="770" y="116" font-family="DejaVu Sans Mono, monospace" font-size="13" fill="#707070">INPUT · WHATSAPP</text>
+  <rect x="770" y="133" width="300" height="48" rx="9" fill="#0a0a0a" stroke="#2a2a2a"/>
+  <text x="790" y="163" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#ececec">Can you come Friday?</text>
+  <path d="M920 181V211" stroke="#707070" stroke-width="1.5"/>
+  <path d="M914 205L920 213L926 205" fill="none" stroke="#707070" stroke-width="1.5"/>
+  <text x="770" y="242" font-family="DejaVu Sans Mono, monospace" font-size="13" fill="#E14B64">JEV · TYPED DECISIONS</text>
+  <rect x="770" y="260" width="300" height="132" rx="9" fill="#0a0a0a" stroke="#392027"/>
+  <text x="792" y="291" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#ececec">mentions_date</text>
+  <text x="1048" y="291" text-anchor="end" font-family="DejaVu Sans Mono, monospace" font-size="16" font-weight="700" fill="#E14B64">yes</text>
+  <line x1="792" y1="307" x2="1048" y2="307" stroke="#2a2a2a"/>
+  <text x="792" y="337" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#ececec">needs_human</text>
+  <text x="1048" y="337" text-anchor="end" font-family="DejaVu Sans Mono, monospace" font-size="16" font-weight="700" fill="#a8a8a8">no</text>
+  <line x1="792" y1="353" x2="1048" y2="353" stroke="#2a2a2a"/>
+  <text x="792" y="380" font-family="DejaVu Sans Mono, monospace" font-size="16" fill="#ececec">shape</text>
+  <text x="1048" y="380" text-anchor="end" font-family="DejaVu Sans Mono, monospace" font-size="16" font-weight="700" fill="#c9a052">guaranteed</text>
+
+  <line x1="94" y1="487" x2="1104" y2="487" stroke="#2a2a2a"/>
+  <text x="94" y="537" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#E14B64">TYPE SAFE</text>
+  <text x="94" y="568" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#a8a8a8">structured output by construction</text>
+  <text x="560" y="537" font-family="DejaVu Sans Mono, monospace" font-size="31" font-weight="700" fill="#E14B64">457 ms</text>
+  <text x="560" y="568" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#a8a8a8">p95 on production path</text>
+  <text x="1104" y="603" text-anchor="end" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#707070">mauriciosuarez.dev · writing</text>
+</svg>

@@ -6,12 +6,14 @@ routeSlug: "typesafe-jev"
 tags: ["integracion-ia", "llm", "evaluacion", "arquitectura", "automatizacion"]
 publishedDate: 2026-09-19
 draft: false
-ogImage: "/articles/typesafe-jev/og-en.png"
+ogImage: "/articles/typesafe-jev/hero-typesafe-en.png"
 ---
 
 This week I tested an AI model that cannot generate a single word. Not even “hello.” That is exactly why I want it in production.
 
 It is called [Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev), it comes from [TypeSafe AI](https://docs.typesafe.ai/), and it is the first example of a new class they call **System One Models** (after Kahneman’s System 1: fast, intuitive thought). The thesis is simple and provocative: today’s LLMs are superhuman at writing, but real automation needs something else—**structured decisions that software can use directly**.
+
+**In plain English:** Jev does not chat or write replies. It reads an input—say, a WhatsApp message—and returns structured decisions that software can use directly: whether it is a pricing question, mentions a date, asks to cancel, or needs a human. It is a fast typed-classification layer—the possible fields and values are defined in advance—not a replacement for the LLM that reasons and writes.
 
 Jev does not generate text. It receives a state (a message, JSON, context) and a set of typed questions, then returns structured answers: a choice with its probability distribution, a score against a rubric, or a yes/no answer with a probability. Everything runs in parallel in one call, with no hallucinated structure—the type is guaranteed by construction. The name comes from William Stanley Jevons: every order-of-magnitude reduction in the cost of intelligence enables orders of magnitude of new use cases.
 

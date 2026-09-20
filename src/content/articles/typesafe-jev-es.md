@@ -6,12 +6,14 @@ routeSlug: "typesafe-jev"
 tags: ["integracion-ia", "llm", "evaluacion", "arquitectura", "automatizacion"]
 publishedDate: 2026-09-19
 draft: false
-ogImage: "/articles/typesafe-jev/og.png"
+ogImage: "/articles/typesafe-jev/hero-typesafe-es.png"
 ---
 
 Esta semana probé un modelo de IA que no puede generar ni una palabra. Ni un "hola". Y esa es exactamente la razón por la que me interesa para producción.
 
 Se llama [Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev), es de [TypeSafe AI](https://docs.typesafe.ai/), y es el primer exponente de una clase nueva que ellos llaman **System One Models** (por el Sistema 1 de Kahneman: el pensamiento rápido e intuitivo). La tesis es simple y provocadora: los LLM actuales son súper-humanos escribiendo, pero la automatización real necesita otra cosa — **decisiones estructuradas que el software pueda usar directamente**.
+
+**En pocas palabras:** Jev no conversa ni redacta respuestas. Lee una entrada —por ejemplo, un mensaje de WhatsApp— y devuelve decisiones estructuradas que el software puede usar directamente: si es una consulta de precio, si menciona una fecha, si quiere cancelar o si necesita hablar con una persona. Es una capa rápida de clasificación tipada —los campos y valores posibles están definidos de antemano—, no un reemplazo del LLM que razona y escribe.
 
 Jev no genera texto. Recibe un estado (un mensaje, un JSON, un contexto) y un set de preguntas tipadas, y devuelve respuestas estructuradas: una elección con su distribución de probabilidades, un puntaje sobre una rúbrica, o un sí/no con probabilidad. Todo en paralelo, en una sola llamada, sin alucinar estructura — matemáticamente no puede: el tipo está garantizado. El nombre viene de William Stanley Jevons: cada orden de magnitud que baja el costo de la inteligencia habilita órdenes de magnitud de nuevos casos de uso.
 
