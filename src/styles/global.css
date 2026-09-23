@@ -352,7 +352,7 @@ hr.section-divider {
 .prose-invert p:has(> img) { margin-bottom: 0.65rem; }
 .prose-invert p:has(> img) + p {
   margin-bottom: 2rem;
-  color: var(--color-text-tertiary);
+  color: var(--color-text-secondary);
   font-size: 0.875rem;
   line-height: 1.55;
 }
