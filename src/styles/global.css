@@ -309,6 +309,37 @@ hr.section-divider {
 .prose-invert h2 { font-size: 1.375rem; }
 .prose-invert h3 { font-size: 1.125rem; }
 .prose-invert p { margin-bottom: 1.25em; }
+.prose-invert table {
+  width: 100%;
+  margin: 1.75rem 0;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+.prose-invert th,
+.prose-invert td {
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--color-border-primary);
+}
+.prose-invert th {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  text-align: left;
+}
+.prose-invert th:first-child,
+.prose-invert td:first-child { width: 50%; }
+.prose-invert td { color: var(--color-text-secondary); }
+.prose-invert th:not(:first-child),
+.prose-invert td:not(:first-child) {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .prose-invert table { font-size: 0.8125rem; }
+  .prose-invert th,
+  .prose-invert td { padding: 0.5rem 0.375rem; }
+}
 .prose-invert img {
   display: block;
   width: 100%;
