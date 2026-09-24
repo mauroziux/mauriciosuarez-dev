@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">A cheaper proposal meets the test results</title>
+  <desc id="desc">An attractive price, shown as a tag with a euro symbol, sits behind an evaluation sheet showing four matches out of eight. A coral stamp says “NO MIGRATION”. Editorial illustration, not customer data.</desc>
+  <defs>
+    <linearGradient id="background" x2="1" y2="1"><stop stop-color="#fffaf0"/><stop offset="1" stop-color="#f6ecdb"/></linearGradient>
+    <linearGradient id="tag" x2=".8" y2="1"><stop stop-color="#d4ebe4"/><stop offset="1" stop-color="#a8d0c5"/></linearGradient>
+    <linearGradient id="paper" x2="1" y2="1"><stop stop-color="#fffdf5"/><stop offset="1" stop-color="#f8f0e1"/></linearGradient>
+    <pattern id="ruling" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M0 47H48" stroke="#bfa88b" stroke-width="1" opacity=".16"/></pattern>
+    <pattern id="grain" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="3" cy="5" r="1" fill="#a68161" opacity=".11"/><circle cx="19" cy="17" r=".9" fill="#a68161" opacity=".09"/></pattern>
+    <filter id="sheetShadow" x="-25%" y="-25%" width="150%" height="160%"><feDropShadow dx="0" dy="20" stdDeviation="20" flood-color="#665041" flood-opacity=".20"/></filter>
+    <filter id="tagShadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="13" stdDeviation="12" flood-color="#665041" flood-opacity=".19"/></filter>
+    <filter id="stampShadow" x="-20%" y="-30%" width="140%" height="160%"><feDropShadow dx="0" dy="7" stdDeviation="5" flood-color="#8f483e" flood-opacity=".17"/></filter>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#background)"/>
+  <rect width="1600" height="900" fill="url(#ruling)"/>
+  <rect width="1600" height="900" fill="url(#grain)"/>
+  <circle cx="121" cy="141" r="118" fill="#f5e2bd" opacity=".42"/>
+  <circle cx="1497" cy="773" r="181" fill="#d7e9df" opacity=".40"/>
+
+  <!-- The proposed shortcut: a low-cost price tag, held short of approval. -->
+  <path d="M139 147 C181 169 185 235 221 308" fill="none" stroke="#b6a590" stroke-width="5" stroke-linecap="round"/>
+  <g filter="url(#tagShadow)" transform="rotate(-10 372 461)">
+    <path d="M194 247 H510 Q529 247 529 266 V590 Q529 611 508 611 H197 Q176 611 176 589 V272 Q176 258 194 247Z" fill="url(#tag)" stroke="#83b5a8" stroke-width="4"/>
+    <path d="M176 320 H529" stroke="#8eb8ac" stroke-width="3" opacity=".5"/>
+    <circle cx="250" cy="284" r="21" fill="#fff9ed" stroke="#83b5a8" stroke-width="3"/>
+    <text x="353" y="493" font-family="Georgia, serif" font-size="241" font-weight="700" text-anchor="middle" fill="#437d73">€</text>
+    <path d="M282 542 H443" stroke="#6a9d91" stroke-width="16" stroke-linecap="round" opacity=".68"/>
+  </g>
+  <path d="M530 466 C583 457 623 457 672 463" fill="none" stroke="#ddb86f" stroke-width="13" stroke-linecap="round" stroke-dasharray="2 31"/>
+
+  <!-- The evaluation itself is the hero, not a claim about measured savings. -->
+  <g filter="url(#sheetShadow)" transform="rotate(-3 1021 460)">
+    <path d="M651 139 H1330 L1404 212 V750 Q1404 774 1381 774 H652 Q628 774 628 750 V163 Q628 139 651 139Z" fill="url(#paper)" stroke="#dac9ae" stroke-width="4"/>
+    <path d="M1330 139 V212 H1404Z" fill="#f1dfbd" stroke="#dac9ae" stroke-width="4"/>
+    <path d="M704 230 H1309" stroke="#cfbea5" stroke-width="3"/>
+    <path d="M704 262 H1080" stroke="#cbb9a0" stroke-width="13" stroke-linecap="round" opacity=".58"/>
+    <path d="M704 301 H956" stroke="#cbb9a0" stroke-width="13" stroke-linecap="round" opacity=".47"/>
+    <text x="717" y="528" font-family="Inter, Arial, sans-serif" font-size="232" font-weight="750" letter-spacing="-17" fill="#293c38">4/8</text>
+    <path d="M706 559 H1327" stroke="#d7c6ae" stroke-width="3"/>
+    <g fill="#8abbb0">
+      <rect x="715" y="597" width="53" height="53" rx="10"/><rect x="788" y="597" width="53" height="53" rx="10"/>
+      <rect x="861" y="597" width="53" height="53" rx="10"/><rect x="934" y="597" width="53" height="53" rx="10"/>
+    </g>
+    <g fill="#e4a79a">
+      <rect x="1007" y="597" width="53" height="53" rx="10"/><rect x="1080" y="597" width="53" height="53" rx="10"/>
+      <rect x="1153" y="597" width="53" height="53" rx="10"/><rect x="1226" y="597" width="53" height="53" rx="10"/>
+    </g>
+    <path d="M716 698 H1046 M716 722 H937" stroke="#cbb9a0" stroke-width="10" stroke-linecap="round" opacity=".38"/>
+  </g>
+
+  <!-- A provisional decision, not a permanent verdict on the platform. -->
+  <g filter="url(#stampShadow)" transform="rotate(-9 1107 687)">
+    <rect x="812" y="621" width="592" height="142" rx="13" fill="#fff2e9" fill-opacity=".86" stroke="#cb7061" stroke-width="10"/>
+    <rect x="827" y="636" width="562" height="112" rx="6" fill="none" stroke="#cb7061" stroke-width="3" opacity=".72"/>
+    <text x="1108" y="718" font-family="Inter, Arial, sans-serif" font-size="70" font-weight="800" letter-spacing="2" text-anchor="middle" fill="#b85d51">NO MIGRATION</text>
+  </g>
+</svg>
