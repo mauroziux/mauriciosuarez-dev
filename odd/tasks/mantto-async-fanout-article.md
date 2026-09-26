@@ -44,7 +44,8 @@ docs/solutions/async-maintenance-completion-fanout.md).
 3. [x] `npm run build` passes (41 pages; draft renders nowhere per ARTICLES.md).
 4. [x] Editorial checkpoint with user — user authorized publication to review in
    production (2026-09-26). Written-feedback round may still follow.
-5. [ ] EN translation `endpoint-29-seconds-en.md` (same routeSlug; -en asset variants).
+5. [x] EN translation `endpoint-29-seconds-en.md` (same routeSlug; -en asset
+   variants) — published same day per user request ("ahora la version en ingles").
 6. [x] Hero/OG image in the established article visual system (user directive:
    match existing style incl. hero banner; one faithful proposal produced,
    iteration on request).
@@ -75,3 +76,9 @@ analytics LATERAL · UNIQUE→422 · magic links.
   workflow run 36242631339 success. Live: https://mauriciosuarez.dev/es/articulos/
   endpoint-29-seconds/ (200; og:image, hero, both figures, RSS verified). Build
   47 pages. Pending: user live review + EN translation.
+- 2026-09-26: EN VERSION PUBLISHED (c916587 → origin/main, deploy success):
+  https://mauriciosuarez.dev/en/writing/endpoint-29-seconds/ — full translation,
+  hero-29s-en.svg→png (79KB), autopsia-endpoint-en.svg, criminal-email-en.svg.
+  hreflang en↔es pair live (x-default→en), "translation coming" notice gone,
+  EN RSS entry verified, all assets 200. 48 pages built. Feature COMPLETE
+  pending user live-review feedback.
