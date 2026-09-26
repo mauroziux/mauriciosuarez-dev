@@ -65,3 +65,10 @@ commit f8c4678 (2026-09-25) + Sentry issue 7753074600 (2026-09-24) + ADR-0008.
 
 - 2026-09-26: feature doc created; source verified (solution doc complete,
   commit f8c4678 message + stat, ADR-0008).
+- 2026-09-26: PUBLISHED bilingual per user authorization ("ok hazlo"):
+  ES https://mauriciosuarez.dev/es/articulos/the-30-second-wall/ (54a2918,
+  workflow success), EN https://mauriciosuarez.dev/en/writing/the-30-second-wall/
+  (f2515a5, workflow success; hero-fatal-en.png 77KB retina). hreflang pair +
+  x-default verified; og:image per language; RSS both; all assets 200.
+  Series chaining: #1 epilogue now links #2 in both langs (68344c7, deployed).
+  Feature COMPLETE.
