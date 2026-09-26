@@ -5,7 +5,7 @@ lang: "es"
 routeSlug: "endpoint-29-seconds"
 tags: ["laravel", "rendimiento", "colas", "saas", "postmortem"]
 publishedDate: 2026-09-26
-draft: true
+draft: false
 ogImage: "/articles/endpoint-29-seconds/hero-29s-es.png"
 ---
 
