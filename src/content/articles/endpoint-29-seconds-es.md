@@ -1,6 +1,6 @@
 ---
 title: "El endpoint que tardaba 29 segundos (y nadie se quejaba)"
-description: "Autopsia de una petición de producción de ~29 s: la IA, el PDF y ~20 descargas a R2 escondidas dentro de un email — y el patrón que la dejó en menos de 500 ms."
+description: "Autopsia de una petición de producción de ~29 s: la IA, el PDF y ~20 descargas a R2 escondidas en un email — y el patrón que la dejó en <500 ms."
 lang: "es"
 routeSlug: "endpoint-29-seconds"
 tags: ["laravel", "rendimiento", "colas", "saas", "postmortem"]
@@ -17,7 +17,9 @@ El sistema es [Mantto](/es/proyectos/mantto/), una plataforma de mantenimiento e
 
 `POST /api/v1/maintenance-requests/{id}/complete` respondía en **~29 segundos de TTFB** en producción. El spinner giraba medio minuto y el usuario esperaba, porque "está generando el reporte" parecía una razón razonable. El retraso se había normalizado: cuando lo lento es lo de siempre, deja de ser un bug y pasa a ser una *feature* de la espera.
 
-No hubo ticket, no hubo reclamo. Hubo una medición interna y una sospecha: ningún endpoint debería tardar 29 segundos para cambiar un estado.
+No hubo ticket, no hubo reclamo. Hubo una medición interna y una sospecha: ningún endpoint debería tardar 29 segundos en actualizar un estado.
+
+¿Y por qué importaba, si nadie se quejaba? Porque el botón de completar es el que cierra el día: un spinner de medio minuto invita al segundo click —y con él al riesgo del registro duplicado—, y después a la duda de si el trabajo quedó registrado. La lentitud normalizada entrena a desconfiar del sistema justo en el momento en que más importa: cuando certifica que un trabajo terminó.
 
 ## La autopsia: cuatro trabajos en un solo hilo HTTP
 
@@ -52,7 +54,7 @@ El patrón que apliqué es viejo y merecidamente famoso — *haz la mutación de
 
 **2. Los mailables implementan `ShouldQueue`.** Una interfaz, y las ~20 descargas de R2 + el envío migran al worker. `Mail::to()->send()` los encola automáticamente.
 
-**3. Un job por preocupación, desacoplados — no encadenados.** Consideré `Bus::chain([reportJob, notifyJob])` y lo rechacé: si el job del reporte reintenta (lanza), la cadena se rompe y **el email nunca se envía**. El email es esencial; el PDF es un nice-to-have. Desacoplados, el email se envía siempre y el reporte reintenta solo (`tries=3`, idempotente — si ya existe, salta). El job de notificaciones incluso omite el PDF *gracefully* si el reporte aún no terminó.
+**3. Un job por preocupación, desacoplados — no encadenados.** Consideré `Bus::chain([reportJob, notifyJob])` y lo rechacé: si el job del reporte reintenta (lanza), la cadena se rompe y **el email nunca se envía**. El email es esencial; el PDF es un nice-to-have. Desacoplados, el email procede por su cuenta y el reporte reintenta solo (`tries=3`, idempotente — si ya existe, salta). El job de notificaciones incluso omite el PDF *gracefully* si el reporte aún no terminó.
 
 **4. El dispatch también puede fallar.** El cambio de estado ya está comprometido cuando despacho los jobs; si Redis está caído en ese instante, la petición no debe crashear ni esconder un estado completado:
 
@@ -69,13 +71,13 @@ return $maintenanceRequest->refresh();
 
 Resultado: **la petición responde en <500 ms**. Los ~29 segundos de trabajo siguen existiendo — ahora corren en la cola de Redis, donde pertenecen.
 
-## Los detalles que nadie te cuenta
+## Los gotchas, en corto
 
-Los gotchas de testing de este cambio valen su propio artículo:
+El cambio trajo tres trampas que no aparecen en ningún tutorial (guárdalas si aplicás el patrón):
 
-- **`Mail::assertSent` reporta "sent 0 times"** apenas el mailable implementa `ShouldQueue`. `Mail::fake()` lo registra como *queued*: hay que usar `Mail::assertQueued(...)`. Síntoma clásico de test roto que "no debería estar roto".
-- **Los jobs despachados en tests corrían en la cola REAL de Redis.** `phpunit.xml` seteaba `QUEUE_CONNECTION=sync` vía `<env>`, pero `<env>` **no puebla `$_SERVER`**: ganaba el `QUEUE_CONNECTION=redis` del contenedor. Consecuencia: los fakes (`Queue::fake()`, mocks) no aplicaban dentro del `handle()` del job, y un test terminó subiendo archivos a **R2 real** (~22 s por test, almacenamiento contaminado). Los patrones robustos: `Queue::fake()` + `Queue::assertPushed()` para asertar el dispatch sin ejecutar, o instanciar el job y llamar `handle()` directo para que los fakes apliquen in-process.
-- **Deploy con Octane:** `docker compose restart api worker` (Octane cachea config/middleware) + `php artisan queue:restart` para que los workers tomen las clases nuevas. Sin esto, despachás jobs que ningún worker conoce todavía.
+- **`Mail::assertSent` deja de funcionar** apenas el mailable implementa `ShouldQueue`: `Mail::fake()` lo registra como *queued* — toca usar `Mail::assertQueued(...)`.
+- **Los jobs en tests corrían en la cola REAL**: `phpunit.xml` setea `QUEUE_CONNECTION=sync` vía `<env>`, pero `<env>` no puebla `$_SERVER` — gana el `redis` del contenedor, los fakes no aplican dentro de `handle()` y un test terminó subiendo a R2 real (~22 s por test). Patrón robusto: `Queue::fake()` + `assertPushed()` sin ejecutar, o instanciar el job y llamar `handle()` directo.
+- **Deploy con Octane:** `docker compose restart api worker` (cachea config/middleware) + `php artisan queue:restart` — sin eso, despachás jobs que ningún worker conoce todavía.
 
 ## Lo transferible
 

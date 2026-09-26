@@ -1,0 +1,8 @@
+# Content-hashed build assets are immutable — cache for a year.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Article images (not hashed) — one day is a safe balance between
+# edge caching and same-filename updates (hero re-renders).
+/articles/*
+  Cache-Control: public, max-age=86400

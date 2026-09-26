@@ -56,7 +56,7 @@
   <rect x="478" y="352" width="254" height="82" rx="9" fill="#131313" stroke="#2a2a2a"/>
   <text x="605" y="382" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13.5" font-weight="600" fill="#ececec">Notifications</text>
   <text x="605" y="403" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#a8a8a8">email + WhatsApp + survey</text>
-  <text x="605" y="420" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">essential · always sends</text>
+  <text x="605" y="420" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">essential · travels separately</text>
 
   <text x="186" y="490" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#9B9EF7">If the report fails, the email still goes out: the PDF never holds it hostage.</text>
 
