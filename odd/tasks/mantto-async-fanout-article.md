@@ -82,3 +82,10 @@ analytics LATERAL · UNIQUE→422 · magic links.
   hreflang en↔es pair live (x-default→en), "translation coming" notice gone,
   EN RSS entry verified, all assets 200. 48 pages built. Feature COMPLETE
   pending user live-review feedback.
+- 2026-09-26: REVIEW BATCH applied (7ddf0c0, deploy success): human-stakes
+  paragraph after the 29s symptom (ES+EN), softened "email always sends"
+  (text + autopsy SVG both langs), gotchas section compressed ~40% and
+  retitled, EN native polish (4 artifacts), ES meta description 163→151,
+  public/_headers (immutable 1y /_astro/*, 1d /articles/*) — verified live:
+  max-age=31536000 immutable on hashed CSS, 86400 on article PNG, stakes
+  paragraph live both langs. Deferred by user decision: self-hosting fonts.
