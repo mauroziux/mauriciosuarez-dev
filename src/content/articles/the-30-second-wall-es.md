@@ -5,7 +5,7 @@ lang: "es"
 routeSlug: "the-30-second-wall"
 tags: ["laravel", "php", "octane", "ia", "postmortem"]
 publishedDate: 2026-09-26
-draft: true
+draft: false
 ogImage: "/articles/the-30-second-wall/hero-fatal-es.png"
 ---
 
