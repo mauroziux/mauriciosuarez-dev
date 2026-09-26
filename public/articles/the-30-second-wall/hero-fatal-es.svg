@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Postmortem de Mantto: un FatalError incapturable a los 30 segundos. El timeout default de la SDK de IA era 60 segundos, pero PHP mataba al worker a los 30; el fix acota el timeout del cliente a 20 segundos, siempre por debajo del muro.">
+  <defs>
+    <pattern id="grid-f" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#fff" stroke-opacity=".035"/>
+    </pattern>
+    <linearGradient id="line-f" x1="0" x2="1">
+      <stop offset="0" stop-color="#6D71F0"/><stop offset="1" stop-color="#9B9EF7"/>
+    </linearGradient>
+    <linearGradient id="panel-f" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12131c"/><stop offset="1" stop-color="#0f1014"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#grid-f)"/>
+  <rect x="58" y="74" width="7" height="362" rx="3.5" fill="url(#line-f)"/>
+
+  <text x="94" y="112" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="700" letter-spacing="2.2" fill="#9B9EF7">POSTMORTEM · MANTTO · SAAS EN PRODUCCIÓN</text>
+  <text x="94" y="218" font-family="DejaVu Sans, sans-serif" font-size="76" font-weight="700" fill="#ececec">FatalError</text>
+  <rect x="96" y="240" width="152" height="4" rx="2" fill="#6D71F0"/>
+  <text x="94" y="296" font-family="DejaVu Sans, sans-serif" font-size="29" fill="#a8a8a8">El muro de los 30 segundos</text>
+  <text x="94" y="351" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#707070">timeout cliente 60 s · muro PHP 30 s · el proceso muere primero</text>
+
+  <rect x="94" y="392" width="242" height="43" rx="21.5" fill="#15162a" stroke="#6D71F0" stroke-opacity=".6"/>
+  <text x="215" y="420" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="700" fill="#9B9EF7">PHP · OCTANE · LARAVEL</text>
+
+  <rect x="735" y="76" width="370" height="360" rx="16" fill="url(#panel-f)" stroke="#2a2a2a"/>
+  <text x="770" y="116" font-family="DejaVu Sans Mono, monospace" font-size="13" fill="#707070">LA CARRERA · ANTES</text>
+
+  <text x="770" y="151" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ececec">timeout SDK (default)</text>
+  <text x="1070" y="151" text-anchor="end" font-family="DejaVu Sans Mono, monospace" font-size="15" font-weight="700" fill="#a8a8a8">60 s</text>
+  <line x1="770" y1="164" x2="1070" y2="164" stroke="#2a2a2a"/>
+
+  <rect x="762" y="177" width="316" height="30" rx="7" fill="#1a1b30" stroke="#6D71F0" stroke-opacity=".55"/>
+  <text x="778" y="197" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ececec">muro PHP · Octane</text>
+  <text x="1062" y="197" text-anchor="end" font-family="DejaVu Sans Mono, monospace" font-size="15" font-weight="700" fill="#9B9EF7">30 s</text>
+  <line x1="770" y1="221" x2="1070" y2="221" stroke="#2a2a2a"/>
+
+  <text x="770" y="250" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ececec">worker Octane</text>
+  <text x="1070" y="250" text-anchor="end" font-family="DejaVu Sans Mono, monospace" font-size="15" font-weight="700" fill="#a8a8a8">muerto</text>
+
+  <line x1="770" y1="272" x2="1070" y2="272" stroke="#2a2a2a"/>
+  <text x="770" y="304" font-family="DejaVu Sans Mono, monospace" font-size="18" font-weight="700" fill="#ececec">FatalError incapturable</text>
+  <text x="770" y="330" font-family="DejaVu Sans, sans-serif" font-size="13" fill="#707070">try/catch no corre: no hay proceso</text>
+
+  <rect x="770" y="352" width="300" height="52" rx="12" fill="#131313" stroke="#2a2a2a"/>
+  <text x="920" y="375" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12.5" fill="#a8a8a8">DESPUÉS: timeout 20 s — siempre</text>
+  <text x="920" y="393" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12.5" fill="#a8a8a8">por debajo del muro → excepción atrapable</text>
+
+  <line x1="94" y1="487" x2="1104" y2="487" stroke="#2a2a2a"/>
+  <text x="94" y="537" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#9B9EF7">MANTTO</text>
+  <text x="94" y="568" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#a8a8a8">operación inmobiliaria en producción</text>
+  <text x="560" y="537" font-family="DejaVu Sans Mono, monospace" font-size="31" font-weight="700" fill="#9B9EF7">60 s → 20 s</text>
+  <text x="560" y="568" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#a8a8a8">timeout del cliente · bajo el muro de PHP</text>
+  <text x="1104" y="603" text-anchor="end" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#707070">mauriciosuarez.dev · artículos</text>
+</svg>
