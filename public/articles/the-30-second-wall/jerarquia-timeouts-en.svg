@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" role="img" aria-label="The timeout hierarchy by context: in the Octane HTTP worker PHP's 30-second wall is hard and the 20-second client timeout stays inside the request budget; in the PHP CLI queue worker there is no max_execution_time and the SDK's 60-second default is safe.">
+  <defs>
+    <marker id="arr-je" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#707070"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="30" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="#707070">ONE DEFAULT · TWO CONTEXTS</text>
+
+  <!-- HTTP worker card -->
+  <rect x="40" y="52" width="350" height="290" rx="12" fill="#131313" stroke="#6D71F0" stroke-opacity=".55"/>
+  <text x="66" y="84" font-family="DejaVu Sans Mono, monospace" font-size="12.5" fill="#707070">HTTP WORKER · OCTANE</text>
+
+  <!-- Budget bar 0..30s: 300px = 10px/s -->
+  <rect x="66" y="106" width="200" height="34" fill="#9B9EF7" fill-opacity=".3" stroke="#9B9EF7" stroke-opacity=".9"/>
+  <text x="166" y="127" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#ececec">client timeout 20 s</text>
+  <rect x="266" y="106" width="100" height="34" fill="#6D71F0" fill-opacity=".08" stroke="#4a4a4a" stroke-opacity=".5"/>
+  <text x="316" y="127" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10.5" fill="#a8a8a8">rest ~10 s</text>
+
+  <!-- The wall at the end -->
+  <line x1="366" y1="96" x2="366" y2="150" stroke="#9B9EF7" stroke-width="3"/>
+  <text x="352" y="162" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="11.5" font-weight="700" fill="#9B9EF7">wall 30 s</text>
+
+  <path d="M 66 182 L 66 200" stroke="#707070" stroke-width="1.5" marker-end="url(#arr-je)"/>
+  <rect x="66" y="206" width="298" height="58" rx="9" fill="#15162a" stroke="#6D71F0" stroke-opacity=".5"/>
+  <text x="215" y="230" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">the exception at 20 s is catchable</text>
+  <text x="215" y="250" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#9B9EF7">→ failover acts · clean 5xx</text>
+
+  <text x="66" y="300" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">the whole request's budget: validation, database,</text>
+  <text x="66" y="318" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">serialization. The client leaves room.</text>
+
+  <!-- Queue worker card -->
+  <rect x="410" y="52" width="350" height="290" rx="12" fill="#131313" stroke="#2a2a2a"/>
+  <text x="436" y="84" font-family="DejaVu Sans Mono, monospace" font-size="12.5" fill="#707070">QUEUE WORKER · PHP CLI</text>
+
+  <!-- Budget bar 0..60s+: 300px, SDK 60s -->
+  <rect x="436" y="106" width="298" height="34" fill="#6D71F0" fill-opacity=".14" stroke="#6D71F0" stroke-opacity=".5"/>
+  <text x="585" y="127" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#c9c9c9">SDK timeout 60 s (default)</text>
+  <text x="436" y="162" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">no max_execution_time — the default is safe here</text>
+
+  <rect x="436" y="206" width="298" height="58" rx="9" fill="#131313" stroke="#2a2a2a"/>
+  <text x="585" y="230" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">jobs tolerate long calls: reports,</text>
+  <text x="585" y="250" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">transcriptions, video analysis</text>
+
+  <text x="436" y="300" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">retries with backoff; time is a different</text>
+  <text x="436" y="318" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">budget — there is no engine wall.</text>
+
+  <!-- Bottom law -->
+  <line x1="40" y1="372" x2="760" y2="372" stroke="#2a2a2a"/>
+  <text x="400" y="408" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#9B9EF7">The same default (60 s): a trap in HTTP, sound on the queue.</text>
+  <text x="400" y="432" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#707070">There is no universally safe timeout — the context decides the value.</text>
+</svg>
