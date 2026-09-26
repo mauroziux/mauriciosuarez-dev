@@ -43,8 +43,10 @@ docs/solutions/async-maintenance-completion-fanout.md).
 2. [x] Draft ES article `src/content/articles/endpoint-29-seconds-es.md` (draft: true).
 3. [x] `npm run build` passes (41 pages; draft renders nowhere per ARTICLES.md).
 4. [ ] Editorial checkpoint with user (tone, structure, numbers, caveats).
-5. [ ] EN translation `endpoint-29-seconds-en.md` (same routeSlug).
-6. [ ] Hero/OG image: 2 proposals for user choice (precedent: typesafe-jev flow).
+5. [ ] EN translation `endpoint-29-seconds-en.md` (same routeSlug; -en asset variants).
+6. [x] Hero/OG image in the established article visual system (user directive:
+   match existing style incl. hero banner; one faithful proposal produced,
+   iteration on request).
 
 ## Series backlog (from memory obs 2655)
 
@@ -59,3 +61,10 @@ analytics LATERAL · UNIQUE→422 · magic links.
 - 2026-09-26: ES draft written (title 56 chars; tags laravel/rendimiento/colas/
   saas/postmortem; mantto project cross-link; epilogue teasers the Octane-timeout
   sequel). Build 41 pages OK. Work-unit commit: see git log (not pushed).
+- 2026-09-26: visual pass per user directive (match article visual system):
+  public/articles/endpoint-29-seconds/ — hero-29s-es.svg→png (1200×630 design,
+  retina 2400×1260 @83KB via sharp density 192), autopsia-endpoint.svg (antes/
+  después waterfall), criminal-email.svg (email anatomy). Mantto brand purple
+  #6D71F0→#9B9EF7 accent replaces TypeSafe crimson; layout copied from
+  hero-typesafe-es.svg. ogImage wired in frontmatter; 2 figures embedded with
+  italic captions. Build 41 pages OK. Pending: user visual review.

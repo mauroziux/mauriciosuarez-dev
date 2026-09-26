@@ -6,6 +6,7 @@ routeSlug: "endpoint-29-seconds"
 tags: ["laravel", "rendimiento", "colas", "saas", "postmortem"]
 publishedDate: 2026-09-26
 draft: true
+ogImage: "/articles/endpoint-29-seconds/hero-29s-es.png"
 ---
 
 El endpoint más importante de mi SaaS tardaba **29 segundos** en responder. Lo sé porque lo medí — no porque alguien lo reportara. Nadie se quejó nunca. Ese silencio es la parte más interesante de esta historia.
@@ -33,7 +34,15 @@ El criminal escondido era el #3. Los emails de confirmación adjuntaban la evide
 
 Hay una ironía deliciosa: las notificaciones de WhatsApp **ya eran asíncronas** desde el principio. El cuello de botella no era la IA ni el PDF — eran los emails, el componente que nadie sospecha porque "un email no puede tardar 15 segundos". Puede. Cuando un email es, en realidad, un cliente de object storage disfrazado.
 
+![Anatomía del email de confirmación: 10 fotos de evidencia alimentan dos emails, cada adjunto dispara un GET secuencial a R2 y todo se envía de forma síncrona por Resend dentro de la petición HTTP original](/articles/endpoint-29-seconds/criminal-email.svg)
+
+*Anatomía del criminal escondido: cada email adjuntaba 10 fotos descargándolas una por una de R2 — dos destinatarios, ~20 GETs secuenciales — más el envío síncrono. Todo dentro de la petición HTTP original.*
+
 La suma: 29 segundos de trabajo legítimo ejecutado en el peor lugar posible.
+
+![Diagrama antes y después del fix: antes, la petición HTTP ejecutaba en secuencia la transición de estado, el reporte con IA, el PDF, los emails y la encuesta hasta ~29 segundos; después, la petición solo hace la transición en menos de 500 ms y dos jobs desacoplados en la cola Redis hacen el resto](/articles/endpoint-29-seconds/autopsia-endpoint.svg)
+
+*Arriba, la autopsia completa; abajo, el patrón que la reemplazó. En celular, deslizá el gráfico horizontalmente para verlo completo.*
 
 ## El fix: mutá rápido, desparramá después
 
