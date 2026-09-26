@@ -91,4 +91,4 @@ Two pieces of honesty before closing: the 29 s → <500 ms is an **internal prod
 
 ---
 
-*Epilogue with a hook: weeks after this fix, another AI call — this one with a timeout — taught me that some errors no `try/catch` can catch, because the process is already dead when they happen. That's the next entry in this series.*
+*Epilogue with a hook: weeks after this fix, another AI call — this one with a timeout — taught me that some errors no `try/catch` can catch, because the process is already dead when they happen. That's [the next entry in this series](/en/writing/the-30-second-wall/).*
