@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Mantto postmortem: a maintenance endpoint took 29 seconds because the state transition and all of its downstream work ran on the same HTTP request; after the fix it responds in under 500 milliseconds.">
+  <defs>
+    <pattern id="grid-me" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#fff" stroke-opacity=".035"/>
+    </pattern>
+    <linearGradient id="line-me" x1="0" x2="1">
+      <stop offset="0" stop-color="#6D71F0"/><stop offset="1" stop-color="#9B9EF7"/>
+    </linearGradient>
+    <linearGradient id="panel-me" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12131c"/><stop offset="1" stop-color="#0f1014"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#grid-me)"/>
+  <rect x="58" y="74" width="7" height="362" rx="3.5" fill="url(#line-me)"/>
+
+  <text x="94" y="112" font-family="DejaVu Sans, sans-serif" font-size="18" font-weight="700" letter-spacing="2.2" fill="#9B9EF7">POSTMORTEM · MANTTO · SAAS IN PRODUCTION</text>
+  <text x="94" y="218" font-family="DejaVu Sans, sans-serif" font-size="76" font-weight="700" fill="#ececec">29 seconds</text>
+  <rect x="96" y="240" width="152" height="4" rx="2" fill="#6D71F0"/>
+  <text x="94" y="296" font-family="DejaVu Sans, sans-serif" font-size="29" fill="#a8a8a8">The endpoint nobody reported</text>
+  <text x="94" y="351" font-family="DejaVu Sans, sans-serif" font-size="18" fill="#707070">1 state change · 4 jobs on the same HTTP thread</text>
+
+  <rect x="94" y="392" width="268" height="43" rx="21.5" fill="#15162a" stroke="#6D71F0" stroke-opacity=".6"/>
+  <text x="228" y="420" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="700" fill="#9B9EF7">LARAVEL · QUEUES · R2</text>
+
+  <rect x="735" y="76" width="370" height="360" rx="16" fill="url(#panel-me)" stroke="#2a2a2a"/>
+  <text x="770" y="116" font-family="DejaVu Sans Mono, monospace" font-size="13" fill="#707070">POST /complete · BEFORE</text>
+
+  <text x="770" y="151" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ececec">state transition</text>
+  <text x="1070" y="151" text-anchor="end" font-family="DejaVu Sans Mono, monospace" font-size="15" font-weight="700" fill="#a8a8a8">~ms</text>
+  <line x1="770" y1="164" x2="1070" y2="164" stroke="#2a2a2a"/>
+
+  <text x="770" y="193" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ececec">AI executive report</text>
+  <text x="1070" y="193" text-anchor="end" font-family="DejaVu Sans Mono, monospace" font-size="15" font-weight="700" fill="#9B9EF7">5–15 s</text>
+  <line x1="770" y1="206" x2="1070" y2="206" stroke="#2a2a2a"/>
+
+  <text x="770" y="235" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ececec">PDF render + R2</text>
+  <text x="1070" y="235" text-anchor="end" font-family="DejaVu Sans Mono, monospace" font-size="15" font-weight="700" fill="#9B9EF7">1–3 s</text>
+  <line x1="770" y1="248" x2="1070" y2="248" stroke="#2a2a2a"/>
+
+  <rect x="762" y="261" width="316" height="30" rx="7" fill="#1a1b30" stroke="#6D71F0" stroke-opacity=".55"/>
+  <text x="778" y="281" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ececec">emails: ~20 R2 GETs</text>
+  <text x="1062" y="281" text-anchor="end" font-family="DejaVu Sans Mono, monospace" font-size="15" font-weight="700" fill="#9B9EF7">5–15 s</text>
+  <line x1="770" y1="305" x2="1070" y2="305" stroke="#2a2a2a"/>
+
+  <text x="770" y="334" font-family="DejaVu Sans Mono, monospace" font-size="15" fill="#ececec">survey + WhatsApp</text>
+  <text x="1070" y="334" text-anchor="end" font-family="DejaVu Sans Mono, monospace" font-size="15" font-weight="700" fill="#a8a8a8">+s</text>
+
+  <line x1="770" y1="356" x2="1070" y2="356" stroke="#2a2a2a"/>
+  <text x="770" y="388" font-family="DejaVu Sans Mono, monospace" font-size="18" font-weight="700" fill="#ececec">≈ 29 s TTFB</text>
+
+  <rect x="770" y="402" width="178" height="30" rx="15" fill="#15162a" stroke="#6D71F0"/>
+  <text x="859" y="422" text-anchor="middle" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="700" fill="#9B9EF7">AFTER · &lt;500 ms</text>
+
+  <line x1="94" y1="487" x2="1104" y2="487" stroke="#2a2a2a"/>
+  <text x="94" y="537" font-family="DejaVu Sans, sans-serif" font-size="32" font-weight="700" fill="#9B9EF7">MANTTO</text>
+  <text x="94" y="568" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#a8a8a8">property operations in production</text>
+  <text x="560" y="537" font-family="DejaVu Sans Mono, monospace" font-size="31" font-weight="700" fill="#9B9EF7">29 s → &lt;500 ms</text>
+  <text x="560" y="568" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#a8a8a8">endpoint TTFB · internal log</text>
+  <text x="1104" y="603" text-anchor="end" font-family="DejaVu Sans, sans-serif" font-size="15" fill="#707070">mauriciosuarez.dev · writing</text>
+</svg>

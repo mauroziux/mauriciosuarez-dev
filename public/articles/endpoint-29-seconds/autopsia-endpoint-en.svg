@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 620" role="img" aria-label="Before and after diagram: before, the HTTP request executed in sequence the state transition, the 5 to 15 second AI report, the 1 to 3 second PDF render and R2 upload, the emails that downloaded some 20 files from R2 over 5 to 15 seconds, and the survey, totaling about 29 seconds. After, the request only performs the state transition in under 500 milliseconds and two decoupled jobs on the Redis queue do the rest.">
+  <defs>
+    <marker id="arr-ae" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#707070"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="30" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="#707070">BEFORE · EVERYTHING SYNC INSIDE THE HTTP REQUEST</text>
+
+  <!-- Stacked timeline: 720px = 29s → 24.8 px/s -->
+  <rect x="40" y="58" width="12" height="34" fill="#4a4a4a"/>
+  <rect x="52" y="58" width="298" height="34" fill="#6D71F0" fill-opacity=".22" stroke="#6D71F0" stroke-opacity=".8"/>
+  <rect x="350" y="58" width="50" height="34" fill="#6D71F0" fill-opacity=".10" stroke="#6D71F0" stroke-opacity=".45"/>
+  <rect x="400" y="58" width="298" height="34" fill="#9B9EF7" fill-opacity=".30" stroke="#9B9EF7" stroke-opacity=".9"/>
+  <rect x="698" y="58" width="62" height="34" fill="#4a4a4a" fill-opacity=".6"/>
+
+  <text x="46" y="79" font-family="Inter, system-ui, sans-serif" font-size="10.5" fill="#a8a8a8">state</text>
+  <text x="201" y="79" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="600" fill="#c9c9c9">AI report · 5–15 s</text>
+  <text x="375" y="79" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#a8a8a8">PDF 1–3 s</text>
+  <text x="549" y="79" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12.5" font-weight="700" fill="#ececec">emails · 5–15 s</text>
+  <text x="729" y="79" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="10" fill="#a8a8a8">surv.</text>
+
+  <line x1="40" y1="100" x2="40" y2="108" stroke="#707070" stroke-width="1"/>
+  <text x="40" y="122" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">0 s</text>
+  <line x1="760" y1="100" x2="760" y2="108" stroke="#707070" stroke-width="1"/>
+  <text x="760" y="122" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">~29 s</text>
+
+  <!-- Callout: the hidden culprit -->
+  <path d="M 549 96 L 549 148 L 420 148" fill="none" stroke="#9B9EF7" stroke-opacity=".7" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <rect x="120" y="131" width="300" height="34" rx="8" fill="#1a1b30" stroke="#6D71F0" stroke-opacity=".6"/>
+  <text x="270" y="153" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12.5" fill="#9B9EF7">the hidden culprit: ~20 R2 GETs</text>
+
+  <rect x="40" y="185" width="720" height="40" rx="10" fill="#131313" stroke="#2a2a2a"/>
+  <text x="400" y="210" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#a8a8a8">≈ 29 s of TTFB: the user waited for the entire fan-out</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="262" x2="760" y2="262" stroke="#2a2a2a"/>
+  <text x="40" y="292" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="#707070">AFTER · INLINE MUTATION, CONSEQUENCES TO THE QUEUE</text>
+
+  <!-- Tiny bar -->
+  <rect x="40" y="318" width="14" height="34" fill="#ececec"/>
+  <text x="40" y="374" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" fill="#ececec">&lt;500 ms</text>
+  <text x="40" y="391" font-family="Inter, system-ui, sans-serif" font-size="10.5" fill="#707070">guarded transition</text>
+
+  <path d="M 76 335 L 150 335" stroke="#707070" stroke-width="1.5" marker-end="url(#arr-ae)"/>
+
+  <!-- Queue card -->
+  <rect x="160" y="308" width="600" height="150" rx="12" fill="#131313" stroke="#2a2a2a"/>
+  <text x="186" y="338" font-family="DejaVu Sans Mono, monospace" font-size="12.5" fill="#707070">REDIS QUEUE · 2 DECOUPLED JOBS (NOT CHAINED)</text>
+
+  <rect x="186" y="352" width="272" height="82" rx="9" fill="#15162a" stroke="#6D71F0" stroke-opacity=".55"/>
+  <text x="322" y="382" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13.5" font-weight="600" fill="#ececec">Executive report</text>
+  <text x="322" y="403" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#a8a8a8">AI + PDF · idempotent</text>
+  <text x="322" y="420" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">retries alone (tries=3)</text>
+
+  <rect x="478" y="352" width="254" height="82" rx="9" fill="#131313" stroke="#2a2a2a"/>
+  <text x="605" y="382" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="13.5" font-weight="600" fill="#ececec">Notifications</text>
+  <text x="605" y="403" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#a8a8a8">email + WhatsApp + survey</text>
+  <text x="605" y="420" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">essential · always sends</text>
+
+  <text x="186" y="490" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#9B9EF7">If the report fails, the email still goes out: the PDF never holds it hostage.</text>
+
+  <text x="400" y="560" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#707070">The state transition and the work it triggers are different things — the user asks for the first one.</text>
+  <text x="400" y="584" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#707070">Internal production measurement, not a reproducible benchmark.</text>
+</svg>
