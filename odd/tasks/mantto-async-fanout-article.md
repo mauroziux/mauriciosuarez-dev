@@ -42,7 +42,8 @@ docs/solutions/async-maintenance-completion-fanout.md).
 1. [x] Feature doc created (this file).
 2. [x] Draft ES article `src/content/articles/endpoint-29-seconds-es.md` (draft: true).
 3. [x] `npm run build` passes (41 pages; draft renders nowhere per ARTICLES.md).
-4. [ ] Editorial checkpoint with user (tone, structure, numbers, caveats).
+4. [x] Editorial checkpoint with user — user authorized publication to review in
+   production (2026-09-26). Written-feedback round may still follow.
 5. [ ] EN translation `endpoint-29-seconds-en.md` (same routeSlug; -en asset variants).
 6. [x] Hero/OG image in the established article visual system (user directive:
    match existing style incl. hero banner; one faithful proposal produced,
@@ -68,3 +69,9 @@ analytics LATERAL · UNIQUE→422 · magic links.
   #6D71F0→#9B9EF7 accent replaces TypeSafe crimson; layout copied from
   hero-typesafe-es.svg. ogImage wired in frontmatter; 2 figures embedded with
   italic captions. Build 41 pages OK. Pending: user visual review.
+- 2026-09-26: PUBLISHED to production per user authorization ("publicalo para yo
+  revisarlo"): draft:false (582ad03 after rebasing onto origin/main be67332 which
+  had gained 4 MaltaClean article commits), pushed HEAD:main, Cloudflare Pages
+  workflow run 36242631339 success. Live: https://mauriciosuarez.dev/es/articulos/
+  endpoint-29-seconds/ (200; og:image, hero, both figures, RSS verified). Build
+  47 pages. Pending: user live review + EN translation.
