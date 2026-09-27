@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Artículo X — El modelo de IA que no sabe escribir</title>
+<style>
+  /* Instrucciones: NO se copian (user-select:none) */
+  .howto {
+    user-select: none; -webkit-user-select: none;
+    background: #1a0d10; border: 2px dashed #C41E3A; border-radius: 12px;
+    padding: 20px 24px; max-width: 720px; margin: 24px auto;
+    font-family: -apple-system, sans-serif; color: #ececec; font-size: 14px; line-height: 1.6;
+  }
+  .howto h2 { margin: 0 0 10px; font-size: 16px; color: #E14B64; }
+  .howto ol, .howto ul { margin: 8px 0 8px 20px; padding: 0; }
+  .howto code { background: #2a2a2a; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+  .howto .ruta { color: #c9a052; }
+
+  /* Cuerpo del artículo: estilo neutro, X aplica el suyo al pegar */
+  .article { max-width: 680px; margin: 0 auto 80px; font-family: Georgia, 'Times New Roman', serif; font-size: 19px; line-height: 1.65; color: #111; }
+  .article h1 { font-size: 30px; line-height: 1.25; font-family: -apple-system, sans-serif; }
+  .article h2 { font-size: 23px; margin-top: 1.6em; font-family: -apple-system, sans-serif; }
+  .article p { margin: 0 0 1.1em; }
+  .article img { display: block; width: 100%; margin: 1.4em 0 .4em; }
+  .article .caption { font-style: italic; font-size: 15px; color: #666; margin-top: 0; }
+  .article ul, .article ol { margin: 0 0 1.1em; padding-left: 26px; }
+  .article li { margin-bottom: .5em; }
+  .article .case { font-style: italic; }
+  .article .footer { margin-top: 2.2em; padding-top: 1.2em; border-top: 1px solid #ddd; font-size: 15px; color: #666; font-family: -apple-system, sans-serif; }
+</style>
+</head>
+<body>
+
+<div class="howto">
+  <h2>📋 Cómo publicar esto en X (sigue estos pasos)</h2>
+  <ol>
+    <li>Abre X → <b>Escribir</b> → cambia de "Post" a <b>Artículo</b> (requiere X Premium).</li>
+    <li>En el campo <b>título</b> pega: <code>El modelo de IA que no sabe escribir (y por eso lo quiero en producción)</code></li>
+    <li>Selecciona <b>todo el artículo de abajo</b> (desde la primera línea, SIN esta caja — esta caja no se copia) y pégalo en el cuerpo del artículo. Negritas, títulos, listas y links se conservan.</li>
+    <li>Si las imágenes no se pegaron, insértalas con el botón de imagen de X en el orden marcado. Están en <span class="ruta">x-article/images/</span> (y el hero en <span class="ruta">public/articles/typesafe-jev/hero-typesafe-es.png</span>):
+      <ul>
+        <li><span class="ruta">hero-typesafe-es.png</span> — portada (inicio)</li>
+        <li><span class="ruta">images/sistema-1-vs-sistema-2.png</span> — tras "la tesis es simple"</li>
+        <li><span class="ruta">images/precision-comparada.png</span> — en "El experimento"</li>
+        <li><span class="ruta">images/intencion-mezcla.png</span> — en "Del 15.6% al 71.4%"</li>
+      </ul>
+    </li>
+    <li>Al publicar el artículo en X, acompaña la tarjeta con este texto sugerido:
+    <br><br><code>Probé un modelo de IA que no puede escribir ni una palabra. En una evaluación offline de 292 casos sintéticos obtuvo 94,2 % de acierto en intención. Todavía falta probarlo en shadow con tráfico real. Mi análisis de Jev (System One de @TypeSafeAI).</code></li>
+  </ol>
+</div>
+
+<article class="article">
+
+<img src="../public/articles/typesafe-jev/hero-typesafe-es.png" alt="Hero del artículo: Jev, el modelo que no genera texto y devuelve decisiones tipadas">
+
+<p>Esta semana probé un modelo de IA que no puede generar ni una palabra. Ni un "hola". Y esa es exactamente la razón por la que me interesa para producción.</p>
+
+<p>Se llama <a href="https://typesafe.ai/blog/introducing-system-one-models-and-jev">Jev</a>, es de <a href="https://docs.typesafe.ai/">TypeSafe AI</a>, y es el primer exponente de una clase nueva que ellos llaman <b>System One Models</b> (por el Sistema 1 de Kahneman: el pensamiento rápido e intuitivo). La tesis es simple y provocadora: los LLM actuales son súper-humanos escribiendo, pero la automatización real necesita otra cosa — <b>decisiones estructuradas que el software pueda usar directamente</b>.</p>
+
+<p><b>En pocas palabras:</b> Jev no conversa ni redacta respuestas. Lee una entrada —por ejemplo, un mensaje de WhatsApp— y devuelve decisiones estructuradas que el software puede usar directamente: si es una consulta de precio, si menciona una fecha, si quiere cancelar o si necesita hablar con una persona. Es una capa rápida de clasificación tipada —los campos y valores posibles están definidos de antemano—, no un reemplazo del LLM que razona y escribe.</p>
+
+<p>Jev no genera texto. Recibe un estado (un mensaje, un JSON, un contexto) y un set de preguntas tipadas, y devuelve respuestas estructuradas: una elección con su distribución de probabilidades, un puntaje sobre una rúbrica, o un sí/no con probabilidad. Todo en paralelo, en una sola llamada, sin alucinar estructura — matemáticamente no puede: el tipo está garantizado. El nombre viene de William Stanley Jevons: cada orden de magnitud que baja el costo de la inteligencia habilita órdenes de magnitud de nuevos casos de uso.</p>
+
+<img src="images/sistema-1-vs-sistema-2.png" alt="Comparación entre un LLM de Sistema 2 que produce texto libre y Jev de Sistema 1 que devuelve decisiones tipadas">
+<p class="caption">No son modelos competidores: el LLM conserva el razonamiento y la redacción; Jev resuelve decisiones estructuradas con una forma de output que el código puede consumir directamente.</p>
+
+<h2>Por qué le importa a una empresa de limpieza</h2>
+
+<p>Mi caso de prueba es real: el WhatsApp de reservas de <a href="https://malta-cleaners.com">MaltaClean</a> — una empresa de limpieza que automatizo — lo atiende un concierge autónomo. Cada turno de conversación pasa por un clasificador contextual con <b>24 categorías de intención</b> (cotización, cancelación, recibo, postulante de trabajo, pedido de humano, queja, etc.).</p>
+
+<p>¿Qué mejora un modelo así acá? Nada de ciencia ficción — las tres cosas que duele en cualquier empresa de servicios:</p>
+
+<p><b>1. Clasificar mejor a los clientes potenciales.</b> El volumen real es de ~10 conversaciones de intención comercial por día, con un ticket promedio de €112. Cada mensaje de un lead que el bot clasifica mal o deja en <i>unclear</i> es una cotización que nadie contestó a tiempo. La detección de postulantes de trabajo (que hoy contaminan el pipeline de ventas) ya mide <b>99.7%</b> de precisión, y "¿esto es urgente / menciona una fecha / quiere cancelar?" supera el 95%.</p>
+
+<p><b>2. Un concierge que no se cae.</b> El peor incidente del año no fue un error de contenido: fue <b>cinco días sin clasificación válida</b> (19–29 de agosto: 34% de los turnos del mes cayeron al fallback genérico porque el chain de LLM dejó de responder bien). Un modelo cuyo output es tipado por construcción ataca exactamente ese modo de falla — no puede devolver basura estructural.</p>
+
+<p><b>3. Escalar a humanos solo cuando hace falta.</b> Hoy el 21% de los turnos terminan en <i>unclear</i> y ~659 conversaciones en seis semanas fueron derivadas a una persona. Con calibración real ("necesita un humano ahora: 0.91"), el código puede ramificar con confianza: <i>es queja Y quiere humano YA</i> → escalar; el resto lo resuelve el bot. Y verificar cada decisión del LLM con una segunda opinión cuesta ~$0.06 al mes a este volumen.</p>
+
+<p>Ojo: a este volumen el costo directo del clasificador es de $4–11 al mes — el argumento <b>no es ahorrar plata</b>. Es confiabilidad, precisión y calibración.</p>
+
+<h2>El experimento: 292 casos, gates cuantificados</h2>
+
+<p>Armé una evaluación offline con corpus sintético estratificado (cero datos reales de clientes): <b>292 casos</b> que costaron <b>$0.02</b> en total, con gates numéricos definidos antes de correr nada.</p>
+
+<p>Primero, el smoke inicial que me hizo ilusiones — cinco de cinco casos perfectos:</p>
+
+<ul>
+  <li class="case">"¿Cuánto sale un deep cleaning antes del viernes?" → <b>pricing</b> (0.75) · menciona fecha: 0.98</li>
+  <li class="case">"Soy limpiadora con 4 años de experiencia, ¿contratan?" → <b>recruitment_review</b> (1.0) · es postulante: 0.98</li>
+  <li class="case">"Cancelá el martes, quizás vuelva a reservar" → <b>cancel_request</b> (1.0) · menciona fecha: 0.97</li>
+  <li class="case">"Hmm ok gracias" → <b>unclear</b> (1.0) · honestamente incierto ✓</li>
+  <li class="case">"Esto es inaceptable, quiero hablar con una PERSONA" → <b>complaint</b> (0.89) · necesita humano: <b>0.91</b></li>
+</ul>
+
+<p>El número interesante está en la última fila: <i>complaint</i> 0.89 <b>+</b> <i>human_request</i> como runner-up <b>+</b> "necesita humano ahora" 0.91. Ninguna etiqueta única captura eso. Una respuesta generada como "el cliente está molesto" tira la información multidimensional por la borda; una distribución sobre decisiones atómicas le da a tu código exactamente lo que necesita para ramificar.</p>
+
+<p>Después, la comparación pareada contra el clasificador productivo real (DeepSeek → GLM → Gemini) sobre los mismos 292 casos:</p>
+
+<ul>
+  <li><b>Subset limpio (pelea pareja): Jev 85.1% vs. productivo 65.7%</b></li>
+  <li>Categorías dependientes de contexto: 89.4% vs. 68.1%</li>
+  <li>Categorías ambiguas: acá gana el productivo (80.8% vs. 75.6%)</li>
+  <li>Acuerdo entre ambos: solo 69.9% — <b>50 casos donde Jev acierta y el productivo no</b></li>
+</ul>
+
+<img src="images/precision-comparada.png" alt="Gráfico de barras comparando la precisión de Jev y del clasificador productivo en el mismo corpus">
+<p class="caption">Prueba offline con 292 casos sintéticos, no mensajes de clientes reales. El subset limpio elimina el sesgo de contexto: el dry-run del clasificador productivo no podía pasar contexto de cliente en 117 casos del corpus completo.</p>
+
+<h2>La auditoría que casi no hago (y por qué era obligatoria)</h2>
+
+<p>Había un problema metodológico incómodo: <b>el mismo agente había escrito las etiquetas y la rúbrica de Jev</b>. Sesgo correlacionado garantizado. La solución estándar: un segundo anotador ciego de otra familia de modelo, viendo solo la taxonomía, sin mis etiquetas. 292 casos anotados a ciegas.</p>
+
+<p>Resultado: 86.6% de acuerdo en intención, 99.7% en emoción, cero discrepancias en "¿es postulante?". Y el hallazgo incómodo: al recalcular contra la verdad del anotador independiente, la ventaja de Jev <b>creció</b> (86.6% vs. 72.3% = +14.3pp). Mi sesgo, si existía, era conservador.</p>
+
+<p>Pero lo mejor vino con un tercer modelo como desempate ciego en las 39 disputas: la adjudicación reveló que <b>varios "fallos" de Jev eran errores míos de etiquetado</b> — había marcado <i>fecha: no</i> en mensajes que decían "Saturday" o "6pm". Corregido mi propio trabajo, la señal de fecha pasó de 80.1% a <b>95.5%</b>. La lección de método: auditá tus etiquetas antes de auditar un modelo.</p>
+
+<h2>Del 15.6% al 71.4%: rediseñar las preguntas</h2>
+
+<p>La intención mixta ("quiero cancelar pero vuelve a reservar") fue el fracaso más fructífero. Primera versión: <b>15.6%</b> contra un gate de 70%. La autopsia encontró la moraleja técnica del artículo entero: <b>la distribución de una pregunta exclusiva expresa "a qué se parece esto", no "qué más quiere el cliente"</b>. Para multi-etiqueta hacen falta preguntas sí/no por familia de intención — las docs de TypeSafe lo decían explícitamente y lo ignoré porque un smoke temprano tuvo suerte.</p>
+
+<p>La v2 agregó seis preguntas binarias (<i>quiere_cancelar</i>, <i>quiere_reservar</i>, <i>mencionar_pago</i>...) más rúbricas corregidas. Resultado: <b>71.4%</b>, gate superado. Y una confesión: el gate midió 44.4% durante horas hasta que descubrí que el bug estaba en <b>mi código de evaluación</b>, no en el modelo — 17 casos mixtos sin familias derivables contaban como fallados por diseño. Cuando un número se ve mal, auditá tu instrumento antes de auditárselo al modelo.</p>
+
+<img src="images/intencion-mezcla.png" alt="La intención mixta pasó de 15.6% a 71.4% al rediseñar las preguntas sin cambiar el modelo">
+<p class="caption">El modelo no cambió: una pregunta exclusiva responde «a qué se parece esto»; las preguntas por familia permiten capturar qué más quiere el cliente.</p>
+
+<h2>El estado final</h2>
+
+<p>Último gate: latencia por el path real de producción (Worker en la red de Cloudflare → <i>typesafe/jev</i> vía Workers AI, el mismo serving del AI Gateway): <b>p50 322ms, p95 457ms</b> — la red corta a la mitad los 566–651ms de la API directa desde Europa. Paridad 12/12: exactamente el mismo modelo que evaluamos.</p>
+
+<ul>
+  <li>Intención overall: <b>94.2%</b> (chain actual: 79.5%)</li>
+  <li>Claras / ambiguas / contexto: 95.3% / 91.0% / 89.6%</li>
+  <li>Intención mixta multi-label: 71.4%</li>
+  <li>Emoción ±1 nivel: 97.9%</li>
+  <li>"¿Es postulante?": 99.7%</li>
+  <li>Calibración: dentro de rango</li>
+  <li>Costo por decisión: ~$0.00006</li>
+  <li>Latencia p95 (path productivo): 457ms</li>
+</ul>
+
+<p>Lo que <b>no</b> hice, también documentado: no usé datos reales de clientes — todo corrió sobre datos sintéticos —, y el 89.6% en categorías de contexto es un empate estadístico con el umbral, no una victoria. La Fase 2 — Jev clasificando en shadow junto al productivo sobre tráfico real — queda para el próximo capítulo.</p>
+
+<h2>Cómo se adopta (si los números aguantan)</h2>
+
+<p>La cascada es una propuesta, no una capacidad desplegada. Jev sólo interpreta señales: antes de responder o cambiar datos, el código debe validar permisos, estado y hechos operativos. Los casos ambiguos pasan al LLM o a una persona.</p>
+
+<ol>
+  <li><b>Shadow primero:</b> Jev clasifica en paralelo al productivo, sin efecto alguno. Se mide acuerdo, calibración y latencia sobre volumen real.</li>
+  <li><b>Cascada después:</b> Jev resuelve la masa fácil con confianza alta; lo ambiguo escala al LLM. El LLM pasa de "clasificador de todo" a "razonador de los casos difíciles".</li>
+  <li><b>Verificador barato:</b> una segunda opinión de centésimas de centavo sobre cada clasificación. Si discrepan, va a revisión humana — justo lo que atrapa los errores de routing que cuestan leads.</li>
+</ol>
+
+<h2>La tesis</h2>
+
+<p>No creo que esto reemplace a los LLMs. Creo que completa el stack. Tenemos modelos caros y lentos que razonan y escriben genial, y ahora la promesa de modelos baratos y calibrados que deciden rápido. La arquitectura interesante no es "uno u otro": es <b>una cascada donde cada decisión paga lo que vale</b>.</p>
+
+<p>Lo que cambió después de 292 casos: dejé de preguntarme <i>si</i> esto encaja en una empresa común y corriente, y empecé a preguntar <i>dónde exactamente</i>.</p>
+
+<p>La pregunta que me dejo — y le dejo a quien lea esto: ¿cuántas de las llamadas a LLM de tu sistema son, en realidad, preguntas de Sistema 1 que estás pagando como si fueran de Sistema 2?</p>
+
+<p class="footer">La versión original de este artículo, con los gráficos interactivos y el caso completo de MaltaClean, está en mi web: <a href="https://mauriciosuarez.dev/es/articulos/typesafe-jev">mauriciosuarez.dev/es/articulos/typesafe-jev</a></p>
+
+</article>
+</body>
+</html>
