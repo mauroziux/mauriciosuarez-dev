@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="La cadena de precedencias de variables de entorno: el env de runtime de la plataforma siempre pisa al ENV de la imagen Docker, que a su vez pisa al ARG de build. El env estático vivía en la capa superior; el fallback del Dockerfile llegaba vacío porque Coolify inyecta SOURCE_COMMIT en runtime; el fix definitivo resuelve el release en la config de la app, donde todos los caminos convergen.">
+  <defs>
+    <marker id="arr-p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#707070"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="30" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="#707070">LA CADENA DE PRECEDENCIAS · EL DE ARRIBA SIEMPRE PISA AL DE ABAJO</text>
+
+  <!-- Layer 1: platform runtime env -->
+  <rect x="40" y="52" width="720" height="104" rx="12" fill="#1a1b30" stroke="#6D71F0" stroke-opacity=".7"/>
+  <text x="66" y="84" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#ececec">1 · Env de runtime de la plataforma (Coolify)</text>
+  <text x="66" y="108" font-family="Inter, system-ui, sans-serif" font-size="12.5" fill="#a8a8a8">SIEMPRE gana sobre la imagen — anula cualquier mecanismo de build</text>
+  <rect x="520" y="94" width="216" height="30" rx="8" fill="#0a0a0a" stroke="#2a2a2a"/>
+  <text x="628" y="114" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="11.5" fill="#9B9EF7">SENTRY_RELEASE=68f50f6 ✕</text>
+  <text x="760" y="70" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">el culpable vivía acá — eliminado</text>
+
+  <path d="M 400 156 L 400 178" stroke="#707070" stroke-width="1.5" marker-end="url(#arr-p)"/>
+  <text x="416" y="172" font-family="Inter, system-ui, sans-serif" font-size="10.5" fill="#707070">pisa</text>
+
+  <!-- Layer 2: Docker image ENV -->
+  <rect x="40" y="182" width="720" height="104" rx="12" fill="#131313" stroke="#2a2a2a"/>
+  <text x="66" y="214" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#ececec">2 · ENV de la imagen Docker</text>
+  <text x="66" y="238" font-family="Inter, system-ui, sans-serif" font-size="12.5" fill="#a8a8a8">horneado en build · correcto pero insuficiente si la capa 1 existe</text>
+  <rect x="520" y="224" width="216" height="30" rx="8" fill="#0a0a0a" stroke="#2a2a2a"/>
+  <text x="628" y="244" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="11.5" fill="#a8a8a8">ENV SENTRY_RELEASE=…</text>
+  <text x="760" y="200" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">el fix "correcto" del acto 2</text>
+
+  <path d="M 400 286 L 400 308" stroke="#707070" stroke-width="1.5" marker-end="url(#arr-p)"/>
+  <text x="416" y="302" font-family="Inter, system-ui, sans-serif" font-size="10.5" fill="#707070">pisa</text>
+
+  <!-- Layer 3: build ARG -->
+  <rect x="40" y="312" width="720" height="104" rx="12" fill="#131313" stroke="#2a2a2a"/>
+  <text x="66" y="344" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#ececec">3 · ARG de build</text>
+  <text x="66" y="368" font-family="Inter, system-ui, sans-serif" font-size="12.5" fill="#a8a8a8">solo existe si la plataforma lo pasa al docker build</text>
+  <rect x="520" y="354" width="216" height="30" rx="8" fill="#0a0a0a" stroke="#2a2a2a"/>
+  <text x="628" y="374" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="11.5" fill="#a8a8a8">ARG SOURCE_COMMIT=""</text>
+  <text x="760" y="330" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">llegó VACÍO — Coolify lo inyecta</text>
+  <text x="760" y="344" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">en runtime, no como build-arg</text>
+
+  <path d="M 400 416 L 400 446" stroke="#9B9EF7" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arr-p)"/>
+
+  <!-- The fix -->
+  <rect x="40" y="450" width="720" height="92" rx="12" fill="#15162a" stroke="#6D71F0" stroke-opacity=".6"/>
+  <text x="66" y="482" font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700" fill="#9B9EF7">EL FIX · config/sentry.php — runtime, donde todo converge</text>
+  <rect x="66" y="494" width="440" height="32" rx="7" fill="#0a0a0a" stroke="#2a2a2a"/>
+  <text x="286" y="515" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="13" fill="#ececec">'release' => env('SENTRY_RELEASE') ?: env('SOURCE_COMMIT')</text>
+  <text x="540" y="505" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#a8a8a8">?: no ?? — el string vacío</text>
+  <text x="540" y="521" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#a8a8a8">también cae al fallback</text>
+
+  <text x="400" y="575" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#707070">Verificación: php artisan about | grep Release → SHA completo del commit recién desplegado.</text>
+</svg>

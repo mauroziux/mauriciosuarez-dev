@@ -14,8 +14,8 @@ visual system from day one (hero banner + 1–2 diagrams, subject's brand color)
 
 | # | Slug | Live ES/EN | Social promo | Teases |
 |---|------|-----------|--------------|--------|
-| 1 | `endpoint-29-seconds` | 2026-09-26 ✅ | **pending** | #2 (linked) |
-| 2 | `the-30-second-wall` | 2026-09-26 ✅ | **pending** | #3 (not yet linked) |
+| 1 | `endpoint-29-seconds` | 2026-09-26 ✅ | posts listos: `docs/social/2026-09-28-catchup.md` (Lun 28 X, Mar 29 LinkedIn) | #2 (linked) |
+| 2 | `the-30-second-wall` | 2026-09-26 ✅ | posts listos: idem (Mié 01 X, Jue 02 LinkedIn, Vie quote) | #3 (not yet linked) |
 
 ## Upcoming articles (briefs)
 
@@ -24,7 +24,9 @@ Each brief carries its verified source material from the Mantto repo
 
 ### #3 — "6 deploys, 1 release: el misterio del Sentry congelado" (slug: `frozen-sentry-release`)
 
-- **Status**: next up · teased by #2's epilogue · **must link back when published**
+- **Status**: **draft ES completo + visual system listos** (2026-09-26, pendiente de
+  checkpoint usuario y publish martes 2026-10-06) · teased by #2's epilogue ·
+  **must link back when published**
 - **Sources**: `docs/solutions/sentry-release-tracking.md` (incidente real 2026-08-31); commits `d403303`, `6d34165`, `c68351b`; ADR-0008.
 - **Data**: all Sentry events attributed to release `68f50f6` (Jul 31) regardless of deployed commit — 6 deploys shared one release, "what deploy broke this?" triage impossible. Root-cause chain: static `SENTRY_RELEASE` runtime env in Coolify **overrides** image `ENV`; then baking `ENV` with `ARG SOURCE_COMMIT` fallback arrived **empty** because Coolify 4.1.0 injects `SOURCE_COMMIT` as runtime env, not build-arg. Definitive fix in `config/sentry.php`. Bonus regression: 500-on-duplicate (UNIQUE → 422 pattern, `docs/solutions/entity-duplicate-code-validation.md`).
 - **Diagrams plan**: (1) the env-precedence chain (runtime env > image ENV > build-arg) as a detective board; (2) 6 deploys → 1 release funnel.

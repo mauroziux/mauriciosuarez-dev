@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" role="img" aria-label="Los tres actos del misterio: el env estático encontrado y eliminado parecía el final; el fallback del Dockerfile llegó vacío porque Coolify inyecta SOURCE_COMMIT en runtime y no como build-arg; el fix en config con verificación de SHA exacto es el final real, escoltado por un smoke test de 10 segundos en cada deploy.">
+  <defs>
+    <marker id="arr-f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#707070"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="30" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5" fill="#707070">TRES ACTOS · DOS FALSOS FINALES</text>
+
+  <!-- Act 1 -->
+  <rect x="40" y="56" width="226" height="240" rx="12" fill="#131313" stroke="#2a2a2a"/>
+  <text x="64" y="88" font-family="DejaVu Sans Mono, monospace" font-size="12" fill="#707070">ACTO 1 · 31 AGO</text>
+  <text x="64" y="118" font-family="Inter, system-ui, sans-serif" font-size="14.5" font-weight="600" fill="#ececec">El env estático</text>
+  <text x="64" y="146" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">SENTRY_RELEASE=68f50f6 hallado</text>
+  <text x="64" y="164" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">en el env de la app en Coolify.</text>
+  <text x="64" y="182" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">Runtime pisa a la imagen. Eliminado</text>
+  <text x="64" y="200" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">vía API.</text>
+  <rect x="64" y="224" width="178" height="28" rx="8" fill="#1a1b30" stroke="#4a4a4a" stroke-opacity=".5"/>
+  <text x="153" y="243" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#a8a8a8">FALSO FINAL 1 — parecía el fin</text>
+  <text x="64" y="278" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">6 deploys · 1 release detectado</text>
+
+  <path d="M 270 176 L 296 176" stroke="#707070" stroke-width="1.5" marker-end="url(#arr-f)"/>
+
+  <!-- Act 2 -->
+  <rect x="300" y="56" width="226" height="240" rx="12" fill="#131313" stroke="#2a2a2a"/>
+  <text x="324" y="88" font-family="DejaVu Sans Mono, monospace" font-size="12" fill="#707070">ACTO 2</text>
+  <text x="324" y="118" font-family="Inter, system-ui, sans-serif" font-size="14.5" font-weight="600" fill="#ececec">El fallback vacío</text>
+  <text x="324" y="146" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">Dockerfile: ENV + ARG con</text>
+  <text x="324" y="164" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">fallback a ARG SOURCE_COMMIT.</text>
+  <text x="324" y="182" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">Deploy → release VACÍO.</text>
+  <text x="324" y="200" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">Coolify 4.1.0 inyecta SOURCE_COMMIT</text>
+  <text x="324" y="218" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">en runtime, no como build-arg.</text>
+  <rect x="324" y="236" width="178" height="28" rx="8" fill="#1a1b30" stroke="#4a4a4a" stroke-opacity=".5"/>
+  <text x="413" y="255" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#a8a8a8">FALSO FINAL 2 — el mundo equivocado</text>
+  <text x="324" y="278" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">build-time ≠ runtime</text>
+
+  <path d="M 530 176 L 556 176" stroke="#707070" stroke-width="1.5" marker-end="url(#arr-f)"/>
+
+  <!-- Act 3 -->
+  <rect x="560" y="56" width="200" height="240" rx="12" fill="#15162a" stroke="#6D71F0" stroke-opacity=".7"/>
+  <text x="584" y="88" font-family="DejaVu Sans Mono, monospace" font-size="12" fill="#707070">ACTO 3</text>
+  <text x="584" y="118" font-family="Inter, system-ui, sans-serif" font-size="14.5" font-weight="600" fill="#ececec">Resolver en config</text>
+  <text x="584" y="146" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">config/sentry.php evalúa en</text>
+  <text x="584" y="164" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#a8a8a8">runtime: donde todo converge.</text>
+  <rect x="584" y="178" width="152" height="30" rx="7" fill="#0a0a0a" stroke="#2a2a2a"/>
+  <text x="660" y="198" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="10.5" fill="#ececec">ENV ?: SOURCE_COMMIT</text>
+  <rect x="584" y="224" width="152" height="28" rx="8" fill="#1a1b30" stroke="#6D71F0" stroke-opacity=".6"/>
+  <text x="660" y="243" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11.5" font-weight="700" fill="#9B9EF7">FINAL REAL ✓</text>
+  <text x="584" y="278" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">Release = d4033036fc51… exacto</text>
+
+  <!-- Bottom -->
+  <line x1="40" y1="332" x2="760" y2="332" stroke="#2a2a2a"/>
+  <rect x="150" y="356" width="500" height="46" rx="10" fill="#131313" stroke="#2a2a2a"/>
+  <text x="400" y="377" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12.5" fill="#ececec">El escort del fix: smoke de 10 s en cada deploy</text>
+  <text x="400" y="394" text-anchor="middle" font-family="DejaVu Sans Mono, monospace" font-size="10.5" fill="#707070">php artisan about | grep Release → ¿SHA del commit actual?</text>
+
+  <text x="400" y="440" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="12" fill="#707070">Cada fix destapó el siguiente malentendido de la cadena — debugging de config es arqueología.</text>
+</svg>
