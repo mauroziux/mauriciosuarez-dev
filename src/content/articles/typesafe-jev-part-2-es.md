@@ -13,7 +13,7 @@ En [la primera parte](/es/articulos/typesafe-jev/) probé Jev, el modelo de Type
 
 Dejé una tarea pendiente: ponerlo junto al concierge de [MaltaClean](https://malta-cleaners.com) sobre conversaciones reales y contar qué pasaba.
 
-Ya tenemos el corte de once días: **703 turnos de WhatsApp, de 105 teléfonos diferentes**, del 20 de septiembre al 1 de octubre. La conclusión es menos espectacular que la del laboratorio, pero más útil: **no tengo evidencia para reemplazar al LLM. Sí tengo razones para seguir evaluando Jev como complemento, especialmente cuando el pipeline principal falla.** Y los últimos días le dieron la razón a esa segunda parte: el 30 de septiembre el clasificador principal se quedó sin respuestas válidas durante un día entero y Jev clasificó los 45 turnos de esa jornada.
+Ya tenemos el corte de once días: **703 turnos de WhatsApp, de 105 teléfonos diferentes**, del 20 de septiembre al 1 de octubre. La conclusión es menos espectacular que la del laboratorio, pero más útil: **no tengo evidencia para reemplazar al LLM. Sí tengo razones para seguir evaluando Jev como complemento, especialmente cuando el pipeline principal falla.** Los últimos días reforzaron esa hipótesis: el 30 de septiembre Jev devolvió clasificaciones en los 45 turnos registrados de esa jornada, aunque ninguna coincidió con la categoría final del pipeline principal.
 
 Y hay una advertencia que importa más que cualquier porcentaje: dos modelos que discrepan no te dicen, por sí solos, cuál tiene razón.
 
@@ -47,7 +47,7 @@ Sería tentador titular: «Jev pasó del 94% al 27%».
 
 **Sería incorrecto.** El 94,2% del laboratorio mide acierto contra etiquetas del corpus sintético. El 26,7% real mide acuerdo con otro sistema. No son la misma métrica. Si Jev acierta donde el LLM falla, el acuerdo baja. Si ambos cometen el mismo error, el acuerdo sube.
 
-Y aquí el acuerdo cayó sobre todo por el comparador, no por Jev: en el segmento 2.2.0 hubo **131 turnos en los que el pipeline principal declaró proveedor no disponible** y respondió con su etiqueta genérica de contingencia. El 30 de septiembre fue el día más duro: 45 turnos, cero coincidencias — porque el pipeline no clasificó ninguno. Cuando el pipeline sí terminó como `provider_valid`, el acuerdo se mantiene en el 42,6%, parecido al 43,9% del corte anterior.
+Y aquí el acuerdo cayó sobre todo por el comparador, no por Jev: en el segmento 2.2.0 hubo **131 turnos en los que el pipeline principal declaró proveedor no disponible** y respondió con su etiqueta genérica de contingencia. El 30 de septiembre hubo 45 turnos y cero coincidencias. Ese agregado acredita desacuerdo, no que todas las clasificaciones del LLM fueran inválidas ni que Jev tuviera razón. Cuando el pipeline sí terminó como `provider_valid`, el acuerdo se mantiene en el 42,6%, parecido al 43,9% del corte anterior.
 
 Tampoco puedo decir que las preguntas nuevas empeoraron el modelo: cambió el tráfico y el comparador sufrió una degradación importante.
 
@@ -61,24 +61,24 @@ Con las preguntas 2.2.0 hubo **131 turnos en los que el pipeline principal marc�
 
 *Lo que Jev proponía mientras el sistema solo podía decir "unclear": cotizaciones, quejas, pagos. Ser más específico que un fallback no prueba corrección.*
 
-En esos casos el sistema principal caía en una respuesta de fallback con una etiqueta genérica —y el 30 de septiembre eso le pasó a cada turno del día—. Jev proponía categorías más específicas: cotización, queja, cambio de reserva, pago o conversación mal dirigida, entre otras. Durante la degradación el pipeline terminó escalando a una persona **171 de las 326 decisiones del segmento (52%)**; cada una de esas escaladas llevaba detrás una etiqueta de contingencia, no una lectura del mensaje.
+En esos 131 casos el sistema principal caía en una respuesta de fallback con una etiqueta genérica. Jev proponía categorías más específicas: cotización, queja, cambio de reserva, pago o conversación mal dirigida, entre otras. El pipeline terminó escalando a una persona **171 de las 326 decisiones comparables del segmento (52%)**. Son las escaladas totales, no 171 fallos del proveedor.
 
 Eso explica la mayor parte del bajo acuerdo: estábamos comparando una decisión de Jev contra una etiqueta de contingencia, no contra una decisión real del LLM.
 
 Pero responder no equivale a acertar. **No he demostrado que esas 128 clasificaciones fueran correctas**, ni que hubieran permitido atender mejor al cliente. Y ambos usan infraestructura compartida de Cloudflare/Gateway: no es redundancia demostrada frente a cualquier tipo de caída.
 
-Lo que sí cambia es dónde buscar valor. La pregunta ya no es «¿puede Jev clasificar todo primero?», sino «¿puede aportar triage útil cuando el sistema principal se queda sin una clasificación válida?». Ese día 30 de septiembre, la respuesta habría sido: 45 turnos con algo mejor que "no sé".
+Lo que sí cambia es dónde buscar valor. La pregunta ya no es «¿puede Jev clasificar todo primero?», sino «¿puede aportar triage útil cuando el sistema principal se queda sin una clasificación válida?». El 30 de septiembre hubo 45 salidas de Jev para investigar. Que fueran mejores para el cliente sigue siendo una hipótesis.
 
 ## Velocidad y coste: qué comparo y qué no
 
 ![Comparativa de tiempo hasta una clasificación válida y coste por decisión: chain LLM 3,78 s p50 y Jev 0,55 s; coste estimado del chain $0,002–0,006 por turno contra $0,000081 medido para Jev](/articles/typesafe-jev/velocidad-coste.svg)
 
-*El chain hace más trabajo que Jev —borradores de respuesta, hechos, validación—, así que no es una carrera justa. Pero para la pregunta de esta parte (¿sirve como respaldo?) la diferencia importa: cuando el camino principal tarda, el barato y rápido ya contestó.*
+*El chain hace más trabajo que Jev —borradores de respuesta, hechos, validación—, así que no es una carrera justa. Para evaluar una posible señal de respaldo, la llamada registrada más corta de Jev es interesante, pero no prueba atención más rápida al cliente ni trabajo equivalente a menor coste.*
 
 Los números, con sus asteriscos:
 
-- **Tiempo hasta una clasificación válida.** El ledger del clasificador mide reclamación→pin por turno: en la semana sana, **p50 de 3,78 s y p95 de 4,79 s**. Con la degradación y sus reintentos, el p50 del segmento 2.2.0 se fue a **14,5 s**. Jev cronometra solo su llamada REST: **p50 de 548 ms y p95 de 1220 ms**. No miden lo mismo —el chain incluye pasos que Jev no hace—, pero como fuente secundaria de señales, Jev entrega **~7× antes** en condiciones normales y ~26× antes cuando el chain está reintentando.
-- **Coste por decisión.** El chain se estimó en la primera parte entre **$0,002 y $0,006 por turno** completo. Jev midió **$0,000081 por caso** en el corpus sintético (tarifa publicada: $0,042 por millón de tokens de entrada, salida gratuita). Una segunda opinión cuesta entre **25 y 75 veces menos** que la decisión que verifica. Ojo: el shadow no persiste el uso real de tokens, así que no tengo la factura de esta ventana; la cifra del corpus es una medición, no una estimación del tráfico real.
+- **Tiempo hasta una clasificación válida.** En ejecuciones `provider_valid`, el ledger mide reclamación→pin por turno: en el segmento anterior, **p50 de 3,78 s y p95 de 4,79 s**; en el segmento 2.2.0, durante la degradación, el p50 fue de **14,5 s**. Ese intervalo incluye trabajo del pipeline y posibles reintentos, no solo inferencia. Jev cronometra su llamada REST en respuestas exitosas: **p50 de 548 ms y p95 de 1220 ms**. Dividir esas medianas da aproximadamente **7× y 26×**, pero compara tareas, cohortes y cronómetros distintos: no demuestra una aceleración equivalente del modelo ni del tiempo que ve el cliente.
+- **Coste por decisión.** El chain se estimó en la primera parte entre **$0,002 y $0,006 por turno** completo. Jev midió **$0,000081 por caso** en el corpus sintético (tarifa publicada: $0,042 por millón de tokens de entrada, salida gratuita). La relación aritmética es de aproximadamente **25–75×**, no un ahorro medido: compara un turno completo estimado con una clasificación sintética medida. El shadow no persiste el uso real de tokens, así que no tengo la factura de esta ventana ni una cifra validada de ahorro en producción.
 
 ## Las preguntas pequeñas tienen más sentido que el router grande
 
@@ -88,7 +88,7 @@ En el segmento actual, el pipeline etiquetó 26 turnos como reclutamiento. La pr
 
 Es una corroboración fuerte de una distinción importante para una empresa de servicios: alguien que quiere trabajar para ti no es un lead que quiere comprar.
 
-Pero esos cuatro adicionales todavía son discrepancias por revisar, no «falsos positivos» demostrados. El LLM no se convierte en verdad humana porque sea el sistema que ya teníamos.
+Pero esos siete adicionales todavía son discrepancias por revisar, no «falsos positivos» demostrados. El LLM no se convierte en verdad humana porque sea el sistema que ya teníamos.
 
 ### ¿Necesita una persona ahora?
 
@@ -122,7 +122,7 @@ El ensayo también expuso límites del instrumento, no solo de Jev.
 
 ![Acuerdo exacto entre Jev y el pipeline según la confianza declarada: crece del 9% al 41,9%](/articles/typesafe-jev/acuerdo-confianza.svg)
 
-*La pendiente existe; la calibración, sin demostrar. Un valor de 0,97 que acierta el 42% de las veces contra un comparador caído no es una probabilidad honesta — es una pista para investigar.*
+*La pendiente existe; la calibración, sin demostrar. El 41,9% es acuerdo en el tramo de confianza ≥0,9, no acierto contra etiquetas humanas. Ni demuestra calibración ni permite declarar que las probabilidades sean incorrectas.*
 
 **Tipado no es disponibilidad de extremo a extremo.** Registramos 34 errores: 20 fueron `missing_answers` asociados al bug documentado del adaptador durante el arranque; el resto fueron fallos de transporte o HTTP. El modelo puede prometer una forma de salida y mi integración puede leerla mal.
 
@@ -162,6 +162,6 @@ Ese es el resultado de esta segunda parte. No «Jev ganó». No «Jev no sirve»
 
 - [Primera parte: TypeSafe Jev](/es/articulos/typesafe-jev/).
 - [Ficha y tarifa del modelo en Cloudflare](https://developers.cloudflare.com/ai/models/typesafe/jev/), consultada el 30 de septiembre de 2026.
-- Registro D1 agregado: ventana del 20 de septiembre al 1 de octubre, corte exclusivo 15:43:33 UTC (última fila del shadow; dejó de escribir ese día, con 58 ejecuciones del clasificador sin fila de shadow después). Cobertura verificada por llave: 703/703.
-- 703 turnos de 105 teléfonos, no 703 observaciones independientes. 669 respuestas comparables y 34 errores. Rúbricas separadas; sin A/B ni gold humano nuevo. Latencia del chain: reclamación→pin del ledger de ejecuciones (incluye reintentos); latencia de Jev: cronómetro de su llamada REST.
-- Actualizado el 2 de octubre de 2026 con la ventana completa; el corte original del 30 de septiembre queda descrito en la metodología.
+- Extracto D1 de solo lectura: ventana solicitada [20 de septiembre 00:00:00, 2 de octubre 17:30:00) UTC. La última fila del shadow observada es del 1 de octubre a las 15:43:33 UTC. Se emparejaron 703 filas de shadow con 761 ejecuciones del clasificador; 58 ejecuciones posteriores no tenían shadow. No hubo filas shadow huérfanas. No conocemos la causa de esa ausencia.
+- Los 703 turnos cubiertos corresponden a 105 teléfonos, no a 703 observaciones independientes. 669 respuestas comparables y 34 errores. Rúbricas separadas; sin A/B ni nuevas etiquetas humanas independientes. Latencia del chain: reclamación→pin del ledger en ejecuciones `provider_valid` (incluye trabajo del pipeline y posibles reintentos); latencia de Jev: cronómetro de su llamada REST en respuestas exitosas. Los conjuntos y alcances de medición son distintos.
+- Datos extraídos el 2 de octubre de 2026. La primera lectura, del 30 de septiembre, incluía 623 turnos; esta actualización añade 80 filas de shadow, no nuevas observaciones para todo el 2 de octubre.

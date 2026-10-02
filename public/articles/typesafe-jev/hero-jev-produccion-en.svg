@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">The LLM failed. Jev kept classifying.</title>
+  <desc id="desc">Two parallel paths on real traffic: the main classifier falls back while Jev returns categories in shadow mode. Jev responded in 128 of 131 turns with the provider unavailable. This measures availability, not accuracy or customer service.</desc>
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ececec" stroke-opacity=".035"/>
+    </pattern>
+    <radialGradient id="signalGlow">
+      <stop stop-color="#C41E3A" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#C41E3A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="signal" x1="0" x2="1">
+      <stop stop-color="#9E1830"/>
+      <stop offset="1" stop-color="#E14B64"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect x="560" y="96" width="580" height="428" fill="url(#grid)"/>
+  <ellipse cx="864" cy="354" rx="295" ry="184" fill="url(#signalGlow)"/>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="64" y="61" width="10" height="10" fill="#E14B64"/>
+    <text x="88" y="72" font-size="17" font-weight="700" letter-spacing="1.8" fill="#E14B64">TYPESAFE JEV / PART 2</text>
+    <text x="1136" y="72" text-anchor="end" font-size="16" letter-spacing="1.2" fill="#a8a8a8">FROM THE LAB TO WHATSAPP</text>
+
+    <text x="64" y="193" font-size="58" font-weight="700" letter-spacing="-1.8" fill="#ececec">The LLM failed.</text>
+    <text x="64" y="263" font-size="58" font-weight="700" letter-spacing="-1.8" fill="#ececec">Jev kept</text>
+    <text x="64" y="333" font-size="58" font-weight="700" letter-spacing="-1.8" fill="#E14B64">classifying.</text>
+
+    <text x="67" y="392" font-size="23" fill="#a8a8a8">New signals from real traffic.</text>
+    <text x="67" y="425" font-size="23" fill="#a8a8a8">Not a replacement. Not yet.</text>
+    <path d="M67 472H104" stroke="#c9a052" stroke-width="2"/>
+    <text x="117" y="479" font-size="17" fill="#c9a052">Availability ≠ accuracy</text>
+  </g>
+
+  <!-- One input, two parallel evaluations. Never a cascade or a customer-facing failover. -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M578 270H616Q642 270 642 244V228Q642 202 668 202H826" stroke="#666666" stroke-width="3"/>
+    <path d="M890 202H1118" stroke="#4a4a4a" stroke-width="2" stroke-dasharray="5 10" opacity=".5"/>
+    <path d="M578 270H616Q642 270 642 296V326Q642 352 668 352H886" stroke="url(#signal)" stroke-width="4"/>
+    <circle cx="578" cy="270" r="8" fill="#0a0a0a" stroke="#a8a8a8" stroke-width="2"/>
+    <circle cx="706" cy="202" r="5" fill="#666666" stroke="#0a0a0a" stroke-width="2"/>
+    <circle cx="758" cy="202" r="5" fill="#666666" stroke="#0a0a0a" stroke-width="2"/>
+    <circle cx="706" cy="352" r="6" fill="#E14B64" stroke="#0a0a0a" stroke-width="2"/>
+    <circle cx="758" cy="352" r="6" fill="#E14B64" stroke="#0a0a0a" stroke-width="2"/>
+    <circle cx="810" cy="352" r="6" fill="#E14B64" stroke="#0a0a0a" stroke-width="2"/>
+    <path d="M847 190L871 214M871 190L847 214" stroke="#a8a8a8" stroke-width="3"/>
+    <path d="M886 352V313H906M886 352H906M886 352V391H906" stroke="#E14B64" stroke-width="2"/>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="670" y="163" font-size="18" font-weight="700" letter-spacing="1.5" fill="#a8a8a8">LLM / FALLBACK</text>
+    <text x="895" y="177" font-size="17" fill="#a8a8a8">no valid classification</text>
+    <rect x="916" y="218" width="158" height="37" rx="5" fill="#151515" stroke="#333333"/>
+    <text x="995" y="243" text-anchor="middle" font-family="Courier New, monospace" font-size="18" fill="#a8a8a8">unclear</text>
+
+    <text x="670" y="313" font-size="18" font-weight="700" letter-spacing="1.5" fill="#E14B64">JEV / SHADOW</text>
+    <rect x="906" y="295" width="194" height="36" rx="5" fill="#1c1113" stroke="#9E1830"/>
+    <text x="1003" y="320" text-anchor="middle" font-family="Courier New, monospace" font-size="18" fill="#ececec">quote</text>
+    <rect x="906" y="334" width="194" height="36" rx="5" fill="#1c1113" stroke="#9E1830"/>
+    <text x="1003" y="359" text-anchor="middle" font-family="Courier New, monospace" font-size="18" fill="#ececec">complaint</text>
+    <rect x="906" y="373" width="194" height="36" rx="5" fill="#1c1113" stroke="#9E1830"/>
+    <text x="1003" y="398" text-anchor="middle" font-family="Courier New, monospace" font-size="18" fill="#ececec">payment</text>
+
+    <text x="670" y="483" font-size="43" font-weight="700" letter-spacing="-1" fill="#ececec">128 / 131</text>
+    <text x="899" y="482" font-size="18" fill="#a8a8a8">turns with a response</text>
+    <text x="670" y="510" font-size="17" fill="#a8a8a8">When the main provider was unavailable.</text>
+
+    <path d="M64 554H1136" stroke="#2a2a2a"/>
+    <text x="64" y="588" font-size="17" fill="#a8a8a8">703 observed turns · 105 phone numbers</text>
+    <text x="1136" y="588" text-anchor="end" font-size="17" fill="#a8a8a8">SHADOW MODE · NO CUSTOMER-FACING ACTIONS</text>
+  </g>
+</svg>

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 470" role="img" aria-label="Across 131 turns with the main provider unavailable, Jev responded in 128 (97.7%), proposing quotes (28), complaints (13), booking notes (12), payment verification (11), and booking updates (9)">
+  <text x="24" y="33" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="600" fill="#ececec">While the main classifier failed, Jev kept classifying</text>
+  <text x="24" y="56" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#a8a8a8">131 turns with the provider unavailable · question set 2.2.0 · Jev responded in 128 (97.7%)</text>
+
+  <rect x="24" y="74" width="14" height="14" rx="3" fill="#C41E3A"/>
+  <text x="44" y="86" font-family="Inter, system-ui, sans-serif" font-size="13" fill="#a8a8a8">Jev’s proposed category where the main system could only return "unclear"</text>
+
+  <!-- Axis guides: x from 150 to 700, scale 0..50 -->
+  <line x1="255" y1="108" x2="255" y2="418" stroke="#2a2a2a" stroke-width="1"/>
+  <line x1="475" y1="108" x2="475" y2="418" stroke="#1f1f1f" stroke-width="1"/>
+  <line x1="700" y1="108" x2="700" y2="418" stroke="#1f1f1f" stroke-width="1"/>
+
+  <!-- Cotización 28 -->
+  <text x="240" y="133" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Quote</text>
+  <rect x="255" y="118" width="249" height="20" rx="4" fill="#C41E3A"/>
+  <text x="510" y="133" font-family="Inter, ui-monospace, monospace" font-size="12.5" font-weight="600" fill="#ffffff">28</text>
+
+  <!-- Queja 13 -->
+  <text x="240" y="181" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Complaint</text>
+  <rect x="255" y="166" width="116" height="20" rx="4" fill="#C41E3A"/>
+  <text x="377" y="181" font-family="Inter, ui-monospace, monospace" font-size="12.5" fill="#a8a8a8">13</text>
+
+  <!-- Nota de reserva 12 -->
+  <text x="240" y="229" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Booking note</text>
+  <rect x="255" y="214" width="107" height="20" rx="4" fill="#C41E3A"/>
+  <text x="368" y="229" font-family="Inter, ui-monospace, monospace" font-size="12.5" fill="#a8a8a8">12</text>
+
+  <!-- Verificación de pago 11 -->
+  <text x="240" y="277" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Payment verification</text>
+  <rect x="255" y="262" width="98" height="20" rx="4" fill="#C41E3A"/>
+  <text x="359" y="277" font-family="Inter, ui-monospace, monospace" font-size="12.5" fill="#a8a8a8">11</text>
+
+  <!-- Cambio de reserva 9 -->
+  <text x="240" y="325" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Booking update</text>
+  <rect x="255" y="310" width="80" height="20" rx="4" fill="#C41E3A"/>
+  <text x="341" y="325" font-family="Inter, ui-monospace, monospace" font-size="12.5" fill="#a8a8a8">9</text>
+
+  <!-- Negocio equivocado 7 -->
+  <text x="240" y="373" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Wrong business</text>
+  <rect x="255" y="358" width="62" height="20" rx="4" fill="#C41E3A"/>
+  <text x="323" y="373" font-family="Inter, ui-monospace, monospace" font-size="12.5" fill="#a8a8a8">7</text>
+
+  <!-- Otras 14 categorías 48 -->
+  <text x="240" y="421" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#a8a8a8">Other 14 categories</text>
+  <rect x="255" y="406" width="427" height="20" rx="4" fill="#6b3237"/>
+  <text x="688" y="421" font-family="Inter, ui-monospace, monospace" font-size="12.5" fill="#a8a8a8">48</text>
+
+  <text x="255" y="448" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">0</text>
+  <text x="475" y="448" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">25 turns</text>
+  <text x="700" y="448" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">50</text>
+
+  <text x="24" y="466" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">More specific than a fallback does not mean correct: these 128 labels have no independent human validation.</text>
+</svg>
