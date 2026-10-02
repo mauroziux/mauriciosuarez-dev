@@ -1,11 +1,12 @@
 ---
 title: "Jev en producción: 703 turnos después, complemento antes que reemplazo"
-description: "Puse a Jev, el modelo de decisiones tipadas de TypeSafe, en shadow sobre el WhatsApp real de una empresa de limpieza: 703 turnos, 105 teléfonos, 11 días. El acuerdo con el pipeline cayó al 27% porque el clasificador principal se degradó — y el día que no clasificó ninguno, Jev respondió el 97,7% de los turnos, 7× más rápido y ~50× más barato. Complemento, no reemplazo."
+description: "Tras 703 turnos reales de WhatsApp, Jev respondió en 128 de 131 fallos del clasificador principal: nuevas señales en shadow, no un reemplazo probado."
 lang: "es"
 routeSlug: "typesafe-jev-part-2"
 tags: ["integracion-ia", "llm", "evaluacion", "arquitectura", "automatizacion"]
 publishedDate: 2026-10-02
 draft: false
+ogImage: "/articles/typesafe-jev/hero-jev-produccion-es.png"
 ---
 
 En [la primera parte](/es/articulos/typesafe-jev/) probé Jev, el modelo de TypeSafe que devuelve decisiones estructuradas en vez de escribir respuestas. Después de 292 casos sintéticos, el resultado prometía: 94,2% de acierto de intención bajo nuestro criterio de evaluación y una latencia p95 de 457 ms en un probe de Workers AI.
