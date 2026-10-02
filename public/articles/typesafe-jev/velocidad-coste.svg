@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img" aria-label="Comparativa de velocidad y coste: el chain LLM saludable tarda 3,78 segundos por decisión (p50) y Jev 0,55 segundos, unas 7 veces más rápido; durante la degradación el chain tardó 14,5 segundos. En coste, el chain se estima entre 0,002 y 0,006 dólares por turno y Jev midió 0,000081 dólares por decisión en el corpus sintético.">
+  <text x="24" y="33" font-family="Inter, system-ui, sans-serif" font-size="17" font-weight="600" fill="#ececec">Velocidad y coste por decisión</text>
+
+  <!-- Panel A: latency p50, scale 0..15s mapped 150..720px (38px/s) -->
+  <text x="24" y="66" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#c9a052">Tiempo hasta una clasificación válida (p50)</text>
+
+  <line x1="150" y1="82" x2="150" y2="242" stroke="#2a2a2a" stroke-width="1"/>
+  <line x1="435" y1="82" x2="435" y2="242" stroke="#1f1f1f" stroke-width="1"/>
+  <line x1="720" y1="82" x2="720" y2="242" stroke="#1f1f1f" stroke-width="1"/>
+
+  <text x="135" y="117" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Chain LLM</text>
+  <text x="135" y="133" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#a8a8a8">semana sana</text>
+  <rect x="150" y="102" width="144" height="22" rx="4" fill="#4a4a4a"/>
+  <text x="300" y="117" font-family="Inter, ui-monospace, monospace" font-size="12.5" fill="#a8a8a8">3,78 s</text>
+
+  <text x="135" y="177" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Chain LLM</text>
+  <text x="135" y="193" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#a8a8a8">con reintentos*</text>
+  <rect x="150" y="162" width="551" height="22" rx="4" fill="#333333"/>
+  <text x="705" y="177" text-anchor="end" font-family="Inter, ui-monospace, monospace" font-size="12.5" fill="#c9a052">14,5 s</text>
+
+  <text x="135" y="237" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Jev</text>
+  <rect x="150" y="222" width="21" height="22" rx="4" fill="#C41E3A"/>
+  <text x="177" y="237" font-family="Inter, ui-monospace, monospace" font-size="12.5" font-weight="600" fill="#ffffff">0,55 s  (7× más rápido)</text>
+
+  <text x="150" y="260" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">0 s</text>
+  <text x="435" y="260" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">7,5 s</text>
+  <text x="720" y="260" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="11" fill="#707070">15 s</text>
+
+  <!-- Panel B: cost per decision, log-ish manual scale -->
+  <text x="24" y="316" font-family="Inter, system-ui, sans-serif" font-size="13" font-weight="600" fill="#c9a052">Coste por decisión (escala no lineal)</text>
+
+  <line x1="150" y1="332" x2="150" y2="492" stroke="#2a2a2a" stroke-width="1"/>
+
+  <text x="135" y="367" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Chain LLM</text>
+  <text x="135" y="383" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#a8a8a8">estimado</text>
+  <rect x="150" y="352" width="540" height="22" rx="4" fill="#4a4a4a"/>
+  <text x="684" y="367" text-anchor="end" font-family="Inter, ui-monospace, monospace" font-size="12.5" fill="#a8a8a8">$0,002–0,006</text>
+
+  <text x="135" y="427" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="13.5" fill="#ececec">Jev</text>
+  <text x="135" y="443" text-anchor="end" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#a8a8a8">medido en corpus</text>
+  <rect x="150" y="412" width="120" height="22" rx="4" fill="#C41E3A"/>
+  <text x="278" y="427" font-family="Inter, ui-monospace, monospace" font-size="12.5" font-weight="600" fill="#ffffff">$0,000081  (~25–75× menos)</text>
+
+  <text x="24" y="486" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">* Chain: ledger reclamación→pin por turno lógico, incluye reintentos internos; ventana del 27-sep al 1-oct.</text>
+  <text x="24" y="504" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">Jev: cronómetro alrededor de su llamada REST. No miden lo mismo: el chain hace más trabajo (borradores + validación).</text>
+  <text x="24" y="522" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">Coste Jev: 292 casos sintéticos × tarifa publicada de $0,042/M tokens de entrada; el shadow no persiste uso real.</text>
+  <text x="24" y="540" font-family="Inter, system-ui, sans-serif" font-size="11.5" fill="#707070">Coste chain: estimación de la primera parte ($0,002–0,006 por turno completo, no solo clasificación).</text>
+</svg>
