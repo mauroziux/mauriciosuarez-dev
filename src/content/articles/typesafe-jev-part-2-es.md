@@ -71,7 +71,7 @@ Lo que sí cambia es dónde buscar valor. La pregunta ya no es «¿puede Jev cla
 
 ## Velocidad y coste: qué comparo y qué no
 
-![Comparativa de tiempo hasta una clasificación válida y coste por decisión: chain LLM 3,78 s p50 y Jev 0,55 s; coste estimado del chain $0,002–0,006 por turno contra $0,000081 medido para Jev](/articles/typesafe-jev/velocidad-coste.svg)
+![Comparativa de tiempo hasta una clasificación válida y coste por decisión: chain LLM 3,78 s p50 y Jev 0,55 s; coste estimado del chain $0,002–0,006 por turno contra $0,000081 medido para Jev](/articles/typesafe-jev/velocidad-coste-v2.svg)
 
 *El chain hace más trabajo que Jev —borradores de respuesta, hechos, validación—, así que no es una carrera justa. Para evaluar una posible señal de respaldo, la llamada registrada más corta de Jev es interesante, pero no prueba atención más rápida al cliente ni trabajo equivalente a menor coste.*
 
@@ -120,7 +120,7 @@ El ensayo también expuso límites del instrumento, no solo de Jev.
 
 **Confianza no es calibración demostrada.** A mayor confianza declarada, mayor acuerdo con el comparador — del 9,0% bajo 0,5 al 41,9% con 0,9 o más — pero para verificar calibración necesito etiquetas independientes sobre los mensajes reales, no coincidencia con el comparador. Los fallbacks del pipeline contaminan todos los tramos.
 
-![Acuerdo exacto entre Jev y el pipeline según la confianza declarada: crece del 9% al 41,9%](/articles/typesafe-jev/acuerdo-confianza.svg)
+![Acuerdo exacto entre Jev y el pipeline según la confianza declarada: crece del 9% al 41,9%](/articles/typesafe-jev/acuerdo-confianza-v2.svg)
 
 *La pendiente existe; la calibración, sin demostrar. El 41,9% es acuerdo en el tramo de confianza ≥0,9, no acierto contra etiquetas humanas. Ni demuestra calibración ni permite declarar que las probabilidades sean incorrectas.*
 
