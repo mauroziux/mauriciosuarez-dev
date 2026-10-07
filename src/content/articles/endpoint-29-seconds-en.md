@@ -3,7 +3,7 @@ title: "The endpoint that took 29 seconds (and nobody complained)"
 description: "Autopsy of a ~29s production request: the AI call, the PDF render, and ~20 R2 downloads hidden inside an email — and the pattern that got it under 500 ms."
 lang: "en"
 routeSlug: "endpoint-29-seconds"
-tags: ["laravel", "rendimiento", "colas", "saas", "postmortem"]
+tags: ["laravel", "performance", "queues", "saas", "postmortem"]
 publishedDate: 2026-09-26
 draft: false
 ogImage: "/articles/endpoint-29-seconds/hero-29s-en.png"
@@ -11,7 +11,7 @@ ogImage: "/articles/endpoint-29-seconds/hero-29s-en.png"
 
 The most important endpoint in my SaaS took **29 seconds** to respond. I know because I measured it — not because anyone reported it. Nobody ever complained. That silence is the most interesting part of this story.
 
-The system is [Mantto](/en/projects/mantto/), a property maintenance and inspection platform running in production. The endpoint in question is the one that marks a maintenance request as **completed**: the button an administrator hits to close out the day. It sounds trivial. It isn't.
+The system is [Mantto](/en/work/mantto/), a property maintenance and inspection platform running in production. The endpoint in question is the one that marks a maintenance request as **completed**: the button an administrator hits to close out the day. It sounds trivial. It isn't.
 
 ## The symptom nobody reported
 

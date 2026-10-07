@@ -2,7 +2,7 @@
 title: "try/catch no sirve cuando el proceso ya está muerto"
 description: "FatalError a los 30 s en producción: la SDK de IA esperaba 60, PHP mató el worker antes. La jerarquía de timeouts que todo backend necesita."
 lang: "es"
-routeSlug: "the-30-second-wall"
+routeSlug: "barrera-de-los-30-segundos"
 tags: ["laravel", "php", "octane", "ia", "postmortem"]
 publishedDate: 2026-09-26
 draft: false
@@ -11,7 +11,7 @@ ogImage: "/articles/the-30-second-wall/hero-fatal-es.png"
 
 Hace dos días Sentry me notificó una muerte. No un error — una **muerte**: `FatalError: Maximum execution time of 30 seconds exceeded`, worker de Octane caído, y seis reinicios ruidosos en los logs (`ERROR unknown error` ×6). Lo más inquietante: el código tenía `try/catch`. El gateway de IA tenía su cadena de failover. Nada pudo actuar — porque nada de eso corre cuando el proceso ya está muerto.
 
-El sistema es [Mantto](/es/proyectos/mantto/), el mismo SaaS de mantenimiento inmobiliario de la [entrada anterior](/es/articulos/endpoint-29-seconds/). Esta vez el protagonista no es un endpoint lento sino un límite que nadie estaba mirando.
+El sistema es [Mantto](/es/proyectos/mantto/), el mismo SaaS de mantenimiento inmobiliario de la [entrada anterior](/es/articulos/endpoint-29-segundos/). Esta vez el protagonista no es un endpoint lento sino un límite que nadie estaba mirando.
 
 ## Lo que (bien) queda síncrono
 

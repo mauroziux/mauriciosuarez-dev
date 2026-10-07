@@ -20,7 +20,7 @@ const alternateLang: Lang = "es";
 const { article } = Astro.props as { article: Article };
 const { Content } = await render(article);
 
-const translations = await getArticleTranslationMap(article.data.routeSlug);
+const translations = await getArticleTranslationMap(article);
 const sibling = translations[alternateLang];
 const siteOrigin = Astro.site?.origin ?? "https://mauriciosuarez.dev";
 const siblingPath = sibling

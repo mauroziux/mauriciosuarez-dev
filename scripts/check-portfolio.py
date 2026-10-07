@@ -67,9 +67,10 @@ for path in pages:
             target = resolve(image['src'], path)
             if target.suffix == '.svg':
                 svg = ET.parse(target).getroot()
-                assert svg.find('{http://www.w3.org/2000/svg}title') is not None
+                assert svg.find('{http://www.w3.org/2000/svg}title') is not None or svg.get('aria-label', '').strip(), f'Missing SVG description: {target}'
     sections = [h['id'] for h in doc.attrs('h2') if 'id' in h]
-    if len(sections) > 2:
+    # The contents navigation is a project-detail feature, not an article contract.
+    if len(sections) > 2 and path.relative_to(DIST).parts[:2] in (('en', 'work'), ('es', 'proyectos')):
         anchors = {a.get('href') for a in doc.attrs('a')}
         assert all('#' + section in anchors for section in sections), f'Missing contents links in {path}'
 

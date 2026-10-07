@@ -3,7 +3,7 @@ title: "try/catch won't help when the process is already dead"
 description: "A production FatalError at 30 s: the AI SDK was waiting for 60, PHP killed the worker first. The timeout hierarchy every backend needs."
 lang: "en"
 routeSlug: "the-30-second-wall"
-tags: ["laravel", "php", "octane", "ia", "postmortem"]
+tags: ["laravel", "php", "octane", "ai", "postmortem"]
 publishedDate: 2026-09-26
 draft: false
 ogImage: "/articles/the-30-second-wall/hero-fatal-en.png"
@@ -11,7 +11,7 @@ ogImage: "/articles/the-30-second-wall/hero-fatal-en.png"
 
 Two days ago Sentry notified me of a death. Not an error — a **death**: `FatalError: Maximum execution time of 30 seconds exceeded`, an Octane worker down, and six noisy restarts in the logs (`ERROR unknown error` ×6). The most unsettling part: the code had `try/catch`. The AI gateway had its failover chain. None of it could act — because none of it runs when the process is already dead.
 
-The system is [Mantto](/en/projects/mantto/), the same property-maintenance SaaS from the [previous entry](/en/writing/endpoint-29-seconds/). This time the protagonist isn't a slow endpoint but a limit nobody was watching.
+The system is [Mantto](/en/work/mantto/), the same property-maintenance SaaS from the [previous entry](/en/writing/endpoint-29-seconds/). This time the protagonist isn't a slow endpoint but a limit nobody was watching.
 
 ## What (correctly) stays synchronous
 

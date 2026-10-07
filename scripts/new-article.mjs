@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Scaffolds a new article: npm run new:article -- "Title" [--lang es|en] [--slug custom]
+// Scaffolds a new article: npm run new:article -- "Title" [--lang es|en] [--slug custom] [--key stable-article-key]
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -17,7 +17,7 @@ function fail(message) {
 
 function parseArgs(argv) {
   const positional = [];
-  const options = { lang: "en", slug: null };
+  const options = { lang: "en", slug: null, key: null };
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i];
     if (arg === "--lang") {
@@ -26,10 +26,10 @@ function parseArgs(argv) {
         fail(`--lang must be one of: ${LANGS.join(", ")} (received "${value}")`);
       }
       options.lang = value;
-    } else if (arg === "--slug") {
+    } else if (arg === "--slug" || arg === "--key") {
       const value = argv[++i];
-      if (!value) fail("--slug requires a value");
-      options.slug = value;
+      if (!value) fail(`${arg} requires a value`);
+      options[arg.slice(2)] = value;
     } else if (arg.startsWith("--")) {
       fail(`unknown option "${arg}"`);
     } else {
@@ -55,7 +55,7 @@ function yamlQuote(value) {
   return `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
 }
 
-const { title, lang, slug: slugOverride } = parseArgs(process.argv.slice(2));
+const { title, lang, slug: slugOverride, key: keyOverride } = parseArgs(process.argv.slice(2));
 if (!title) fail('missing title: npm run new:article -- "Article title" [--lang es|en] [--slug custom-slug]');
 
 const slug = slugOverride ?? slugify(title);
@@ -66,7 +66,9 @@ if (!ROUTE_SLUG_RE.test(slug)) {
   );
 }
 
-const filePath = resolve(ARTICLES_DIR, `${slug}-${lang}.md`);
+const key = keyOverride ?? slug;
+if (!ROUTE_SLUG_RE.test(key)) fail("--key must be lowercase letters and digits separated by single hyphens");
+const filePath = resolve(ARTICLES_DIR, `${key}-${lang}.md`);
 if (existsSync(filePath)) {
   fail(`refusing to overwrite existing file: ${filePath}`);
 }
@@ -95,6 +97,6 @@ console.log(`Created: ${filePath}`);
 console.log("");
 console.log("Next steps:");
 console.log("  1. Write the article body.");
-console.log(`  2. Translate later (reuse the SAME routeSlug):`);
-console.log(`     npm run new:article -- "Translated title" --lang ${otherLang} --slug ${slug}`);
+console.log("  2. Translate later (share the filename key, localize the title and URL):");
+console.log(`     npm run new:article -- "Translated title" --lang ${otherLang} --key ${key}`);
 console.log(`  3. Publish: change draft: true to draft: false in the frontmatter.`);

@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "check": "astro check && astro build && python3 scripts/check-article-routes.py && python3 scripts/check-portfolio.py",
     "preview": "astro preview",
     "astro": "astro",
     "new:article": "node scripts/new-article.mjs"

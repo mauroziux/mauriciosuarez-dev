@@ -2,11 +2,11 @@
 title: "The model interprets; code authorizes actions."
 description: "A cleaning enquiry was mistaken for a job application. MaltaClean taught me why AI agents can interpret intent, but code must authorize actions."
 lang: "en"
-routeSlug: "modelo-entiende-codigo-decide-permiso"
-tags: ["integracion-ia", "arquitectura", "seguridad", "operaciones"]
+routeSlug: "model-interprets-code-authorizes"
+tags: ["ai-integration", "architecture", "security", "operations"]
 publishedDate: 2026-09-23
 draft: false
-ogImage: "/articles/modelo-entiende-codigo-decide-permiso/hero-permiso-es.jpg"
+ogImage: "/articles/modelo-entiende-codigo-decide-permiso/servicio-confundido-empleo-en.png"
 ---
 
 An AI agent may understand that someone wants to cancel a booking. That does not give it permission to cancel it.

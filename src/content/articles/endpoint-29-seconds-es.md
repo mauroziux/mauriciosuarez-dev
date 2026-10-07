@@ -2,7 +2,7 @@
 title: "El endpoint que tardaba 29 segundos (y nadie se quejaba)"
 description: "Autopsia de una petición de producción de ~29 s: la IA, el PDF y ~20 descargas a R2 escondidas en un email — y el patrón que la dejó en <500 ms."
 lang: "es"
-routeSlug: "endpoint-29-seconds"
+routeSlug: "endpoint-29-segundos"
 tags: ["laravel", "rendimiento", "colas", "saas", "postmortem"]
 publishedDate: 2026-09-26
 draft: false
@@ -91,4 +91,4 @@ Dos honestidades antes de cerrar: el 29 s → <500 ms es un **registro interno d
 
 ---
 
-*Epílogo con gancho: semanas después de este fix, otro llamado a IA — este sí con timeout — me enseñó que hay errores que ningún `try/catch` puede atrapar, porque el proceso ya está muerto cuando ocurren. Esa es [la siguiente entrada de esta serie](/es/articulos/the-30-second-wall/).*
+*Epílogo con gancho: semanas después de este fix, otro llamado a IA — este sí con timeout — me enseñó que hay errores que ningún `try/catch` puede atrapar, porque el proceso ya está muerto cuando ocurren. Esa es [la siguiente entrada de esta serie](/es/articulos/barrera-de-los-30-segundos/).*

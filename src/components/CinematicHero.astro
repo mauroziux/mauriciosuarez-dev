@@ -132,7 +132,7 @@ const { lang } = Astro.props;
 
 <script>
   // Mouse-follow lighting on cinematic card
-  const card = document.querySelector('.cinematic-card');
+  const card = document.querySelector<HTMLElement>('.cinematic-card');
   if (card) {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();

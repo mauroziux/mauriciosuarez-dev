@@ -2,8 +2,8 @@
 title: "We tested cheaper models and decided not to migrate."
 description: "A migration promised to simplify MaltaClean's concierge and lower the cost of each classification. Eight test cases showed why the savings weren't enough."
 lang: "en"
-routeSlug: "modelos-baratos-no-migrar"
-tags: ["integracion-ia", "evaluacion", "arquitectura", "seguridad"]
+routeSlug: "cheaper-models-no-migration"
+tags: ["ai-integration", "evaluation", "architecture", "security"]
 publishedDate: 2026-09-24
 draft: false
 ogImage: "/articles/modelos-baratos-no-migrar/hero-decision-en.jpg"
@@ -17,7 +17,7 @@ No customer received those replies. We were testing a possible migration in an e
 
 In August 2026, we considered replacing the models that interpreted concierge messages with alternatives hosted on Workers AI. The idea was to shorten the provider chain and bring text, audio, and image processing closer to a single control plane. Published prices made the *per-turn* estimate attractive; we did not yet have a comparison of actual bills showing net savings.
 
-The classifier does not write bookings or verify payments. It proposes what a message means and which path to take: reply, ask for details, or hand the case to a person. Code then checks permissions, state, and effects. That separation, which I described in [the article about intent and authorization](/en/writing/modelo-entiende-codigo-decide-permiso/), limits the damage from a bad output. **It does not make a wrong classification harmless**: a label can still determine whether someone gets help or an inappropriate automated reply.
+The classifier does not write bookings or verify payments. It proposes what a message means and which path to take: reply, ask for details, or hand the case to a person. Code then checks permissions, state, and effects. That separation, which I described in [the article about intent and authorization](/en/writing/model-interprets-code-authorizes/), limits the damage from a bad output. **It does not make a wrong classification harmless**: a label can still determine whether someone gets help or an inappropriate automated reply.
 
 That is why comparing prices per million tokens was not enough. We had to test the candidates against decisions the system already knew how to evaluate.
 

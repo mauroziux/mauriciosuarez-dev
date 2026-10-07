@@ -2,7 +2,7 @@
 title: "6 deploys, 1 release: el misterio del Sentry congelado"
 description: "Semanas de deploys reportando el mismo release de julio en Sentry. Tres falsos finales y la cadena de precedencias de env vars que casi nadie entiende."
 lang: "es"
-routeSlug: "frozen-sentry-release"
+routeSlug: "release-sentry-congelado"
 tags: ["sentry", "docker", "devops", "laravel", "postmortem"]
 publishedDate: 2026-09-26
 draft: true
@@ -13,7 +13,7 @@ Durante semanas, cada error de producción tenía la misma firma: release `68f50
 
 Esta es la historia de ese misterio. Tiene tres falsos finales, una cadena de precedencias que casi nadie puede dibujar de memoria, y una lección incómoda sobre herramientas de observabilidad.
 
-El sistema es [Mantto](/es/proyectos/mantto/), el SaaS de mantenimiento inmobiliario de [esta serie](/es/articulos/endpoint-29-seconds/). Para entender por qué esto importa: el release de Sentry es el contrato que responde "¿qué deploy introdujo este error?". Es la herramienta con la que atribuí el [FatalError de la entrada anterior](/es/articulos/the-30-second-wall/) al deploy correcto. Un release congelado no es un problema cosmético — es el triage muerto.
+El sistema es [Mantto](/es/proyectos/mantto/), el SaaS de mantenimiento inmobiliario de [esta serie](/es/articulos/endpoint-29-segundos/). Para entender por qué esto importa: el release de Sentry es el contrato que responde "¿qué deploy introdujo este error?". Es la herramienta con la que atribuí el [FatalError de la entrada anterior](/es/articulos/barrera-de-los-30-segundos/) al deploy correcto. Un release congelado no es un problema cosmético — es el triage muerto.
 
 ## El síntoma: triage imposible
 

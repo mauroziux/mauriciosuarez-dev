@@ -3,7 +3,7 @@ title: "The AI Model That Can't Write (and Why I Want It in Production)"
 description: "I tested Jev, TypeSafe's first System One model: no text generation, just typed decisions. 292 cases, blind review, and 94.2% accuracy classifying a real cleaning company's WhatsApp."
 lang: "en"
 routeSlug: "typesafe-jev"
-tags: ["integracion-ia", "llm", "evaluacion", "arquitectura", "automatizacion"]
+tags: ["ai-integration", "llm", "evaluation", "architecture", "automation"]
 publishedDate: 2026-09-19
 draft: false
 ogImage: "/articles/typesafe-jev/hero-typesafe-en.png"
