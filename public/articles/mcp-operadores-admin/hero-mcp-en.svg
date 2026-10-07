@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="hero-mcp-en-title hero-mcp-en-desc">
+  <title id="hero-mcp-en-title">The bot isn't enough: why we built an MCP server</title>
+  <desc id="hero-mcp-en-desc">The team uses Claude or ChatGPT to reach MaltaClean tools through MCP with permissions, without replacing business rules.</desc>
+  <!-- Project brand from src/styles/global.css; matches the Spanish cover. -->
+  <defs>
+    <pattern id="hero-mcp-en-grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#ececec" stroke-opacity=".035"/></pattern>
+    <marker id="hero-mcp-en-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#a8a8a8"/></marker>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect width="1200" height="630" fill="url(#hero-mcp-en-grid)"/>
+  <g font-family="DejaVu Sans, Arial, sans-serif">
+    <rect x="64" y="64" width="8" height="392" fill="#C41E3A"/>
+    <text x="96" y="96" font-size="17" font-weight="700" letter-spacing="2" fill="#E14B64">MALTACLEAN · AI OPERATIONS</text>
+    <text x="92" y="196" font-size="80" font-weight="700" letter-spacing="-3" fill="#ececec">THE BOT</text>
+    <text x="92" y="282" font-size="76" font-weight="700" letter-spacing="-3" fill="#ececec">ISN'T ENOUGH.</text>
+    <text x="96" y="352" font-size="28" fill="#ececec">The team needs tools,</text>
+    <text x="96" y="392" font-size="28" fill="#a8a8a8">not another chat.</text>
+    <text x="96" y="452" font-size="19" font-weight="600" fill="#E14B64">Real context. Bounded actions.</text>
+    <path d="M936 204V248" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#hero-mcp-en-arrow)"/>
+    <path d="M936 376V420" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#hero-mcp-en-arrow)"/>
+    <rect x="772" y="104" width="328" height="100" rx="8" fill="#111111" stroke="#2a2a2a"/>
+    <text x="936" y="145" text-anchor="middle" font-size="24" font-weight="700" fill="#ececec">THE TEAM</text>
+    <text x="936" y="176" text-anchor="middle" font-size="17" fill="#a8a8a8">from Claude / ChatGPT</text>
+    <rect x="772" y="256" width="328" height="120" rx="8" fill="#211016" stroke="#C41E3A" stroke-width="2"/>
+    <text x="936" y="312" text-anchor="middle" font-size="48" font-weight="700" fill="#ececec">MCP</text>
+    <text x="936" y="344" text-anchor="middle" font-size="19" fill="#E14B64">tools + permissions</text>
+    <rect x="752" y="428" width="368" height="88" rx="8" fill="#111111" stroke="#2a2a2a"/>
+    <text x="936" y="465" text-anchor="middle" font-size="23" font-weight="700" fill="#ececec">MALTACLEAN</text>
+    <text x="936" y="492" text-anchor="middle" font-size="17" fill="#a8a8a8">the same data and rules</text>
+    <line x1="64" y1="556" x2="1136" y2="556" stroke="#2a2a2a"/>
+    <text x="64" y="594" font-size="17" fill="#a8a8a8">WHY WE BUILT AN MCP SERVER</text>
+    <text x="1136" y="594" text-anchor="end" font-size="17" fill="#a8a8a8">mauriciosuarez.dev</text>
+  </g>
+</svg>
