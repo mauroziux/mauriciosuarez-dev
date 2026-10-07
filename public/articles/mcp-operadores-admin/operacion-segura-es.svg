@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="1060" viewBox="0 0 760 1060" role="img" aria-labelledby="title desc">
+  <title id="title">Hablar no es ejecutar: cuatro etapas para una acción acotada</title>
+  <desc id="desc">Preparar congela una operación; validar comprueba de nuevo permisos, propiedad y contexto; ejecutar usa el camino canónico; comprobar consulta el estado y la evidencia. Si el contexto cambió se detiene. Un estado incierto requiere reconciliación, nunca un reenvío ciego. Aceptado por el proveedor no significa entregado.</desc>
+  <defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a8a8a8"/></marker></defs>
+  <rect width="760" height="1060" fill="#111111"/>
+  <g font-family="DejaVu Sans, Arial, sans-serif">
+    <text x="40" y="56" font-size="17" font-weight="700" letter-spacing="2" fill="#E14B64">DE LA PROPUESTA AL RESULTADO</text>
+    <text x="40" y="108" font-size="36" font-weight="700" fill="#ececec">Hablar no es ejecutar.</text>
+    <path d="M380 280V328" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M380 516V564" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M380 700V748" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="112" y="152" width="536" height="128" rx="8" fill="#181818" stroke="#707070"/>
+    <text x="148" y="201" font-size="30" font-weight="700" fill="#ececec">1. Preparar</text>
+    <text x="148" y="242" font-size="24" fill="#a8a8a8">Congelar contenido y referencia.</text>
+    <rect x="56" y="336" width="648" height="180" rx="8" fill="#211016" stroke="#C41E3A" stroke-width="2"/>
+    <text x="92" y="388" font-size="32" font-weight="700" fill="#ececec">2. Validar otra vez</text>
+    <text x="92" y="432" font-size="26" fill="#E14B64">Permisos, contexto y propiedad.</text>
+    <text x="92" y="480" font-size="24" fill="#ececec">Si cambió algo, detener la operación.</text>
+    <rect x="112" y="572" width="536" height="128" rx="8" fill="#181818" stroke="#707070"/>
+    <text x="148" y="621" font-size="30" font-weight="700" fill="#ececec">3. Ejecutar</text>
+    <text x="148" y="662" font-size="24" fill="#a8a8a8">Usar el camino canónico del negocio.</text>
+    <rect x="88" y="756" width="584" height="128" rx="8" fill="#181818" stroke="#707070"/>
+    <text x="124" y="805" font-size="30" font-weight="700" fill="#ececec">4. Comprobar el resultado</text>
+    <text x="124" y="846" font-size="24" fill="#a8a8a8">Consultar estado y evidencia real.</text>
+    <line x1="40" y1="924" x2="720" y2="924" stroke="#2a2a2a"/>
+    <text x="40" y="965" font-size="26" font-weight="700" fill="#E14B64">Aceptado ≠ entregado.</text>
+    <text x="40" y="1008" font-size="23" fill="#a8a8a8">Resultado incierto: reconciliar, no reenviar.</text>
+  </g>
+</svg>
