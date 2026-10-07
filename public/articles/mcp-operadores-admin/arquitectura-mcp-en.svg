@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="1000" viewBox="0 0 760 1000" role="img" aria-labelledby="arquitectura-mcp-en-title arquitectura-mcp-en-desc">
+  <title id="arquitectura-mcp-en-title">Another doorway into the business, not another business</title>
+  <desc id="arquitectura-mcp-en-desc">The team uses Claude or ChatGPT through an MCP server that checks account, connection and scopes before exposing bounded tools on canonical backend paths; operators read within their capabilities, while writes require an admin and current delegation.</desc>
+  <defs><marker id="arquitectura-mcp-en-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a8a8a8"/></marker></defs>
+  <rect width="760" height="1000" fill="#111111"/>
+  <g font-family="DejaVu Sans, Arial, sans-serif">
+    <text x="40" y="56" font-size="17" letter-spacing="2" font-weight="700" fill="#E14B64">ARCHITECTURE · MALTACLEAN</text>
+    <text x="40" y="108" font-size="34" font-weight="700" fill="#ececec">Another doorway. The same rules.</text>
+    <path d="M380 276V324" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arquitectura-mcp-en-arrow)"/>
+    <path d="M380 444V492" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arquitectura-mcp-en-arrow)"/>
+    <path d="M380 680V728" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#arquitectura-mcp-en-arrow)"/>
+    <rect x="152" y="156" width="456" height="120" rx="8" fill="#181818" stroke="#707070"/>
+    <text x="380" y="205" text-anchor="middle" font-size="32" font-weight="700" fill="#ececec">The team</text>
+    <text x="380" y="244" text-anchor="middle" font-size="24" fill="#a8a8a8">Operators and admins</text>
+    <rect x="112" y="332" width="536" height="112" rx="8" fill="#181818" stroke="#707070" stroke-dasharray="6 5"/>
+    <text x="380" y="376" text-anchor="middle" font-size="32" font-weight="700" fill="#ececec">Claude / ChatGPT</text>
+    <text x="380" y="415" text-anchor="middle" font-size="24" fill="#a8a8a8">The client that calls tools</text>
+    <rect x="56" y="500" width="648" height="180" rx="8" fill="#211016" stroke="#C41E3A" stroke-width="2"/>
+    <text x="380" y="548" text-anchor="middle" font-size="36" font-weight="700" fill="#ececec">MCP with live authority</text>
+    <text x="380" y="590" text-anchor="middle" font-size="24" fill="#E14B64">Account + token + connection + capabilities</text>
+    <line x1="96" y1="612" x2="664" y2="612" stroke="#61303a"/>
+    <text x="380" y="650" text-anchor="middle" font-size="23" fill="#ececec">Bounded reads and actions, not arbitrary SQL</text>
+    <rect x="40" y="736" width="680" height="160" rx="8" fill="#181818" stroke="#707070"/>
+    <text x="380" y="782" text-anchor="middle" font-size="32" font-weight="700" fill="#ececec">Existing backend</text>
+    <text x="380" y="820" text-anchor="middle" font-size="25" fill="#a8a8a8">Conversations · Bookings · Pricing</text>
+    <text x="380" y="862" text-anchor="middle" font-size="23" fill="#a8a8a8">Validation, auditing and deduplication</text>
+    <line x1="40" y1="932" x2="720" y2="932" stroke="#2a2a2a"/>
+    <text x="40" y="967" font-size="21" fill="#a8a8a8">Operator: read within capabilities.</text>
+    <text x="720" y="967" text-anchor="end" font-size="21" fill="#E14B64">Admin: delegated writes.</text>
+  </g>
+</svg>
