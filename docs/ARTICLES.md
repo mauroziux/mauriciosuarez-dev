@@ -106,6 +106,7 @@ RSS automatically; update inline markdown/social copy links separately.
 
 ```sh
 npm run check  # typecheck, build, article routes and portfolio smoke; also used by CI
+python3 scripts/postiz-drafts.py --self-test
 ```
 
 The route check covers every published article, reciprocal translations, missing

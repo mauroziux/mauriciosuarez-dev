@@ -1,0 +1,78 @@
+[
+  {
+    "article": "modelo-entiende-codigo-decide-permiso-es.md",
+    "linkedin_article": "modelo-entiende-codigo-decide-permiso-en.md",
+    "images": {
+      "linkedin": {
+        "id": "c8c636cd-f2ff-49b4-86b2-d199ddace5ca",
+        "path": "https://postiz.mauriciosuarez.dev/uploads/2026/10/07/6152da916eb32600bd11eed54ca41b3d.png",
+        "alt": "An apartment-cleaning request receives the wrong hiring label and ends in a fixed rejection. Anonymous illustration: interpreting intent does not authorize an action.",
+        "source": "public/articles/modelo-entiende-codigo-decide-permiso/servicio-confundido-empleo-en.svg"
+      },
+      "x": {
+        "id": "a6502216-f65e-4446-bb64-38bc24b45595",
+        "path": "https://postiz.mauriciosuarez.dev/uploads/2026/10/07/1faefa2691c33448e79a84f373e18524.png",
+        "alt": "Una solicitud de limpieza de apartamentos recibe una etiqueta errónea de empleo y termina en un rechazo fijo. Ilustración anónima: interpretar una intención no autoriza a actuar.",
+        "source": "public/articles/modelo-entiende-codigo-decide-permiso/servicio-confundido-empleo-es.svg"
+      }
+    },
+    "linkedin": "A property manager asked for recurring cleaning for their apartments. The bot replied: “No vacancies.”\n\nI found this while reviewing MaltaClean. The model's own explanation recognized a cleaning enquiry, but an employment label triggered a fixed rejection.\n\nThe dangerous part wasn't just getting the classification wrong. It was treating a classification as permission to act.\n\nI now separate four responsibilities:\n\n• The model interprets what the person seems to want.\n• Code checks permissions, ownership and current state.\n• The canonical adapter executes with validation and deduplication.\n• A person takes ownership when certainty or authority is missing.\n\nRecognizing “I want to cancel” doesn't prove who owns the booking. Recognizing “I've paid” doesn't verify a payment either.\n\nA classification is a hypothesis, not a credential. Rules still matter; they just shouldn't have to guess what a conversation means.\n\nThe failure and the design decisions that followed:\n{article_url}",
+    "x": [
+      "1/4 Un cliente pidió limpieza recurrente para sus apartamentos. El bot respondió «no hay vacantes». En MaltaClean, una etiqueta de empleo acabó funcionando como permiso para rechazar una solicitud de servicio.",
+      "2/4 El problema no era tener reglas. Era pedirles que interpretaran conversaciones y tratar una etiqueta del modelo como autorización. Reconocer «quiero cancelar» no demuestra quién es dueño de la reserva.",
+      "3/4 Separé las responsabilidades:\nModelo: interpreta.\nCódigo: comprueba permisos y estado.\nAdaptador: ejecuta con validación y deduplicación.\nPersona: atiende lo que no puede resolverse con certeza.",
+      "4/4 Una clasificación es una hipótesis, no una credencial. Si falla la interpretación, prefiero un reintento o una revisión humana antes que improvisar con palabras clave.\n\nEl caso completo:\n{article_url}"
+    ]
+  },
+  {
+    "article": "modelos-baratos-no-migrar-es.md",
+    "linkedin_article": "modelos-baratos-no-migrar-en.md",
+    "images": {
+      "linkedin": {
+        "id": "c39fd1bd-ca37-468a-afa8-e355d6287ed6",
+        "path": "https://postiz.mauriciosuarez.dev/uploads/2026/10/07/6ee1451661674b247acf4ffe38cfc7b9.png",
+        "alt": "Internal test on August 7, 2026: eight cases per model. Joint JSON, decision and category matches: Llama 4 Scout 4/8, Mistral Small 3.1 3/8, Llama 3.3 70B 2/8 and GPT-OSS 20B 1/8. Small test, not a production error rate.",
+        "source": "public/articles/modelos-baratos-no-migrar/benchmark-clasificador-en.svg"
+      },
+      "x": {
+        "id": "66f6f11b-d001-4592-9ac0-101229f75709",
+        "path": "https://postiz.mauriciosuarez.dev/uploads/2026/10/07/2153302a452f29bd7a6fb7c5457b19a2.png",
+        "alt": "Prueba interna del 7 de agosto de 2026: ocho casos por modelo. Aciertos conjuntos de JSON, decisión y categoría: Llama 4 Scout 4/8, Mistral Small 3.1 3/8, Llama 3.3 70B 2/8 y GPT-OSS 20B 1/8. Muestra pequeña, no tasa de error de producción.",
+        "source": "public/articles/modelos-baratos-no-migrar/benchmark-clasificador-es.svg"
+      }
+    },
+    "linkedin": "We tested cheaper models and decided not to migrate.\n\nFor MaltaClean's classifier, the proposal was attractive: fewer providers and a lower estimated cost per call with Workers AI.\n\nBut in an internal eight-case test, the strongest candidate got the format, decision and category right together in four cases. Another returned valid JSON in all eight, yet passed that combined measure in only three.\n\nWe also tried strict schemas. The JSON improved; the judgment didn't.\n\nOne test case needed an operator. Three of the four comparable candidates chose an automatic reply instead. No customer received those replies: this was an evaluation, not production traffic.\n\nEight examples cannot estimate a production error rate or certify reliability. They did expose enough risk not to promote that configuration. We hadn't demonstrated net savings with actual bills either.\n\nBefore reconsidering the migration, I'd want candidates and incumbents tested on the same cases, more risk-sensitive decisions, and cost per valid turn—including retries and escalations.\n\nThis wasn't a veto on cheaper models. It was a decision about what we'd actually tested.\n\nThe evaluation and its limits:\n{article_url}",
+    "x": [
+      "1/4 Probamos candidatos más baratos de Workers AI para el clasificador de MaltaClean. En ocho casos internos, el mejor acertó formato, decisión y categoría a la vez en cuatro. Decidimos no migrar esa configuración.",
+      "2/4 Otro candidato entregó JSON válido en 8/8 casos, pero acertó la medida conjunta en 3/8. Exigir un esquema estricto arregló la forma, no el criterio. Un JSON correcto todavía puede mandar al cliente por la ruta equivocada.",
+      "3/4 Un caso de prueba debía llegar a un operador. Tres de cuatro candidatos eligieron responder automáticamente. Nadie recibió esas respuestas en producción: precisamente para eso estaba la evaluación.",
+      "4/4 Ocho casos no estiman el error de producción. Antes de hablar de ahorro: misma prueba para candidatos y línea base, decisiones de riesgo y costo por turno válido, no solo por token.\n\nLa evaluación:\n{article_url}"
+    ]
+  },
+  {
+    "article": "endpoint-29-seconds-es.md",
+    "linkedin_article": "endpoint-29-seconds-en.md",
+    "images": {
+      "linkedin": {
+        "id": "8d55d036-743b-4ef9-82c7-d778aaead296",
+        "path": "https://postiz.mauriciosuarez.dev/uploads/2026/10/07/f70be879264cfb96854c2ec2efbff0b7.png",
+        "alt": "Mantto postmortem: the endpoint went from about 29 seconds to under 500 ms by separating the state change from the report, PDF, emails and survey. Internal production measurement, not a general benchmark.",
+        "source": "public/articles/endpoint-29-seconds/hero-29s-en.svg"
+      },
+      "x": {
+        "id": "a95de3cd-9ce6-4394-a09e-f6cafb8102f1",
+        "path": "https://postiz.mauriciosuarez.dev/uploads/2026/10/07/5b1c57eeb9ba649ffbcf40d39e47f521.png",
+        "alt": "Postmortem de Mantto: el endpoint pasó de unos 29 segundos a menos de 500 ms al separar el cambio de estado del reporte, PDF, correos y encuesta. Medición interna de producción, no benchmark general.",
+        "source": "public/articles/endpoint-29-seconds/hero-29s-es.svg"
+      }
+    },
+    "linkedin": "A Mantto endpoint took about 29 seconds to respond. Nobody complained: “It's generating the report” seemed like a reasonable explanation.\n\nThe button only needed to mark a maintenance request as completed. But the same request also ran the AI report, PDF generation, emails and satisfaction survey.\n\nThe less obvious bottleneck was inside the emails. Attaching roughly ten photos for two recipients meant about twenty sequential R2 downloads inside the mailables' build() method. All before returning the HTTP response.\n\nI separated the state change from its consequences:\n\n• In the request: the guarded transition, transaction and lockForUpdate.\n• On the queue: the report and notifications, in independent jobs.\n\nNot chained: if the report fails, the essential email shouldn't wait for an optional PDF. And if Redis fails after the state is saved, that's a reconciliation incident—not a 500 that makes the user think the maintenance request is still pending.\n\nResponse time went from about 29 seconds to under 500 ms in our internal production log. That's not a general benchmark: the work still existed, but it no longer blocked confirmation.\n\nThe autopsy and the Laravel traps that followed:\n{article_url}",
+    "x": [
+      "1/5 Un endpoint de Mantto tardaba unos 29 segundos. Nadie se quejaba: «está generando el reporte» parecía normal. Pero el botón solo debía marcar un mantenimiento como completado.",
+      "2/5 El sospechoso menos evidente eran los emails: unas diez fotos, dos destinatarios y unas veinte descargas secuenciales desde R2 dentro del build() del mailable. Todo bloqueaba la respuesta HTTP.",
+      "3/5 Dejé en la petición la transición de estado protegida. El reporte y las notificaciones pasaron a jobs independientes. Si el PDF opcional falla, el correo esencial no debería perderse con él.",
+      "4/5 La cola también puede fallar al despachar. Si el estado ya está guardado, hay que reportar y reconciliar: devolver un 500 puede hacer que el usuario repita una acción que sí ocurrió.",
+      "5/5 La respuesta pasó de unos 29 s a menos de 500 ms en nuestro registro interno, no en un benchmark general. El trabajo no desapareció: dejó de bloquear la confirmación.\n\nLa autopsia:\n{article_url}"
+    ]
+  }
+]
