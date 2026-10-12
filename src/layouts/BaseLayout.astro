@@ -66,6 +66,7 @@ const year = new Date().getFullYear();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} | mauriciosuarez.dev</title>
     <meta name="description" content={description} />
+    {import.meta.env.DEV && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
     {alternateUrlProp !== null && (
       <>
