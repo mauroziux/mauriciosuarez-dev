@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="1140" viewBox="0 0 760 1140" role="img" aria-labelledby="ciclo-harness-title ciclo-harness-desc">
+  <title id="ciclo-harness-title">El código cambia; los pesos se mantienen</title>
+  <desc id="ciclo-harness-desc">En cada ronda de adaptación se ejecuta el código actual, se entrega un informe al editor, se prueban sus cambios y se selecciona el código de la siguiente ronda; ejecutor y editor mantienen sus pesos fijos.</desc>
+  <defs><marker id="ciclo-harness-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a8a8a8"/></marker></defs>
+  <rect width="760" height="1140" fill="#111111"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="40" y="56" font-size="25" font-weight="650" fill="#E14B64">ADAPTACIÓN A UNA TAREA NUEVA</text>
+    <text x="40" y="110" font-size="38" font-weight="700" letter-spacing="-1" fill="#ececec">Cambia el código.</text>
+    <text x="40" y="154" font-size="38" font-weight="700" letter-spacing="-1" fill="#ececec">Los pesos se mantienen.</text>
+    <!-- Edges precede nodes; the return rail does not cross an intermediate node. -->
+    <path d="M436 348V388" fill="none" stroke="#a8a8a8" stroke-width="3" marker-end="url(#ciclo-harness-arrow)"/>
+    <path d="M436 560V600" fill="none" stroke="#a8a8a8" stroke-width="3" marker-end="url(#ciclo-harness-arrow)"/>
+    <path d="M436 772V812" fill="none" stroke="#a8a8a8" stroke-width="3" marker-end="url(#ciclo-harness-arrow)"/>
+    <path d="M152 904H80Q64 904 64 888V292Q64 276 80 276H140" fill="none" stroke="#a8a8a8" stroke-width="3" stroke-dasharray="7 6" marker-end="url(#ciclo-harness-arrow)"/>
+    <rect x="152" y="204" width="560" height="144" rx="6" fill="#181818" stroke="#707070"/>
+    <text x="184" y="243" font-size="25" fill="#a8a8a8">01 · PROCEDIMIENTO</text>
+    <text x="184" y="292" font-size="36" font-weight="650" fill="#ececec">Código actual</text>
+    <text x="184" y="326" font-size="28" fill="#a8a8a8">Prompts, llamadas y herramientas</text>
+    <rect x="152" y="396" width="560" height="164" rx="6" fill="#181818" stroke="#707070"/>
+    <text x="184" y="435" font-size="25" fill="#a8a8a8">02 · EJECUTOR FIJO</text>
+    <text x="184" y="484" font-size="36" font-weight="650" fill="#ececec">Ejecutar y evaluar</text>
+    <text x="184" y="528" font-size="28" fill="#a8a8a8">Preguntas de desarrollo → informe</text>
+    <rect x="152" y="608" width="560" height="164" rx="6" fill="#211016" stroke="#E14B64" stroke-width="2"/>
+    <text x="184" y="647" font-size="25" fill="#E14B64">03 · EDITOR FIJO</text>
+    <text x="184" y="696" font-size="36" font-weight="650" fill="#ececec">Proponer cambios</text>
+    <text x="184" y="740" font-size="28" fill="#a8a8a8">Tarea + código + informe</text>
+    <rect x="152" y="820" width="560" height="164" rx="6" fill="#181818" stroke="#707070"/>
+    <text x="184" y="859" font-size="25" fill="#a8a8a8">04 · CANDIDATOS</text>
+    <text x="184" y="908" font-size="36" font-weight="650" fill="#ececec">Probar y seleccionar</text>
+    <text x="184" y="952" font-size="28" fill="#a8a8a8">Según el protocolo de la tarea</text>
+    <line x1="40" y1="1024" x2="720" y2="1024" stroke="#707070"/>
+    <text x="40" y="1065" font-size="28" fill="#ececec">El código elegido inicia otra ronda.</text>
+    <text x="40" y="1104" font-size="26" fill="#a8a8a8">El editor ya fue entrenado antes de este ciclo.</text>
+  </g>
+</svg>
