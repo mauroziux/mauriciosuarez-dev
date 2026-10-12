@@ -6,7 +6,7 @@ routeSlug: "harness-learning-mejorar-agentes-ia"
 tags: ["integracion-ia", "evaluacion", "arquitectura"]
 publishedDate: 2026-10-12
 draft: false
-ogImage: "/articles/antes-de-cambiar-modelo/hero-es.png"
+ogImage: "/articles/harness-learning-mejorar-agentes-ia/hero-es.png"
 ---
 
 Tu agente responde mal. La reacción más rápida es probar otro modelo.
@@ -54,7 +54,7 @@ Hay una distinción importante: **sí hay entrenamiento previo**. Lo que permane
 
 Por eso «mejorar sin cambiar de modelo» no significa «mejorar sin entrenamiento, pruebas ni coste».
 
-![Ciclo de adaptación: ejecutar el código actual, entregar el informe al editor, probar sus cambios y seleccionar el código de la siguiente ronda. Los pesos del ejecutor y del editor permanecen fijos.](/articles/antes-de-cambiar-modelo/ciclo-revision-es.svg)
+![Ciclo de adaptación: ejecutar el código actual, entregar el informe al editor, probar sus cambios y seleccionar el código de la siguiente ronda. Los pesos del ejecutor y del editor permanecen fijos.](/articles/harness-learning-mejorar-agentes-ia/ciclo-revision-es.svg)
 
 *Esquema del ciclo de adaptación descrito en la sección 4.2. El editor se entrena antes; aquí modifica código, no pesos. La selección depende del protocolo y no garantiza que cada ronda mejore.*
 
@@ -68,7 +68,7 @@ También importa el denominador. El apéndice B.1 explica que la comparación pr
 
 Y hay un control que merece salir del apéndice: en esas 21 familias, un flujo fijo que permite ejecutar Python durante hasta cinco turnos obtiene **0,69**, frente al **0,62** medio de las revisiones del editor entrenado, según la tabla 9.
 
-![Puntuación media en Reasoning Gym: en 21 familias, editor base 0,32, editor entrenado 0,62 y flujo fijo con Python 0,69; en las 26 familias, editor base 0,282 y entrenado 0,528. Ambos paneles usan una escala de 0 a 1.](/articles/antes-de-cambiar-modelo/resultados-es.svg)
+![Puntuación media en Reasoning Gym: en 21 familias, editor base 0,32, editor entrenado 0,62 y flujo fijo con Python 0,69; en las 26 familias, editor base 0,282 y entrenado 0,528. Ambos paneles usan una escala de 0 a 1.](/articles/harness-learning-mejorar-agentes-ia/resultados-es.svg)
 
 *Datos de la tabla 9 y el apéndice B.1: medias de revisiones individuales, no selección de la mejor propuesta. El control con Python es un flujo fijo. Los paneles separan los conjuntos de 21 y 26 familias; no miden ventas, ahorro ni rendimiento con costes igualados.*
 
