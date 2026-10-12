@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="hero-harness-title hero-harness-desc">
+  <title id="hero-harness-title">Mismo modelo. Otro recorrido.</title>
+  <desc id="hero-harness-desc">Portada de harness learning: cambiar la evidencia que recibe un modelo al responder, sin cambiar sus pesos durante la adaptación.</desc>
+  <!-- Project palette from src/styles/global.css; no global skill profile changes. -->
+  <defs>
+    <marker id="hero-harness-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a8a8a8"/></marker>
+  </defs>
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="64" y="80" font-size="17" font-weight="600" letter-spacing="2" fill="#E14B64">HARNESS LEARNING · UNA LECTURA APLICADA</text>
+    <text x="60" y="196" font-size="82" font-weight="750" letter-spacing="-3" fill="#ececec">MISMO</text>
+    <text x="60" y="282" font-size="82" font-weight="750" letter-spacing="-3" fill="#ececec">MODELO.</text>
+    <text x="64" y="370" font-size="42" font-weight="650" letter-spacing="-1" fill="#E14B64">Otro recorrido.</text>
+    <text x="64" y="428" font-size="24" fill="#ececec">Antes de cambiarlo, revisa</text>
+    <text x="64" y="465" font-size="24" fill="#a8a8a8">qué le estás dejando ver.</text>
+    <rect x="632" y="116" width="504" height="376" rx="8" fill="#111111" stroke="#2a2a2a"/>
+    <text x="664" y="155" font-size="16" font-weight="650" letter-spacing="1" fill="#a8a8a8">EVIDENCIA PARA RESPONDER</text>
+    <line x1="664" y1="176" x2="1104" y2="176" stroke="#2a2a2a"/>
+    <text x="664" y="226" font-size="30" fill="#a8a8a8">−</text>
+    <text x="706" y="226" font-size="27" fill="#a8a8a8">sólo resúmenes</text>
+    <text x="664" y="278" font-size="30" font-weight="700" fill="#E14B64">+</text>
+    <text x="706" y="278" font-size="27" font-weight="650" fill="#ececec">pasajes originales</text>
+    <path d="M884 300V340" fill="none" stroke="#a8a8a8" stroke-width="2" marker-end="url(#hero-harness-arrow)"/>
+    <rect x="680" y="352" width="408" height="104" rx="6" fill="#181818" stroke="#707070"/>
+    <rect x="704" y="379" width="44" height="44" rx="4" fill="none" stroke="#a8a8a8" stroke-width="2"/>
+    <path d="M712 371V379M724 371V379M736 371V379M712 423V431M724 423V431M736 423V431" stroke="#a8a8a8" stroke-width="2"/>
+    <text x="772" y="395" font-size="24" font-weight="650" fill="#ececec">Mismo ejecutor</text>
+    <text x="772" y="429" font-size="21" fill="#a8a8a8">pesos congelados</text>
+    <line x1="64" y1="548" x2="1136" y2="548" stroke="#2a2a2a"/>
+    <text x="64" y="586" font-size="17" fill="#a8a8a8">Los resúmenes siguen guiando la búsqueda.</text>
+    <text x="1136" y="586" text-anchor="end" font-size="17" fill="#a8a8a8">mauriciosuarez.dev</text>
+  </g>
+</svg>

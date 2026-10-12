@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="1280" viewBox="0 0 760 1280" role="img" aria-labelledby="resultados-harness-title resultados-harness-desc">
+  <title id="resultados-harness-title">La mejora del editor y el control fijo</title>
+  <desc id="resultados-harness-desc">En 21 familias no vistas el editor base puntúa 0,32, el entrenado 0,62 y el flujo fijo con Python 0,69; al incluir las 26 familias, los editores base y entrenado puntúan 0,282 y 0,528. Los paneles usan la misma escala de cero a uno.</desc>
+  <rect width="760" height="1280" fill="#111111"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="40" y="56" font-size="25" font-weight="650" fill="#E14B64">RESULTADOS · REASONING GYM</text>
+    <text x="40" y="112" font-size="38" font-weight="700" letter-spacing="-1" fill="#ececec">La mejora y su control</text>
+    <text x="40" y="154" font-size="28" fill="#a8a8a8">Puntuación media · preguntas reservadas</text>
+    <text x="40" y="220" font-size="34" font-weight="650" fill="#ececec">21 familias no vistas</text>
+    <text x="40" y="257" font-size="28" fill="#a8a8a8">Comparación principal: cinco excluidas</text>
+    <g stroke="#2a2a2a" stroke-width="1">
+      <line x1="64" y1="292" x2="64" y2="660"/><line x1="222" y1="292" x2="222" y2="660"/><line x1="380" y1="292" x2="380" y2="660"/><line x1="538" y1="292" x2="538" y2="660"/><line x1="696" y1="292" x2="696" y2="660"/>
+    </g>
+    <text x="64" y="327" font-size="30" fill="#ececec">Editor base</text>
+    <rect data-score="0.32" data-panel="21" x="64" y="344" width="202.24" height="36" fill="#888888"/>
+    <text x="282.24" y="375" font-size="34" font-weight="650" fill="#ececec">0,32</text>
+    <text x="64" y="453" font-size="30" fill="#ececec">Editor entrenado</text>
+    <rect data-score="0.62" data-panel="21" x="64" y="470" width="391.84" height="36" fill="#E14B64"/>
+    <text x="471.84" y="501" font-size="34" font-weight="650" fill="#E14B64">0,62</text>
+    <text x="64" y="579" font-size="30" fill="#ececec">Flujo fijo con Python</text>
+    <rect data-score="0.69" data-panel="21" x="64" y="596" width="436.08" height="36" fill="#111111" stroke="#ececec" stroke-width="2"/>
+    <text x="516.08" y="627" font-size="34" font-weight="650" fill="#ececec">0,69</text>
+    <line x1="64" y1="660" x2="696" y2="660" stroke="#707070"/>
+    <text x="64" y="695" font-size="27" text-anchor="middle" fill="#a8a8a8">0</text>
+    <text x="380" y="695" font-size="27" text-anchor="middle" fill="#a8a8a8">0,5</text>
+    <text x="696" y="695" font-size="27" text-anchor="middle" fill="#a8a8a8">1</text>
+    <line x1="40" y1="736" x2="720" y2="736" stroke="#707070"/>
+    <text x="40" y="793" font-size="34" font-weight="650" fill="#ececec">26 familias no vistas</text>
+    <text x="40" y="830" font-size="28" fill="#a8a8a8">Incluidas las cinco familias difíciles</text>
+    <g stroke="#2a2a2a" stroke-width="1">
+      <line x1="64" y1="864" x2="64" y2="1080"/><line x1="222" y1="864" x2="222" y2="1080"/><line x1="380" y1="864" x2="380" y2="1080"/><line x1="538" y1="864" x2="538" y2="1080"/><line x1="696" y1="864" x2="696" y2="1080"/>
+    </g>
+    <text x="64" y="903" font-size="30" fill="#ececec">Editor base</text>
+    <rect data-score="0.282" data-panel="26" x="64" y="920" width="178.224" height="36" fill="#888888"/>
+    <text x="258.224" y="951" font-size="34" font-weight="650" fill="#ececec">0,282</text>
+    <text x="64" y="1029" font-size="30" fill="#ececec">Editor entrenado</text>
+    <rect data-score="0.528" data-panel="26" x="64" y="1046" width="333.696" height="36" fill="#E14B64"/>
+    <text x="413.696" y="1077" font-size="34" font-weight="650" fill="#E14B64">0,528</text>
+    <line x1="64" y1="1096" x2="696" y2="1096" stroke="#707070"/>
+    <text x="64" y="1131" font-size="27" text-anchor="middle" fill="#a8a8a8">0</text>
+    <text x="380" y="1131" font-size="27" text-anchor="middle" fill="#a8a8a8">0,5</text>
+    <text x="696" y="1131" font-size="27" text-anchor="middle" fill="#a8a8a8">1</text>
+    <line x1="40" y1="1172" x2="720" y2="1172" stroke="#707070"/>
+    <text x="40" y="1212" font-size="26" fill="#a8a8a8">Fuente: tabla 9 y apéndice B.1 del paper.</text>
+    <text x="40" y="1250" font-size="26" fill="#a8a8a8">No es una comparación con costes igualados.</text>
+  </g>
+</svg>
