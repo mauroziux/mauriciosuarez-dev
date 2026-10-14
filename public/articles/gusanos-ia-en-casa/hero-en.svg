@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="ai-worms-hero-title ai-worms-hero-desc">
+  <title id="ai-worms-hero-title">AI worms at home</title>
+  <desc id="ai-worms-hero-desc">Conceptual illustration: crimson filaments connect a TV, an Android box, and a household oven. This represents a risk scenario, not an observed infection.</desc>
+  <defs>
+    <pattern id="ai-worms-hero-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#A8B7C7" opacity=".32"/></pattern>
+    <pattern id="ai-worms-hero-screen" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 1H8" stroke="#E8EDF3" opacity=".05"/></pattern>
+    <clipPath id="ai-worms-hero-tv-clip"><rect x="732" y="164" width="324" height="196" rx="3"/></clipPath>
+  </defs>
+  <rect width="1200" height="630" fill="#E8EDF3"/>
+  <rect width="1200" height="630" fill="url(#ai-worms-hero-grid)"/>
+  <path d="M628 92H1128V506H628" fill="#F7F9FC" stroke="#A8B7C7"/>
+  <path d="M628 428H1128M652 112V506" fill="none" stroke="#A8B7C7"/>
+  <!-- Escena doméstica estilizada, no captura del experimento. -->
+  <rect x="720" y="152" width="348" height="224" rx="8" fill="#17202B"/>
+  <rect x="732" y="164" width="324" height="196" rx="3" fill="#202B38"/>
+  <rect x="732" y="164" width="324" height="196" fill="url(#ai-worms-hero-screen)"/>
+  <path d="M870 376V400M918 376V400M848 400H940" fill="none" stroke="#17202B" stroke-width="6"/>
+  <circle cx="1050" cy="367" r="2" fill="#A8B7C7"/>
+  <path d="M698 414H1088M714 414V480M1072 414V480" fill="none" stroke="#17202B" stroke-width="5"/>
+  <rect x="760" y="394" width="76" height="16" rx="4" fill="#4C596A"/>
+  <circle cx="824" cy="402" r="2" fill="#E8EDF3"/>
+  <rect x="970" y="440" width="104" height="84" rx="6" fill="#E8EDF3" stroke="#17202B" stroke-width="3"/>
+  <path d="M970 462H1074" stroke="#17202B" stroke-width="2"/>
+  <circle cx="985" cy="451" r="3" fill="#4C596A"/><circle cx="1000" cy="451" r="3" fill="#4C596A"/>
+  <rect x="984" y="474" width="76" height="38" rx="3" fill="#202B38"/>
+  <path d="M1004 480H1040" stroke="#A8B7C7" stroke-width="3"/>
+  <ellipse cx="752" cy="510" rx="50" ry="16" fill="#F7F9FC" stroke="#17202B" stroke-width="3"/>
+  <path d="M702 510V518C702 539 802 539 802 518V510" fill="#E8EDF3" stroke="#17202B" stroke-width="3"/>
+  <ellipse cx="752" cy="504" rx="12" ry="4" fill="#4C596A"/>
+  <!-- Filamentos orgánicos: la metáfora del moho digital. -->
+  <g fill="none" stroke="#C41E3A" stroke-linecap="round" stroke-linejoin="round">
+    <g clip-path="url(#ai-worms-hero-tv-clip)">
+      <path d="M790 344C810 315 837 322 850 297S885 272 903 249S945 223 968 191" stroke-width="4"/>
+      <path d="M849 298C822 280 810 256 784 249M868 277C887 302 918 305 934 325M898 256C871 242 870 225 849 214M928 228C952 248 982 239 1002 263M944 213C964 218 990 200 1010 187" stroke-width="2.5"/>
+      <path d="M819 275L821 253L811 231M821 253L839 241M916 312L910 334M974 247L985 230M876 236L896 217M795 254L777 275M955 202L946 183M990 201L1008 212" stroke-width="1.5"/>
+    </g>
+    <path d="M790 344C782 370 798 374 798 396M798 410C799 441 780 455 777 489M798 434C848 454 920 428 947 451S980 473 1003 495" stroke-width="3"/>
+    <path d="M849 445C855 470 837 477 836 495M906 439C909 423 927 421 939 413M780 477C760 469 741 478 728 490M967 472L958 490" stroke-width="1.5"/>
+  </g>
+  <g fill="#C41E3A"><circle cx="850" cy="297" r="5"/><circle cx="903" cy="249" r="4"/><circle cx="968" cy="191" r="4"/><circle cx="777" cy="489" r="4"/><circle cx="1003" cy="495" r="4"/></g>
+  <g font-family="DejaVu Sans, sans-serif">
+    <rect x="56" y="76" width="36" height="4" fill="#C41E3A"/>
+    <text x="108" y="84" font-size="18" font-weight="700" letter-spacing="2" fill="#4C596A">AI / SECURITY / IOT</text>
+    <text x="56" y="202" font-size="68" font-weight="700" letter-spacing="-2" fill="#17202B">AI worms</text>
+    <text x="56" y="280" font-size="68" font-weight="700" letter-spacing="-2" fill="#C41E3A">at home.</text>
+    <text x="60" y="350" font-size="30" fill="#17202B">Slow does not mean</text>
+    <text x="60" y="390" font-size="30" fill="#17202B">harmless.</text>
+    <text x="60" y="464" font-size="20" fill="#4C596A">Anthropic's experiment</text>
+    <text x="60" y="495" font-size="20" fill="#4C596A">and the «digital slime mold» hypothesis.</text>
+    <path d="M56 560H1144" stroke="#A8B7C7"/>
+    <text x="56" y="598" font-size="16" fill="#4C596A">CONCEPTUAL ILLUSTRATION · NOT AN OBSERVED INFECTION</text>
+    <text x="1144" y="598" text-anchor="end" font-size="18" font-weight="700" fill="#17202B">mauriciosuarez.dev</text>
+  </g>
+</svg>
