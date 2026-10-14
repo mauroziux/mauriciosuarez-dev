@@ -69,7 +69,8 @@ for path in pages:
                 svg = ET.parse(target).getroot()
                 assert svg.find('{http://www.w3.org/2000/svg}title') is not None
     sections = [h['id'] for h in doc.attrs('h2') if 'id' in h]
-    if len(sections) > 2:
+    # Contents navigation belongs to project details, not to article pages.
+    if len(sections) > 2 and path.relative_to(DIST).parts[:2] in (('en', 'work'), ('es', 'proyectos')):
         anchors = {a.get('href') for a in doc.attrs('a')}
         assert all('#' + section in anchors for section in sections), f'Missing contents links in {path}'
 

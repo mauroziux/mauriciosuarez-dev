@@ -6,6 +6,15 @@ export type Article = CollectionEntry<"articles">;
 
 const ROUTE_SLUG_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
+/** Stable identity comes from the locale-suffixed filename, not the public URL. */
+function articleKey(article: Article): string {
+  const suffix = `-${article.data.lang}`;
+  if (!article.id.endsWith(suffix)) {
+    throw new Error(`[articles] "${article.id}" must end with "${suffix}" to match its language.`);
+  }
+  return article.id.slice(0, -suffix.length);
+}
+
 /**
  * Build-time guard: the same (lang, routeSlug) pair would produce two pages at
  * the same URL. Runs across ALL entries (drafts included) so a duplicate is
@@ -44,17 +53,17 @@ export async function getPublishedArticles(lang: Lang): Promise<Article[]> {
 }
 
 /**
- * Sibling lookup across languages for a routeSlug. Only published entries are
- * considered, so a draft translation never produces hreflang links to pages
- * that will not be rendered.
+ * Sibling lookup by stable filename key, allowing localized URLs. Only published
+ * entries are considered, so a draft translation never links to an absent page.
  */
 export async function getArticleTranslationMap(
-  routeSlug: string,
+  source: Article,
 ): Promise<Partial<Record<Lang, Article>>> {
+  const key = articleKey(source);
   const published = (await getAllArticles()).filter((article) => !article.data.draft);
   const map: Partial<Record<Lang, Article>> = {};
   for (const article of published) {
-    if (article.data.routeSlug === routeSlug) {
+    if (articleKey(article) === key) {
       map[article.data.lang] = article;
     }
   }
