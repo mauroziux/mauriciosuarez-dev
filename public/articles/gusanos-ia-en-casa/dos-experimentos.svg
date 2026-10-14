@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1040" viewBox="0 0 640 1040" role="img" aria-labelledby="dos-experimentos-title dos-experimentos-desc">
+  <title id="dos-experimentos-title">Dos pruebas, no un gusano completo</title>
+  <desc id="dos-experimentos-desc">Quince TV boxes físicas ejecutaron Gemma4 distribuido; en otro ensayo, GLM-5.2 servido externamente coordinó la propagación en ocho nodos Android emulados que levantaban Llama3.1-8B.</desc>
+  <defs>
+    <marker id="dos-experimentos-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#4C596A"/></marker>
+    <g id="dos-experimentos-box"><rect width="36" height="24" rx="4" fill="#17202B"/><rect x="6" y="5" width="8" height="3" fill="#A8B7C7"/><rect x="6" y="11" width="8" height="3" fill="#A8B7C7"/><circle cx="29" cy="18" r="1.5" fill="#E8EDF3"/></g>
+  </defs>
+  <rect width="640" height="1040" fill="#E8EDF3"/>
+  <g font-family="DejaVu Sans, sans-serif">
+    <text x="40" y="44" font-size="18" letter-spacing="2" font-weight="700" fill="#4C596A">LO DEMOSTRADO EN LABORATORIO</text>
+    <text x="40" y="104" font-size="48" font-weight="700" letter-spacing="-1" fill="#17202B">Dos pruebas.</text>
+    <text x="40" y="148" font-size="30" fill="#17202B">No un gusano completo.</text>
+    <rect x="40" y="192" width="560" height="300" rx="8" fill="#F7F9FC" stroke="#A8B7C7"/>
+    <text x="64" y="230" font-size="24" font-weight="700" fill="#17202B">01 / INFERENCIA DISTRIBUIDA</text>
+    <text x="64" y="264" font-size="22" fill="#4C596A">Gemma4-26B-A4B</text>
+    <!-- Los quince símbolos son fragmentos de una sola inferencia. -->
+    <g transform="translate(64 292)">
+      <use href="#dos-experimentos-box"/><use href="#dos-experimentos-box" x="44"/><use href="#dos-experimentos-box" x="88"/><use href="#dos-experimentos-box" x="132"/><use href="#dos-experimentos-box" x="176"/>
+      <use href="#dos-experimentos-box" y="32"/><use href="#dos-experimentos-box" x="44" y="32"/><use href="#dos-experimentos-box" x="88" y="32"/><use href="#dos-experimentos-box" x="132" y="32"/><use href="#dos-experimentos-box" x="176" y="32"/>
+      <use href="#dos-experimentos-box" y="64"/><use href="#dos-experimentos-box" x="44" y="64"/><use href="#dos-experimentos-box" x="88" y="64"/><use href="#dos-experimentos-box" x="132" y="64"/><use href="#dos-experimentos-box" x="176" y="64"/>
+    </g>
+    <text x="324" y="310" font-size="26" font-weight="700" fill="#17202B">15 cajas físicas</text>
+    <text x="324" y="346" font-size="22" fill="#4C596A">4 GB por caja</text>
+    <text x="324" y="380" font-size="22" fill="#4C596A">~US$55 cada una</text>
+    <text x="64" y="448" font-size="60" font-weight="700" fill="#C41E3A">0,39</text>
+    <text x="230" y="442" font-size="26" fill="#17202B">tokens/s</text>
+    <text x="64" y="476" font-size="22" fill="#4C596A">Un modelo repartido entre todas.</text>
+    <rect x="40" y="520" width="560" height="436" rx="8" fill="#F7F9FC" stroke="#A8B7C7"/>
+    <text x="64" y="558" font-size="24" font-weight="700" fill="#17202B">02 / PROPAGACIÓN SIMPLIFICADA</text>
+    <text x="64" y="592" font-size="22" fill="#4C596A">Red aislada · ADB sin autenticación</text>
+    <path d="M320 724V756" fill="none" stroke="#4C596A" stroke-width="3" marker-end="url(#dos-experimentos-arrow)"/>
+    <rect x="64" y="620" width="512" height="104" rx="6" fill="#17202B"/>
+    <text x="88" y="660" font-size="28" font-weight="700" fill="#F7F9FC">GLM-5.2 coordina la tarea</text>
+    <text x="88" y="698" font-size="24" fill="#D0D9E3">Inferencia en un servidor externo</text>
+    <rect x="64" y="764" width="512" height="104" rx="6" fill="#E8EDF3" stroke="#A8B7C7"/>
+    <text x="88" y="804" font-size="27" font-weight="700" fill="#17202B">8 nodos Android emulados</text>
+    <text x="88" y="842" font-size="24" fill="#4C596A">Cada nodo levanta Llama3.1-8B</text>
+    <text x="64" y="930" font-size="56" font-weight="700" fill="#C41E3A">8/8</text>
+    <text x="206" y="920" font-size="24" fill="#17202B">en 4 de 5 ensayos</text>
+    <text x="206" y="947" font-size="20" fill="#4C596A">7/8 en el restante</text>
+    <path d="M40 988H600" stroke="#A8B7C7"/>
+    <text x="40" y="1020" font-size="18" fill="#4C596A">Fuente: Anthropic · Esquema propio de dos ensayos distintos</text>
+  </g>
+</svg>
