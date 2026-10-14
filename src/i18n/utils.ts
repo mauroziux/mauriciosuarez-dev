@@ -1,4 +1,3 @@
-/// <reference path="astro" />
 import type { Lang, UIKey } from "./ui";
 import { ui, defaultLang } from "./ui";
 
