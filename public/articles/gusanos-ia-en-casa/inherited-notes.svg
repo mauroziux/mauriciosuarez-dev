@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="920" viewBox="0 0 640 920" role="img" aria-labelledby="inherited-notes-title inherited-notes-desc">
+  <title id="inherited-notes-title">An inherited notebook, not newly trained weights</title>
+  <desc id="inherited-notes-desc">Qwen3.5-9B inherits code and notes between inference-setup attempts. Success was 45 percent in the first generation and between 61 and 84 percent in later generations; its weights were not retrained.</desc>
+  <defs>
+    <marker id="inherited-notes-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#4C596A"/></marker>
+    <pattern id="inherited-notes-range" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#F4D9DF"/><path d="M0 8L8 0" stroke="#C41E3A" stroke-width="1.5"/></pattern>
+  </defs>
+  <rect width="640" height="920" fill="#E8EDF3"/>
+  <g font-family="DejaVu Sans, sans-serif">
+    <text x="40" y="44" font-size="18" letter-spacing="2" font-weight="700" fill="#4C596A">ADAPTATION / MEMENTO</text>
+    <text x="40" y="102" font-size="44" font-weight="700" letter-spacing="-1" fill="#17202B">What gets inherited</text>
+    <text x="40" y="154" font-size="44" font-weight="700" letter-spacing="-1" fill="#17202B">is the notebook.</text>
+    <text x="40" y="194" font-size="24" fill="#4C596A">Same model. Better context.</text>
+    <path d="M320 310V338" fill="none" stroke="#4C596A" stroke-width="3" marker-end="url(#inherited-notes-arrow)"/>
+    <path d="M320 436V464" fill="none" stroke="#4C596A" stroke-width="3" marker-end="url(#inherited-notes-arrow)"/>
+    <rect x="40" y="230" width="560" height="80" rx="6" fill="#F7F9FC" stroke="#A8B7C7"/>
+    <text x="64" y="263" font-size="26" font-weight="700" fill="#17202B">One attempt gets to work</text>
+    <text x="64" y="293" font-size="22" fill="#4C596A">Sets up inference and encounters errors.</text>
+    <path d="M40 344H576L600 368V436H40Z" fill="#F7F9FC" stroke="#C41E3A" stroke-width="2"/>
+    <path d="M576 344V368H600" fill="none" stroke="#C41E3A" stroke-width="2"/>
+    <text x="64" y="381" font-size="26" font-weight="700" fill="#17202B">Leaves notes + code</text>
+    <text x="64" y="416" font-size="22" fill="#4C596A">Strategies tried, failures, findings.</text>
+    <rect x="40" y="470" width="560" height="80" rx="6" fill="#F7F9FC" stroke="#A8B7C7"/>
+    <text x="64" y="503" font-size="26" font-weight="700" fill="#17202B">A new instance continues</text>
+    <text x="64" y="533" font-size="22" fill="#4C596A">Inherits the environment and notebook.</text>
+    <text x="40" y="600" font-size="24" font-weight="700" fill="#17202B">Inference-setup success</text>
+    <text x="40" y="632" font-size="22" fill="#4C596A">Qwen3.5-9B · six generations evaluated</text>
+    <!-- Escala común 0–100%; el rayado expresa un rango, no puntos inventados. -->
+    <text x="40" y="682" font-size="24" fill="#17202B">First generation</text>
+    <text x="600" y="682" text-anchor="end" font-size="30" font-weight="700" fill="#17202B">45%</text>
+    <rect x="40" y="700" width="560" height="20" rx="3" fill="#D0D9E3"/>
+    <rect x="40" y="700" width="252" height="20" rx="3" fill="#4C596A"/>
+    <text x="40" y="766" font-size="24" fill="#17202B">Later generations</text>
+    <text x="600" y="766" text-anchor="end" font-size="30" font-weight="700" fill="#C41E3A">61–84%</text>
+    <rect x="40" y="784" width="560" height="20" rx="3" fill="#D0D9E3"/>
+    <rect x="40" y="784" width="341.6" height="20" rx="3" fill="#C41E3A"/>
+    <rect x="381.6" y="784" width="128.8" height="20" fill="url(#inherited-notes-range)" stroke="#C41E3A"/>
+    <text x="40" y="838" font-size="20" fill="#4C596A">Hatching: observed range in later generations.</text>
+    <path d="M40 862H600" stroke="#A8B7C7"/>
+    <text x="40" y="894" font-size="21" font-weight="700" fill="#17202B">Not infection rates. No weight retraining.</text>
+  </g>
+</svg>
