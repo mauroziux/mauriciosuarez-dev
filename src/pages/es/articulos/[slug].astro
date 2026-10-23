@@ -35,7 +35,7 @@ const siblingPath = sibling
   ogType="article"
   articlePublishedTime={article.data.publishedDate}
   articleModifiedTime={article.data.updatedDate}
-  ogImage={article.data.ogImage}
+  ogImage={article.data.socialImage ?? article.data.ogImage}
   alternateUrl={siblingPath ? `${siteOrigin}${siblingPath}` : null}
   languageSwitchUrl={siblingPath ?? getRoute(alternateLang, "writing")}
 >

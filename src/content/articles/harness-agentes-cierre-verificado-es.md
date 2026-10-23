@@ -6,6 +6,7 @@ routeSlug: "harness-agentes-cierre-verificado"
 tags: ["integracion-ia", "evaluacion", "arquitectura", "automatizacion"]
 publishedDate: 2026-10-23
 draft: false
+socialImage: "/articles/harness-agentes-cierre-verificado/og-es.png"
 ---
 
 El primer benchmark congelado fue una bofetada.
@@ -18,7 +19,7 @@ El harness no estaba fallando en resolver. Estaba fallando en cerrar.
 
 Esa distinción se convirtió en el centro del proyecto.
 
-![El recorrido: ticket, plan, task, verificación, PR en borrador y aprobación humana.](/articles/harness-agentes-cierre-verificado/pipeline-es.svg)
+<img src="/articles/harness-agentes-cierre-verificado/pipeline-es.svg" alt="El recorrido: ticket, plan, task, verificación, PR en borrador y aprobación humana." width="900" height="700" loading="lazy" decoding="async" />
 
 *De ticket a PR: cada paso deja evidencia y el último lo aprueba una persona.*
 
@@ -48,7 +49,7 @@ Hay cinco invariantes que no se negocian:
 4. Publicar, desplegar o destruir requiere autorización humana separada. El PR es la frontera.
 5. Un efecto incierto se reconcilia por bytes o por readback autoritativo; no se repite a ciegas.
 
-![Las cinco capas de pi-harness: routing, planificación, ejecución, verificación y memoria.](/articles/harness-agentes-cierre-verificado/cinco-capas-es.svg)
+<img src="/articles/harness-agentes-cierre-verificado/cinco-capas-es.svg" alt="Las cinco capas de pi-harness: routing, planificación, ejecución, verificación y memoria." width="900" height="600" loading="lazy" decoding="async" />
 
 *Cinco capas, un solo contrato: el trabajo no está terminado hasta que la evidencia lo demuestra.*
 
@@ -64,7 +65,7 @@ Al escribir esto, el repo tiene 157 commits en `main` entre el 13 de agosto y el
 
 Lo que no sobrevivió también cuenta: el runtime viejo, el segundo gestor de TODOs y la barrera de efectos desaparecieron. Un harness maduro no es el que acumula capas; es el que puede quitar las que no pagan.
 
-![Cuatro actos del proyecto: agosto, octubre temprano, octubre medio y octubre final, con la lección de cada uno.](/articles/harness-agentes-cierre-verificado/cuatro-actos-es.svg)
+<img src="/articles/harness-agentes-cierre-verificado/cuatro-actos-es.svg" alt="Cuatro actos del proyecto: agosto, octubre temprano, octubre medio y octubre final, con la lección de cada uno." width="900" height="560" loading="lazy" decoding="async" />
 
 *Cuatro actos, cuatro suposiciones corregidas. Lo que no sobrevivió también cuenta.*
 
@@ -76,7 +77,7 @@ Ninguna de estas decisiones salió de la nada. El pipeline se leyó, se discuti�
 
 De ahí salieron cosas concretas: el playbook de bug exige una reproducción fallida antes de corregir; el de feature comprueba el comportamiento existente antes de implementar; el manifiesto `.pi/verification/manifest.json` convierte la verificación de un proyecto en un procedimiento versionado; y «Done means X» está en la plantilla de prompts. La verificación no es una opinión que el agente escribe al final: es un comando que se ejecuta.
 
-La idea de que el harness —no solo el modelo— es el objeto de mejora ya estaba en *Harness Learning*; harness² la lleva a la recursión.
+La idea de que el harness —no solo el modelo— es el objeto de mejora ya estaba en *[Harness Learning](/es/articulos/harness-learning-mejorar-agentes-ia/)*; harness² la lleva a la recursión.
 
 **harness²** es el meta-harness de Google Research ([repo](https://github.com/google-research/harness2), [arXiv:2610.14224](https://arxiv.org/abs/2610.14224)). La pregunta es distinta: ¿puede un sistema mejorar el harness de un agente sin tocar los pesos del modelo? Su respuesta es una recursión contrastiva: proponer un cambio, probarlo con ejecuciones reales y componer solo lo que sobrevive. Nos quedamos con cuatro mecanismos: **None-never-zero** (si un juez falla, la tarea no es un cero, es `unscored` y sale del denominador); una **librería de lecciones tipada** con cuatro campos —cue, lesson, evidence, confidence—; **retención causal** (solo lecciones anteriores a la tarea actual); y **tripwires anti-leak** (la rúbrica del evaluador no puede entrar al contexto ni a la memoria). No adoptamos la recursión completa: harness² hace ~4.000 ejecuciones por tarea; nosotros no tenemos ese presupuesto y no vamos a fingir que lo tenemos. El plan de auto-mejora usa la versión ligera: corpus de outcomes, librería de lecciones y adopción contrastada con evals.
 
@@ -172,7 +173,7 @@ Mismos diez casos, veinte ejecuciones por cohorte, plazo de 360 segundos.
 
 *\*El bare produjo un falso cierre en esta cohorte.*
 
-![Tres cohortes: bare, harness en plazo y harness por oráculo. El harness iguala el oráculo, pero pierde en plazo; el bare produce un falso cierre en la tercera cohorte.](/articles/harness-agentes-cierre-verificado/benchmark-cohortes-es.svg)
+<img src="/articles/harness-agentes-cierre-verificado/benchmark-cohortes-es.svg" alt="Tres cohortes: bare, harness en plazo y harness por oráculo. El harness iguala el oráculo, pero pierde en plazo; el bare produce un falso cierre en la tercera cohorte." width="900" height="520" loading="lazy" decoding="async" />
 
 *La misma tabla, en una imagen: el harness no era más correcto en micro-tareas; era más honesto al cerrar.*
 
@@ -279,7 +280,7 @@ El patrón se repite: casi todos los errores venían de confundir una representa
 
 La línea base sintética sirve para comparar. El producto real sirve para ver si el flujo aguanta.
 
-En MaltaCleaners había un bug de cupones: el usuario aplicaba A, editaba el formulario a B, volvía a escribir A sin reaplicar, y una respuesta antigua podía aplicar el descuento y borrar el error actual. Un problema de concurrencia con una reproducción observable.
+En [MaltaCleaners](/es/proyectos/maltacleaners/) había un bug de cupones: el usuario aplicaba A, editaba el formulario a B, volvía a escribir A sin reaplicar, y una respuesta antigua podía aplicar el descuento y borrar el error actual. Un problema de concurrencia con una reproducción observable.
 
 El operador escribió `/plan` con el comportamiento fallido. El plan tardó 3:29. Autor y juez con contexto fresco; el juez aceptó la reproducción, la autoridad monotónica y los criterios de evidencia. Después, `/task` implementó y verificó: línea base nativa antes de editar, 28 escenarios web, 38 pruebas puras, tipos, lint y build. La primera revisión final fue INCONCLUSIVE: faltaban pruebas de que el cableado no se había modificado y de los estados excluidos. La segunda, con esa evidencia añadida, fue PASS 4/4. Siete imágenes reales llegaron al juez.
 
@@ -323,7 +324,7 @@ Implementamos `pi-memory`: un Worker de Cloudflare con un [Durable Object](https
 
 ¿Por qué Durable Objects? Porque un DO es un actor lógico con almacenamiento co-localizado: las escrituras y el índice viven en el mismo sitio, un proyecto no ve la memoria de otro, y no hace falta montar una base de datos separada para un equipo pequeño. FTS5 da búsqueda de texto completo sin un servicio de embeddings; el modelo de datos es una fila por aprendizaje. La comodidad es deliberada: la URL y la credencial compartida del equipo vienen como defaults del paquete; instalar el harness es la única configuración. Los overrides por desarrollador existen, pero el camino feliz es cero setup.
 
-![Arquitectura de memoria: sesión A guarda con memory_save, el Worker pi-memory persiste en un Durable Object por repo con SQLite y FTS5, y la sesión B consulta con memory_search.](/articles/harness-agentes-cierre-verificado/memoria-do-es.svg)
+<img src="/articles/harness-agentes-cierre-verificado/memoria-do-es.svg" alt="Arquitectura de memoria: sesión A guarda con memory_save, el Worker pi-memory persiste en un Durable Object por repo con SQLite y FTS5, y la sesión B consulta con memory_search." width="900" height="560" loading="lazy" decoding="async" />
 
 *Un Durable Object por repo: escrituras, índice y búsqueda en el mismo sitio; la outbox cubre los cortes de red.*
 
@@ -363,6 +364,12 @@ Este artículo no es la historia de un harness que salió bien. Es la historia d
 El primer benchmark me enseñó que el problema no era el código. Era el cierre. Desde entonces, cada decisión del proyecto —el perfil libre, los jueces con contexto fresco, la verificación proporcional, el cierre automático, la inversión de la barrera, la memoria compartida— responde a la misma idea:
 
 **No aceptes «listo» como resultado. Acepta evidencia.**
+
+## Lecturas relacionadas
+
+- [Harness learning: ¿es culpa del modelo?](/es/articulos/harness-learning-mejorar-agentes-ia/)
+- [El bot no alcanza: por qué construimos un MCP](/es/articulos/mcp-operadores-admin/)
+- [El modelo entiende; el código decide si tiene permiso.](/es/articulos/modelo-entiende-codigo-decide-permiso/)
 
 ## Fuentes
 

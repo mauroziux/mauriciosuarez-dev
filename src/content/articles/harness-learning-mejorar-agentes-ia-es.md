@@ -122,6 +122,10 @@ Quizá necesites un modelo más capaz. Quizá sólo necesites dejar de pedirle q
 
 Cambiar de modelo sigue siendo una opción. Entender por qué falló el agente debería ser el paso anterior.
 
+## Del paper al harness
+
+Si quieres ver cómo estas ideas se convirtieron en un harness real —con benchmarks, errores y memoria de equipo—: [El agente dice «listo». El harness pide pruebas.](/es/articulos/harness-agentes-cierre-verificado/).
+
 ---
 
 *Fuente: Alvin Zhang y colaboradores, [Harness Learning Enables Generalizable Test-Time Adaptation](https://arxiv.org/pdf/2609.35738), arXiv:2609.35738v1, 28 de septiembre de 2026. El ejemplo documental corresponde a la sección 6.2; los resultados y la adaptación sucesiva, a las secciones 5.2–5.4; las exclusiones y el flujo fijo con Python, al apéndice B.1 y la tabla 9. Este artículo distingue los resultados del estudio de mis propuestas para aplicarlos.*

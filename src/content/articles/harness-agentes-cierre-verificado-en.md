@@ -1,11 +1,12 @@
 ---
 title: "The agent says “done.” The harness asks for proof."
-description: "A build log of pi-harness: from an agent that believed it was finished to a system that demands evidence—with pstack, harness², and team memory on Durable Objects."
+description: "A build log of pi-harness: from an agent that believed it was done to a system that demands evidence—with pstack, harness², and team memory on Durable Objects."
 lang: "en"
 routeSlug: "harness-agentes-cierre-verificado"
 tags: ["integracion-ia", "evaluacion", "arquitectura", "automatizacion"]
 publishedDate: 2026-10-23
 draft: false
+socialImage: "/articles/harness-agentes-cierre-verificado/og-en.png"
 ---
 
 The first frozen benchmark was a slap in the face.
@@ -18,7 +19,7 @@ The harness was not failing to solve. It was failing to close.
 
 That distinction became the center of the project.
 
-![The path: ticket, plan, task, verification, draft PR, and human approval.](/articles/harness-agentes-cierre-verificado/pipeline-en.svg)
+<img src="/articles/harness-agentes-cierre-verificado/pipeline-en.svg" alt="The path: ticket, plan, task, verification, draft PR, and human approval." width="900" height="700" loading="lazy" decoding="async" />
 
 *From ticket to PR: every step leaves evidence, and a person approves the last one.*
 
@@ -48,7 +49,7 @@ Five invariants are non-negotiable:
 4. Publishing, deploying, or destroying data requires separate human authorization. The PR is the boundary.
 5. An uncertain effect is reconciled by bytes or authoritative readback; it is never retried blindly.
 
-![The five layers of pi-harness: routing, planning, execution, verification, and memory.](/articles/harness-agentes-cierre-verificado/cinco-capas-en.svg)
+<img src="/articles/harness-agentes-cierre-verificado/cinco-capas-en.svg" alt="The five layers of pi-harness: routing, planning, execution, verification, and memory." width="900" height="600" loading="lazy" decoding="async" />
 
 *Five layers, one contract: work is not done until evidence proves it.*
 
@@ -64,7 +65,7 @@ As I write this, the repo has 157 commits on `main` between August 13 and Octobe
 
 What did not survive also counts: the old runtime, the second TODO manager, and the effect gate disappeared. A mature harness is not the one that accumulates layers; it is the one that can remove the ones that do not pay.
 
-![Four acts of the project: August, early October, mid-October, and late October, with the lesson from each one.](/articles/harness-agentes-cierre-verificado/cuatro-actos-en.svg)
+<img src="/articles/harness-agentes-cierre-verificado/cuatro-actos-en.svg" alt="Four acts of the project: August, early October, mid-October, and late October, with the lesson from each one." width="900" height="560" loading="lazy" decoding="async" />
 
 *Four acts, four corrected assumptions. What did not survive is part of the story too.*
 
@@ -76,7 +77,7 @@ None of these decisions came from nowhere. We read the pipeline, argued about it
 
 Concrete things came out of that: the bug playbook requires a failing reproduction before fixing; the feature playbook checks existing behavior before implementing; `.pi/verification/manifest.json` turns a project's verification into a versioned procedure; and “Done means X” is in the prompt template. Verification is not an opinion the agent writes at the end: it is a command that runs.
 
-The idea that the harness—not just the model—is the object of improvement was already in *Harness Learning*; harness² takes it into recursion.
+The idea that the harness—not just the model—is the object of improvement was already in *[Harness Learning](/en/writing/harness-learning-mejorar-agentes-ia/)*; harness² takes it into recursion.
 
 **harness²** is Google Research's meta-harness ([repo](https://github.com/google-research/harness2), [arXiv:2610.14224](https://arxiv.org/abs/2610.14224)). The question is different: can a system improve an agent's harness without touching the model weights? Its answer is a contrastive recursion: propose a change, probe it with real rollouts, and compose only what survives. We kept four mechanisms: **None-never-zero** (if a judge fails, the task is not a zero; it is `unscored` and leaves the denominator); a **typed lesson library** with four fields—cue, lesson, evidence, confidence; **causal retention** (only lessons from tasks before the current one); and **anti-leak tripwires** (the evaluator's rubric cannot enter context or memory). We did not adopt full recursion: harness² runs ~4,000 rollouts per task; we do not have that budget and will not pretend we do. The self-improvement plan uses the light version: an outcome corpus, a lesson library, and contrasted adoption through evals.
 
@@ -174,7 +175,7 @@ Same ten cases, twenty slots per cohort, 360-second deadline.
 
 *\*Bare produced one false closure in this cohort.*
 
-![Three cohorts: bare, harness on deadline, and harness by oracle. The harness matches the oracle but loses on deadline; bare produces one false closure in the third cohort.](/articles/harness-agentes-cierre-verificado/benchmark-cohortes-en.svg)
+<img src="/articles/harness-agentes-cierre-verificado/benchmark-cohortes-en.svg" alt="Three cohorts: bare, harness on deadline, and harness by oracle. The harness matches the oracle but loses on deadline; bare produces one false closure in the third cohort." width="900" height="520" loading="lazy" decoding="async" />
 
 *The same table as an image: the harness was not more correct on micro-tasks; it was more honest at closing.*
 
@@ -281,7 +282,7 @@ The pattern repeats: almost every mistake came from confusing a representation w
 
 The synthetic baseline is for comparison. A real product shows whether the flow holds.
 
-MaltaCleaners had a coupon bug: the user applied A, edited the form to B, then typed A again without reapplying, and an old response could apply the discount and erase the current error. A concurrency problem with an observable reproduction.
+[MaltaCleaners](/en/work/maltacleaners/) had a coupon bug: the user applied A, edited the form to B, then typed A again without reapplying, and an old response could apply the discount and erase the current error. A concurrency problem with an observable reproduction.
 
 The operator wrote `/plan` with the failing behavior. The plan took 3:29. Author and judge had fresh context; the judge accepted the reproduction, monotonic authority, and evidence criteria. Then `/task` implemented and verified: a native baseline before editing, 28 web scenarios, 38 pure tests, types, lint, and build. The first final review was INCONCLUSIVE: it lacked proof that the wiring had not changed and that excluded states were covered. The second, with that evidence added, was PASS 4/4. Seven real images reached the judge.
 
@@ -325,7 +326,7 @@ We built `pi-memory`: a Cloudflare Worker with one [Durable Object](https://deve
 
 Why Durable Objects? Because a DO is a logical actor with co-located storage: writes and the index live in the same place, one project cannot see another's memory, and a small team does not need a separate database service. FTS5 gives full-text search without an embeddings service; the data model is one row per learning. The convenience is deliberate: the URL and the shared team credential ship as package defaults; installing the harness is the only setup. Per-developer overrides exist, but the happy path is zero configuration.
 
-![Memory architecture: Session A saves with memory_save, the pi-memory Worker persists to one Durable Object per repo with SQLite and FTS5, and Session B searches with memory_search.](/articles/harness-agentes-cierre-verificado/memoria-do-en.svg)
+<img src="/articles/harness-agentes-cierre-verificado/memoria-do-en.svg" alt="Memory architecture: Session A saves with memory_save, the pi-memory Worker persists to one Durable Object per repo with SQLite and FTS5, and Session B searches with memory_search." width="900" height="560" loading="lazy" decoding="async" />
 
 *One Durable Object per repo: writes, index, and search in the same place; the outbox covers network cuts.*
 
@@ -365,6 +366,12 @@ This article is not the story of a harness that turned out well. It is the story
 The first benchmark taught me that the problem was not the code. It was closure. Since then, every decision in the project—the free profile, fresh judges, proportional verification, auto-close, inverting the gate, shared memory—answers the same idea:
 
 **Do not accept “done” as a result. Accept evidence.**
+
+## Related reading
+
+- [Harness learning: is the model to blame?](/en/writing/harness-learning-mejorar-agentes-ia/)
+- [The bot isn't enough: why we built an MCP](/en/writing/mcp-operadores-admin/)
+- [The model interprets; code authorizes actions.](/en/writing/modelo-entiende-codigo-decide-permiso/)
 
 ## Sources
 

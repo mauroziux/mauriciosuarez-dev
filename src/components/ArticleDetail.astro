@@ -20,10 +20,11 @@ const readingTimeLabel = t(lang, "writing.readingTime").replace("{n}", String(mi
 
 const siteOrigin = Astro.site?.origin ?? "https://mauriciosuarez.dev";
 const canonicalUrl = `${siteOrigin}${getRoute(lang, "writing")}${data.routeSlug}/`;
+const socialImage = data.socialImage ?? data.ogImage;
 const imageUrl =
-  data.ogImage && /^https?:\/\//.test(data.ogImage)
-    ? data.ogImage
-    : `${siteOrigin}${data.ogImage ?? "/og-image.png"}`;
+  socialImage && /^https?:\/\//.test(socialImage)
+    ? socialImage
+    : `${siteOrigin}${socialImage ?? "/og-image.png"}`;
 
 const jsonLd = {
   "@context": "https://schema.org",

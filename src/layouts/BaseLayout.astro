@@ -95,17 +95,11 @@ const year = new Date().getFullYear();
     <meta property="og:image" content={ogImageUrl} />
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
   </head>
   <body class="min-h-screen bg-(--color-bg-primary) text-(--color-text-primary) antialiased">
     <header hidden={!showSiteChrome} class="sticky top-0 z-50 border-b border-(--color-border-primary) bg-(--color-bg-primary)/80 backdrop-blur-md">
@@ -136,7 +130,7 @@ const year = new Date().getFullYear();
           <a
             href={navSwitchUrl}
             class="rounded-md border border-(--color-border-secondary) px-2.5 py-1 text-xs font-medium text-(--color-text-secondary) transition-colors hover:border-(--color-accent-dim) hover:text-(--color-text-primary)"
-            aria-label={`Switch to ${alternateLang === "en" ? "English" : "Español"}`}
+            aria-label={`${alternateLang === "en" ? "EN" : "ES"} — Switch to ${alternateLang === "en" ? "English" : "Español"}`}
           >
             {alternateLang.toUpperCase()}
           </a>

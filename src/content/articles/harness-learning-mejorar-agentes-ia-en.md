@@ -122,6 +122,10 @@ Maybe you need a more capable model. Maybe you just need to stop asking it to an
 
 Switching models is still an option. Understanding why the agent failed should come first.
 
+## From paper to harness
+
+If you want to see how these ideas became a real harness—benchmarks, mistakes, and team memory included: [The agent says “done.” The harness asks for proof.](/en/writing/harness-agentes-cierre-verificado/).
+
 ---
 
 *Source: Alvin Zhang and colleagues, [Harness Learning Enables Generalizable Test-Time Adaptation](https://arxiv.org/pdf/2609.35738), arXiv:2609.35738v1, September 28, 2026. The document example is from Section 6.2; results and successive adaptation, Sections 5.2–5.4; exclusions and the fixed Python workflow, Appendix B.1 and Table 9. This article distinguishes the study's results from my proposals for applying them.*

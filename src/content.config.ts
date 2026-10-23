@@ -52,6 +52,7 @@ const articles = defineCollection({
       updatedDate: z.coerce.date().optional(),
       draft: z.boolean().default(false),
       ogImage: z.string().optional(),
+      socialImage: z.string().optional(),
       experimentUrl: z.string().optional(),
     })
     .refine(
