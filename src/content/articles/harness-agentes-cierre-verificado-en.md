@@ -106,6 +106,12 @@ For a medium or large task, the path looks like this:
   → the human reviews and approves
 ```
 
+The diagram shows what the block above leaves out: who decides at each gate, and which condition has to hold to cross it. The border color marks the decision-maker; the sequence animates, and with reduced motion it appears complete.
+
+<img src="/articles/harness-agentes-cierre-verificado/flujo-decisiones-en.svg" alt="Animated diagram of the five decision gates: model routing, task contract and route, plan judges, verification with native checks and optional judges, and delivery with a draft PR and human approval." width="900" height="1150" loading="lazy" decoding="async" />
+
+*Five gates, three decision-makers: a harness rule, a fresh-context model, or a human. None of them is crossed on the agent's confidence.*
+
 Small tasks skip `/plan`: `/task` directly. A diff of up to 40 lines across two files, with no risk signals and no UI criteria, is verified with checks and without judges. That is the proportional path. Complexity is paid for when it adds something.
 
 In practice there are at most three human gates, and one in normal use: PR approval. Everything else is autonomy with evidence.
@@ -120,7 +126,7 @@ We inverted the default. The normal profile uses free Task, optional Goal, and a
 
 ### Routing, depth, and parallelism are three different decisions
 
-They are easy to conflate. They are not the same.
+They are easy to conflate. They are not the same, and the diagram above separates them gate by gate.
 
 - **Routing.** Which model responds based on text, vision, and budget. `router/auto` owns it.
 - **Depth.** How much to research, whether there are multiple candidates, how many judges. Coordinator signals and `plan_workflow` own it.

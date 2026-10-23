@@ -106,6 +106,12 @@ Para una tarea mediana o grande, el recorrido es este:
   → el humano revisa y aprueba
 ```
 
+El diagrama muestra lo que el bloque de arriba no dice: quién decide en cada puerta y qué condición tiene que cumplirse para cruzarla. El color del borde señala al responsable; el recorrido se anima y, con movimiento reducido, se muestra completo.
+
+<img src="/articles/harness-agentes-cierre-verificado/flujo-decisiones-es.svg" alt="Diagrama animado de las cinco puertas de decisión: routing del modelo, contrato y ruta de la tarea, jueces del plan, verificación con checks y jueces opcionales, y entrega con PR en borrador y aprobación humana." width="900" height="1150" loading="lazy" decoding="async" />
+
+*Cinco puertas, tres responsables: una regla del harness, un modelo con contexto fresco o una persona. Ninguna se cruza por confianza del agente.*
+
 Para tareas pequeñas se salta `/plan`: `/task` directo. Un diff de hasta 40 líneas en dos archivos, sin señales de riesgo y sin criterios de UI, se verifica con checks y sin jueces. Es la ruta proporcional. La complejidad se paga cuando aporta.
 
 En la práctica hay tres barreras humanas como máximo y una en el uso normal: la aprobación del PR. El resto es autonomía con evidencia.
@@ -120,7 +126,7 @@ Decidimos invertir el valor por defecto. El perfil normal usa Task libre, Goal o
 
 ### Routing, profundidad y paralelismo son tres decisiones distintas
 
-Es fácil mezclarlas. No son lo mismo.
+Es fácil mezclarlas. No son lo mismo, y el diagrama anterior las separa puerta por puerta.
 
 - **Routing.** Qué modelo responde según texto, visión y presupuesto. Lo decide `router/auto`.
 - **Profundidad.** Cuánto investigar, si hay varios candidatos y cuántos jueces. Lo deciden las señales del coordinador y `plan_workflow`.
